@@ -39,7 +39,6 @@ CREATE TABLE Field (
 
 CREATE TABLE Practice (
     	practiceId int NOT NULL AUTO_INCREMENT,
-    	parkId int NOT NULL,
 	fieldId int NOT NULL,
 	fieldSection CHAR(6),
 	teamId int NOT NULL,
@@ -47,7 +46,6 @@ CREATE TABLE Practice (
 	endTime TIME NOT NULL,
 	adminId int NOT NULL,
     	PRIMARY KEY (practiceId),
-    	FOREIGN KEY (parkId) REFERENCES Park(parkId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
 	FOREIGN KEY (adminId) REFERENCES Admins(adminId)
