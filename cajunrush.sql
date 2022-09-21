@@ -17,7 +17,7 @@ CREATE TABLE Team (
     teamName VARCHAR(60) NOT NULL,
     coachId int NOT NULL,
 	division VARCHAR(4) NOT NULL,
-	location VARCHAR(30 NOT NULL,
+	location VARCHAR(30) NOT NULL,
     PRIMARY KEY (teamId),
     FOREIGN KEY (coachId) REFERENCES Coach(coachId)
 ); 
