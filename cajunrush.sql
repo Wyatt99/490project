@@ -44,6 +44,7 @@ CREATE TABLE Practice (
 	teamId int NOT NULL,
 	startTime TIME NOT NULL,
 	endTime TIME NOT NULL,
+	day CHAR(9),
 	adminId int NOT NULL,
     PRIMARY KEY (practiceId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
