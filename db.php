@@ -1,5 +1,5 @@
 <?php
-$db = new mysqli('localhost', 'Alex', 'P*ssword', 'cajun_rush_schedule');
+$db = new mysqli('localhost', 'root', '', 'cajun_rush_schedule');
 
 #if no session, start an empty session
 if (!isset($_SESSION)) { session_start(); }
