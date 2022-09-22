@@ -30,7 +30,7 @@ CREATE TABLE Park (
 
 CREATE TABLE Field (
    	fieldId int NOT NULL AUTO_INCREMENT,
-    fieldNum int NOT NULL,
+    fieldName VARCHAR(4) NOT NULL,
     parkId int NOT NULL,
 	lights TINYINT(1) NOT NULL,
     PRIMARY KEY (fieldId),
@@ -44,7 +44,7 @@ CREATE TABLE Practice (
 	teamId int NOT NULL,
 	startTime TIME NOT NULL,
 	endTime TIME NOT NULL,
-	day CHAR(9),
+	day CHAR(9) NOT NULL,
 	adminId int NOT NULL,
     PRIMARY KEY (practiceId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
