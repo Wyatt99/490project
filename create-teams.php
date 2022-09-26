@@ -6,7 +6,7 @@ include 'admin-nav.php';
 ?>
 <html>
 <body>
-<span> Team Name </span>
+<span> Team Name </span><br>
 <input class="teamname" type="text" id="teamname" 
 placeholder="Enter a team name">
 <br>
