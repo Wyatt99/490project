@@ -13,14 +13,28 @@ CREATE TABLE Coach (
    	PRIMARY KEY (coachId)
 ); 
 
+CREATE TABLE ageGroup (
+	ageGroup CHAR NOT NULL,
+	PRIMARY KEY (ageGroup)
+);
+
+CREATE TABLE Season (
+	seasonId VARCHAR(20) NOT NULL,
+	seasonStatus TINYINT(1) NOT NULL,
+	PRIMARY KEY (seasonId)
+);
+
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
     coachId int NOT NULL,
 	ageGroup VARCHAR(3) NOT NULL,
 	location VARCHAR(30) NOT NULL,
+	seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
-    FOREIGN KEY (coachId) REFERENCES Coach(coachId)
+	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
+    FOREIGN KEY (coachId) REFERENCES Coach(coachId),
+	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup)
 ); 
 
 CREATE TABLE Park (
