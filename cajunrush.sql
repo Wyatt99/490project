@@ -32,7 +32,7 @@ CREATE TABLE teamLocation (
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
-    coachId int NOT NULL,
+    coachId int,
 	ageGroup VARCHAR(3) NOT NULL,
 	teamLocation VARCHAR(30) NOT NULL,
 	seasonId VARCHAR(20) NOT NULL,
