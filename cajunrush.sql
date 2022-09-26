@@ -6,6 +6,7 @@ CREATE TABLE Admins (
    	PRIMARY KEY (adminId)
 ); 
 
+
 CREATE TABLE Coach (
 	coachId int NOT NULL AUTO_INCREMENT,
 	coachName VARCHAR(60) NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
     coachId int NOT NULL,
-	division VARCHAR(4) NOT NULL,
+	ageGroup VARCHAR(3) NOT NULL,
 	location VARCHAR(30) NOT NULL,
     PRIMARY KEY (teamId),
     FOREIGN KEY (coachId) REFERENCES Coach(coachId)
