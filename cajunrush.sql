@@ -24,17 +24,23 @@ CREATE TABLE Season (
 	PRIMARY KEY (seasonId)
 );
 
+CREATE TABLE teamLocation (
+	teamLocation VARCHAR(30) NOT NULL,
+	PRIMARY KEY (teamLocation)
+);
+
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
     coachId int NOT NULL,
 	ageGroup VARCHAR(3) NOT NULL,
-	location VARCHAR(30) NOT NULL,
+	teamLocation VARCHAR(30) NOT NULL,
 	seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
 	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
     FOREIGN KEY (coachId) REFERENCES Coach(coachId),
-	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup)
+	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
+	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation)
 ); 
 
 CREATE TABLE Park (
