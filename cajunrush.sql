@@ -29,7 +29,7 @@ CREATE TABLE Team (
     teamName VARCHAR(60) NOT NULL,
     coachId int NOT NULL,
 	ageGroup VARCHAR(3) NOT NULL,
-	location VARCHAR(30) NOT NULL,
+	teamLocation VARCHAR(30) NOT NULL,
 	seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
 	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
