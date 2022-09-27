@@ -40,7 +40,8 @@ CREATE TABLE Team (
 	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
     FOREIGN KEY (coachId) REFERENCES Coach(coachId),
 	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
-	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation)
+	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation),
+	unique (ageGroup, teamLocation, teamName)
 ); 
 
 CREATE TABLE Park (
