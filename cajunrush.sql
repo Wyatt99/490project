@@ -14,7 +14,7 @@ CREATE TABLE Coach (
 ); 
 
 CREATE TABLE ageGroup (
-	ageGroup CHAR NOT NULL,
+	ageGroup INT(3) NOT NULL,
 	PRIMARY KEY (ageGroup)
 );
 
@@ -33,14 +33,15 @@ CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
     coachId int,
-	ageGroup VARCHAR(3) NOT NULL,
+	ageGroup INT(3) NOT NULL,
 	teamLocation VARCHAR(30) NOT NULL,
 	seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
 	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
     FOREIGN KEY (coachId) REFERENCES Coach(coachId),
 	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
-	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation)
+	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation),
+	unique (ageGroup, teamLocation, teamName)
 ); 
 
 CREATE TABLE Park (
@@ -72,3 +73,28 @@ CREATE TABLE Practice (
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
 	FOREIGN KEY (adminId) REFERENCES Admins(adminId)
 ); 
+
+INSERT INTO ageGroup (ageGroup)
+VALUES ('5');
+INSERT INTO ageGroup (ageGroup)
+VALUES ('6');
+INSERT INTO ageGroup (ageGroup)
+VALUES ('7');
+INSERT INTO ageGroup (ageGroup)
+VALUES ('8');
+INSERT INTO ageGroup (ageGroup)
+VALUES ('9');
+INSERT INTO ageGroup (ageGroup)
+VALUES ('10');
+
+
+INSERT INTO teamLocation (teamLocation)
+VALUES ('southside');
+INSERT INTO teamLocation (teamLocation)
+VALUES ('northside');
+
+insert into Admins (username, password)
+values ('lane', 'football');
+
+INSERT INTO Season (seasonId, seasonStatus)
+values ('FALL 2022', '1');
