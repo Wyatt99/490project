@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <a href="#" class="navbar-brand">
                 <span>
-                    <img src="images\Cajun Rush Logo-white.png" width="auto" height="30px"></span>Cajun Rush Schedule</a>
+                    <img src="images\Cajun Rush Logo-white.png" width="auto" height="30px"></span>Cajun Rush Schedule</span>
 
             <!--navbar toggle icon-->
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
