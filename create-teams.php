@@ -2,50 +2,62 @@
 include 'head.php';
 include 'db.php';
 include 'admin-nav.php';
+ensure_logged_in();
 
+# error variables default values
+$error = false;
 $notUniqueError="";
 $requiredError="";
-$error = false;
 
+# post process for when the button submit is activated
 if (isset($_POST['submit'])){
 
+    # db link
     $link = mysqli_connect("localhost","root", "", "cajun_rush_schedule");
 
     if($link === false){
         die("ERROR: Could not connect. ". mysqli_connect_error());
     }
 
+    # required fields
     $required = array('teamName', 'ageGroup', 'teamLocation');
 
+    # checks required fields, sets empty var to true if one is empty
     foreach($required as $field) {
         if (empty($_POST[$field])) {
             $error = true;
         }
     }
 
+    # if fields are empty sets requiredError var, else it moves on
     if ($error) {
         $requiredError="please select all fields";
     } else {
 	    $error= false;
-
+        
+        #db variables and checks for escape strings
         $teamName= mysqli_real_escape_string(
         $link, $_REQUEST['teamName']);
         $teamLocation = mysqli_real_escape_string(
         $link, $_REQUEST['teamLocation']);
         $ageGroup = mysqli_real_escape_string(
         $link, $_REQUEST['ageGroup']);
+
+        # season logic where it selects the active current season to be automatically added into the new team
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";
         $seasonResult = mysqli_query($link, $seasonSql);
-
         $activeSeason = $seasonResult->fetch_array()[0] ?? '';
         $sql = "INSERT INTO team (teamName, teamLocation, ageGroup, seasonId)
         VALUES ('$teamName', '$teamLocation', '$ageGroup', '$activeSeason')";
 
+            # attempts the sql insert, if it fails the uniqueError is set
             if(mysqli_query($link, $sql)){
                 ;
             } else{
                 $notUniqueError="the team name already exisits in that ageGroup and location for this season";
             }
+
+        # closes the db link for the post process
         mysqli_close($link);
     } 
 }
@@ -105,6 +117,7 @@ echo "<body>";
         # submit button
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='submit' name='submit' value='Add'>";
         echo "</form>";
+        # prints errors
         echo $requiredError.$notUniqueError;
     echo "</div>";
 echo "</body>";
