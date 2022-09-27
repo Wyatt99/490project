@@ -4,10 +4,11 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
-# error variables default values
+# variable default values
 $error = false;
 $notUniqueError="";
 $requiredError="";
+$insertSuccess="";
 
 # post process for when the button submit is activated
 if (isset($_POST['addTeamButton'])){
@@ -49,7 +50,7 @@ if (isset($_POST['addTeamButton'])){
 
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
-                ;
+            $insertSuccess="team successfully created";
         } else {
             $notUniqueError="a team name with the same age group, location, and season already exists";
         }
@@ -85,7 +86,7 @@ echo "<body>";
             # change the value inside of the row to populate what you want the 
             # option to be called
             $name = $row['ageGroup']; 
-            echo '<option value="'.$id.'">'.$name.'</option>';
+            echo '<option value="'.$id.'">'.$name.'u</option>';
         }
         echo "</select><br><br>";
 
@@ -110,9 +111,14 @@ echo "<body>";
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Add'>";
         echo "</form>";
         # prints errors
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white;'>"
-        .$requiredError.$notUniqueError.
+        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
+            .$requiredError.$notUniqueError.
         "</div>";
+        # prints success message
+        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
+            .$insertSuccess.
+        "</div>";
+    echo "</div>";
 echo "</body>";
 echo "</html>";
 ?> 
