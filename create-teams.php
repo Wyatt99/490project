@@ -10,12 +10,9 @@ $notUniqueError="";
 $requiredError="";
 
 # post process for when the button submit is activated
-if (isset($_POST['submit'])){
+if (isset($_POST['addTeamButton'])){
 
-    # db link
-    $link = mysqli_connect("localhost","root", "", "cajun_rush_schedule");
-
-    if($link === false){
+    if($db === false){
         die("ERROR: Could not connect. ". mysqli_connect_error());
     }
 
@@ -31,34 +28,31 @@ if (isset($_POST['submit'])){
 
     # if fields are empty sets requiredError var, else it moves on
     if ($error) {
-        $requiredError="please select all fields";
+        $requiredError="please enter a team name and select all fields";
     } else {
 	    $error= false;
         
         #db variables and checks for escape strings
         $teamName= mysqli_real_escape_string(
-        $link, $_REQUEST['teamName']);
+        $db, $_REQUEST['teamName']);
         $teamLocation = mysqli_real_escape_string(
-        $link, $_REQUEST['teamLocation']);
+        $db, $_REQUEST['teamLocation']);
         $ageGroup = mysqli_real_escape_string(
-        $link, $_REQUEST['ageGroup']);
+        $db, $_REQUEST['ageGroup']);
 
         # season logic where it selects the active current season to be automatically added into the new team
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";
-        $seasonResult = mysqli_query($link, $seasonSql);
+        $seasonResult = mysqli_query($db, $seasonSql);
         $activeSeason = $seasonResult->fetch_array()[0] ?? '';
         $sql = "INSERT INTO team (teamName, teamLocation, ageGroup, seasonId)
         VALUES ('$teamName', '$teamLocation', '$ageGroup', '$activeSeason')";
 
-            # attempts the sql insert, if it fails the uniqueError is set
-            if(mysqli_query($link, $sql)){
+        # attempts the sql insert, if it fails the uniqueError is set
+        if(mysqli_query($db, $sql)){
                 ;
-            } else{
-                $notUniqueError="the team name already exisits in that ageGroup and location for this season";
-            }
-
-        # closes the db link for the post process
-        mysqli_close($link);
+        } else {
+            $notUniqueError="a team name with the same age group, location, and season already exists";
+        }
     } 
 }
 
@@ -75,10 +69,8 @@ echo "<body>";
         placeholder='Enter a team name'>
         <br><br>";
 
-        # the database connection to populate the ageGroup dropdown
-        $conn = new mysqli('localhost', 'root', '', 'cajun_rush_schedule') or die ('Cannot connect to db');
-        # the sql select statement
-        $result = $conn->query("select ageGroup from ageGroup");
+        # the sql select statement for ageGroup
+        $result = $db->query("select ageGroup from ageGroup");
 
         echo "<span>Age Group</span><br>";
         echo "<select name='ageGroup'>";
@@ -98,7 +90,7 @@ echo "<body>";
         echo "</select><br><br>";
 
         # new sql select statement for the teamLocation table
-        $result = $conn->query("select teamLocation from teamLocation");
+        $result = $db->query("select teamLocation from teamLocation");
 
         echo "<span>Location</span><br>";
         echo "<select name='teamLocation'>";
@@ -115,11 +107,12 @@ echo "<body>";
         echo "</select><br><br>";
 
         # submit button
-        echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='submit' name='submit' value='Add'>";
+        echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Add'>";
         echo "</form>";
         # prints errors
-        echo $requiredError.$notUniqueError;
-    echo "</div>";
+        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white;'>"
+        .$requiredError.$notUniqueError.
+        "</div>";
 echo "</body>";
 echo "</html>";
 ?> 
