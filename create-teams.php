@@ -52,10 +52,13 @@ mysqli_close($link);
 } 
 }
 ?>
+
+    <div style="margin-left: 20px;margin-top: 10px">    
+    <!--<h2>Team Manager</h2>-->
+    <h3 style="margin-left: 10px;margin-top: 15px">Add New Team</h3>
     <?php
         # start of the form, the current action is create-teams.php
-        echo "<form id='createteams' action='create-teams.php' method='POST'>";
-        echo "<br><br>";
+        echo "<form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>";
         echo "<span> Team Name </span><br>";
         echo "<input class='teamName' type='text' id='teamName' name='teamName'
         placeholder='Enter a team name'>
@@ -67,29 +70,35 @@ mysqli_close($link);
             # the sql select statement
             $result = $conn->query("select ageGroup from ageGroup");
 
-            echo "<span> Select Age Group</span><br>";
+            echo "<span>Age Group</span><br>";
             echo "<select name='ageGroup'>";
+            echo "<option value='' disabled selected hidden>Age Group</option>";
 
             # loops through all the records from ageGroup table
             while ($row = $result->fetch_assoc()) {
 
                 unset($id, $name);
+                # the id is the value that gets inserted when selected and submitted
                 $id = $row['ageGroup'];
+                # change the value inside of the row to populate what you want the 
+                # option to be called
                 $name = $row['ageGroup']; 
                 echo '<option value="'.$id.'">'.$name.'</option>';
-             }
+            }
 
             echo "</select><br><br>";
 
             # new sql select statement for the teamLocation table
             $result = $conn->query("select teamLocation from teamLocation");
-            echo "<span> Select Team Location</span><br>";
-            echo "<select name='teamLocation'>";
 
+            echo "<span>Location</span><br>";
+            echo "<select name='teamLocation'>";
+            echo "<option value='' disabled selected hidden>Location</option>";
             # loops through all the records for teamLocation
             while ($row = $result->fetch_assoc()) {
 
                 unset($id, $name);
+                # see previous comments about these loop vars
                 $id = $row['teamLocation'];
                 $name = $row['teamLocation']; 
                 echo '<option value="'.$id.'">'.$name.'</option>';
@@ -97,8 +106,9 @@ mysqli_close($link);
 
             echo "</select><br><br>";
             # submit button
-            echo "<input class='Add' type='submit' id='submit' name='submit' value='Add'>";
+            echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='submit' name='submit' value='Add'>";
             echo "</form>"
         ?> 
+        <div>
     </body>
 </html>
