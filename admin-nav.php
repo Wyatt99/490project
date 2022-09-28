@@ -20,7 +20,8 @@
                     <a href="#" class="nav-item nav-link">Schedule Practices</a>
                       <a href="#" class="nav-item nav-link">View Schedule</a>
                 </div>
-                <div class="navbar-nav ms-auto">              	
+                <div class="navbar-nav ms-auto">         
+                    <a href="register.php" class="nav-item nav-link">Register Admin</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </div>

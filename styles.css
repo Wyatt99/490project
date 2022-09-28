@@ -36,3 +36,21 @@ body {
 form {
     margin-top:20px;
   }
+.password-container {
+    position: relative;
+}
+
+#eye {
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    cursor: pointer;
+    color: lightgray;
+  }
+  #eye2 {
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    cursor: pointer;
+    color: lightgray;
+  }
