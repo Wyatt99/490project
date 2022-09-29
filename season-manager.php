@@ -38,39 +38,39 @@ if (isset($_POST['addSeasonButton'])){
             $notUniqueError="This season already exists";
         }
     #post process for when the button for when activating a season.
-    }elseif (isset($_POST['activateButton'])){
-        if($db === false){
-            die("ERROR: Could not connect. ". mysqli_connect_error());
-        }
+}elseif (isset($_POST['activateButton'])){
+    if($db === false){
+        die("ERROR: Could not connect. ". mysqli_connect_error());
+    }
         
-        #season choice cant be empty
-        if (empty($_POST['inactiveSeason'])){
-            $error = true;
-        }else{
-            $error = false;
-        }
+    #season choice cant be empty
+    if (empty($_POST['inactiveSeason'])){
+        $error = true;
+    }else{
+        $error = false;
+    }
 
-        #if there is an error, print an error message. Otherwise update database
-        if($error){
-            $requiredError = "Please select a season";
-        }else{
-            #check for escape strings, shouldn't be possible as both option is drop down
-            $yearToActive= mysqli_real_escape_string(
-                $db, $_REQUEST['inactiveSeason']);
+    #if there is an error, print an error message. Otherwise update database
+    if($error){
+        $requiredError = "Please select a season";
+    }else{
+        #check for escape strings, shouldn't be possible as both option is drop down
+        $yearToActive= mysqli_real_escape_string(
+            $db, $_REQUEST['inactiveSeason']);
     
-                # set the current active season to inactive and set the new season as active
-                $sql = "UPDATE season SET seasonStatus = 0 WHERE seasonStatus = 1";
-                $sql2 = "UPDATE season SET seasonStatus = 1 WHERE seasonId = '$yearToActive' ";
-                $test = mysqli_query($db, $sql);
+        # set the current active season to inactive and set the new season as active
+        $sql = "UPDATE season SET seasonStatus = 0 WHERE seasonStatus = 1";
+        $sql2 = "UPDATE season SET seasonStatus = 1 WHERE seasonId = '$yearToActive' ";
+        $test = mysqli_query($db, $sql);
     
-                # attempts the sql insert, if it fails the uniqueError is set
-                if(mysqli_query($db, $sql2)){
-                    $activeSuccess="Season has been set to active. All other seasons are set to inactive";
-                } else {
-                    $inactiveError="Error. Season was not set to active";
-                }
+        # attempts the sql insert, if it fails the uniqueError is set
+        if(mysqli_query($db, $sql2)){
+                $activeSuccess="Season has been set to active. All other seasons are set to inactive";
+        } else {
+            $inactiveError="Error. Season was not set to active";
         }
     }
+}
 
 
 echo "<html>";
