@@ -21,7 +21,8 @@
                       <a href="#" class="nav-item nav-link">View Schedule</a>
                       <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
                 </div>
-                <div class="navbar-nav ms-auto">              	
+                <div class="navbar-nav ms-auto">         
+                    <a href="register.php" class="nav-item nav-link">Register Admin</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </div>
