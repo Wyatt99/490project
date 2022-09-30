@@ -33,7 +33,6 @@ CREATE TABLE Team (
 	seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
 	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
-    FOREIGN KEY (coachId) REFERENCES Coach(coachId),
 	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
 	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation),
 	unique (ageGroup, teamLocation, teamName, seasonId)
