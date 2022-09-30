@@ -6,13 +6,6 @@ CREATE TABLE Admins (
    	PRIMARY KEY (adminId)
 ); 
 
-
-CREATE TABLE Coach (
-	coachId int NOT NULL AUTO_INCREMENT,
-	coachName VARCHAR(60) NOT NULL,
-   	PRIMARY KEY (coachId)
-); 
-
 CREATE TABLE ageGroup (
 	ageGroup INT(3) NOT NULL,
 	PRIMARY KEY (ageGroup)
@@ -32,7 +25,9 @@ CREATE TABLE teamLocation (
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
     teamName VARCHAR(60) NOT NULL,
-    coachId int,
+    coachFirstName VARCHAR(60) NOT NULL,
+	coachLastName VARCHAR(60) NOT NULL,
+	coachEmail VARCHAR(60),
 	ageGroup INT(3) NOT NULL,
 	teamLocation VARCHAR(30) NOT NULL,
 	seasonId VARCHAR(20) NOT NULL,
