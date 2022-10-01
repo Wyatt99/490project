@@ -1,12 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<!-- START OF HEADER -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Update Team</title>
+
+	<!--Open Sans Font-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+	rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+	
+ 	<!--<link rel="stylesheet" type="text/css" href="css\bootstrap.css"> if wanted offline-->
+
+	<!-- custom CSS Stylesheet -->	  
+    <link rel="stylesheet" type="text/css" href="styles.css";>
+</head>
+<!-- END OF HEADER -->
+
+
+
+
+<!-- PHP PORTION -->
 <?php
 #Database
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+
 $res= "Select * from Team ";
 
 if (isset($_POST['search'])){
-
+	
     $searchTerm = $_POST['search_box'];
 
     $res .= "WHERE teamName = '{$searchTerm}' ";
@@ -16,7 +44,6 @@ if (isset($_POST['search'])){
     $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamLocation = '{$searchTerm}'";
 }
-
 $query=mysqli_query($db, $res);
 
 function outputTable($query){
@@ -35,7 +62,7 @@ function outputTable($query){
 }
 ?>
 <?php
-if (isset($_POST['refresh'])){
+if (isset($_POST['showAll'])){
 ?>
     <script type="text/javascript">
     window.location="update-team.php";
@@ -43,34 +70,19 @@ if (isset($_POST['refresh'])){
 <?php
 }
 ?>
+<!-- END OF PHP PORTION-->
 
 
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Update Team</title>
 
-	<!--Open Sans Font-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-	rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
-	
- 	<!--<link rel="stylesheet" type="text/css" href="css\bootstrap.css"> if wanted offline-->
-
-	<!-- custom CSS Stylesheet -->	  
-    <link rel="stylesheet" type="text/css" href="styles.css";>
-</head>
+<!-- START OF BODY -->
 <body>
-<div class="text-center" style="padding-right:80px">
+<div class="text-center p-2" >
 <form name="search_form" method="POST" action="update-team.php">
 Search: <input type="text" name="search_box" value="" />
 
 <input type="submit" name="search" value="Filter">
-<input type="submit" name="refresh" value="Show All">
+<input type="submit" name="showAll" value="Show All">
 </form>
 </div>
 
@@ -93,8 +105,12 @@ Search: <input type="text" name="search_box" value="" />
       <?=outputTable($query)?>
     </thead>
 </tbody>
+
 </table>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+<!-- END OF BODY -->
+
 </html>
+

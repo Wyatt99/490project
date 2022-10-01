@@ -1,3 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<!-- START OF HEADER -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Team</title>
+
+	<!--Open Sans Font-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+	rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+	
+ 	<!--<link rel="stylesheet" type="text/css" href="css\bootstrap.css"> if wanted offline-->
+
+	<!-- custom CSS Stylesheet -->	  
+    <link rel="stylesheet" type="text/css" href="styles.css";>
+</head>
+<!-- END OF HEADER -->
+
+
+
+
+<!-- START OF PHP-->
 <?php
 #Database
 include 'db.php';
@@ -48,41 +75,12 @@ if (isset($_POST["Return"])){
     <?php
 }
     ?>
-
-<?php
-if (isset($_POST["Refresh"])){
-    ?>
-    <script type="text/javascript">
-    window.location="update-team.php?id"+$id;
-    </script>
-    <?php
-}
-    ?>
+<!-- END OF PHP -->
 
 
 
 
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Edit Team</title>
-
-	<!--Open Sans Font-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-	rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
-	
- 	<!--<link rel="stylesheet" type="text/css" href="css\bootstrap.css"> if wanted offline-->
-
-	<!-- custom CSS Stylesheet -->	  
-    <link rel="stylesheet" type="text/css" href="styles.css";>
-</head>
-
-<!-- Create form -->
+<!-- START OF BODY -->
 <body>
 
 <div class="container mt-3">
@@ -122,13 +120,13 @@ if (isset($_POST["Refresh"])){
     </div>
     
     <div class="mt-3">
-    <button type="submit" name="Update" class="btn btn-success">Update</button>
-    <button type="submit" name="Return" class="btn btn-secondary">Return</button>
+    <button type="submit" name="Update" class="btn btn-success mb-3 mb-lg-0">Update</button>
+    <button type="submit" name="Return" class="btn btn-secondary mb-3 mb-lg-0">Return</button>
     </div>
   </form>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+<!-- END OF BODY -->
 
 </html>
