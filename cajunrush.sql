@@ -88,7 +88,7 @@ INSERT INTO teamLocation (teamLocation)
 VALUES ('northside');
 
 insert into Admins (username, password)
-values ('lane', 'football');
+values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
 
 INSERT INTO Season (seasonId, seasonStatus)
 values ('FALL 2022', '1');
