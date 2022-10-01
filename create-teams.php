@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<html> 
+    <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Admin Home</title>
+
+    <!--Open Sans Font-->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans' />
+
+    <!-- Bootstrap CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' 
+    rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'> 
+
+    <!-- Font Awesome icon library -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'>
+
+    <!-- custom CSS Stylesheet -->	  
+    <link rel='stylesheet' type='text/css' href='styles.css';>
+</head>
+
+<!--php outputs body element-->
 <?php 
 include 'db.php';
 include 'admin-nav.php';
@@ -56,27 +79,7 @@ if (isset($_POST['addTeamButton'])){
     } 
 }
 
-echo "<html> <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Admin Home</title>
-
-<!--Open Sans Font-->
-<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans' />
-
-<!-- Bootstrap CSS -->
-<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' 
-rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'> 
-
-<!-- Font Awesome icon library -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'>
-
-<!-- custom CSS Stylesheet -->	  
-<link rel='stylesheet' type='text/css' href='styles.css';>
-</head>;";
-
 echo "<body>";
-
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
     # echo "<h2>Team Manager</h2>";
         echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Team</h3>";
@@ -96,7 +99,6 @@ echo "<body>";
 
         # loops through all the records from ageGroup table
         while ($row = $result->fetch_assoc()) {
-
             unset($id, $name);
             # the id is the value that gets inserted when selected and submitted
             $id = $row['ageGroup'];
@@ -136,6 +138,11 @@ echo "<body>";
             .$insertSuccess.
         "</div>";
     echo "</div>";
-echo "</body>";
-echo "</html>";
 ?> 
+
+    <!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </body>
+</html>
