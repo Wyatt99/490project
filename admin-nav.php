@@ -5,7 +5,7 @@
             <a href="#" class="navbar-brand">
                 <span>
                     <img src="images\Cajun Rush Logo-white.png" width="auto" height="30px">
-                </span>Cajun Rush Schedule
+                </span>Cajun Rush Schedule</span>
             </a>
 
             <!--navbar toggle icon-->
@@ -18,8 +18,8 @@
                 <div class="navbar-nav">
                     <a href="#" class="nav-item nav-link">Manage Teams</a>
                     <a href="#" class="nav-item nav-link">Schedule Practices</a>
-                      <a href="#" class="nav-item nav-link">View Schedule</a>
-                      <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
+                    <a href="#" class="nav-item nav-link">View Schedule</a>
+                    <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
                 </div>
                 <div class="navbar-nav ms-auto">         
                     <a href="register.php" class="nav-item nav-link">Register Admin</a>     	

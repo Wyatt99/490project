@@ -15,7 +15,7 @@ if (isset( $_POST['submit'] )) {
         $registerPrep = $db -> prepare("INSERT INTO admins(username, password) VALUES (?, ?)");
         $registerPrep -> bind_param("ss", $name, $password_hash);
         $registerPrep -> execute();
-        header("location: register.php?success");
+        header("location: register.php?newAdminSuccess");
     }
 
     else {
