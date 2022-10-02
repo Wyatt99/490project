@@ -61,10 +61,11 @@ if (isset($_POST['addSeasonButton'])){
         # set the current active season to inactive and set the new season as active
         $sql = "UPDATE season SET seasonStatus = 0 WHERE seasonStatus = 1";
         $sql2 = "UPDATE season SET seasonStatus = 1 WHERE seasonId = '$yearToActive' ";
-        $test = mysqli_query($db, $sql);
+        $setActive = mysqli_query($db, $sql);
+        $setInactive = mysqli_query($db, $sql2);
     
         # attempts the sql insert, if it fails the uniqueError is set
-        if(mysqli_query($db, $sql2)){
+        if($setActive && $setInactive){
                 $activeSuccess="Season has been set to active. All other seasons are set to inactive";
         } else {
             $inactiveError="Error. Season was not set to active";
@@ -117,13 +118,9 @@ echo "<body>";
         echo "<select name='inactiveSeason'>";
         echo "<option value='' disabled selected hidden>Inactive Season</option>";
 
-        # loops through all the records from ageGroup table
+        #loops through the seasons table, grabbing inactive seasons
         while ($row = $result->fetch_assoc()) {
-            unset($id);
-            # the id is the value that gets inserted when selected and submitted
             $id = $row['seasonId'];
-            # change the value inside of the row to populate what you want the 
-            # option to be called
             echo "<option value='$id'>$id</option>";
         }
         echo "</select><br><br>";
