@@ -1,5 +1,4 @@
 <?php 
-include 'head.php';
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
@@ -33,9 +32,11 @@ if (isset($_POST['addSeasonButton'])){
 
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
-            $insertSuccess="Season has been added";
+            $message="Season has been added!";
+            echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
         } else {
-            $notUniqueError="This season already exists";
+            $message = "This season already exists.";
+            echo "<div class='alert alert-danger mt-3' role='alert'>".$message."</div>";
         }
     #post process for when the button for when activating a season.
 }elseif (isset($_POST['activateButton'])){
@@ -52,7 +53,8 @@ if (isset($_POST['addSeasonButton'])){
 
     #if there is an error, print an error message. Otherwise update database
     if($error){
-        $requiredError = "Please select a season";
+        $message = "Please select a season to set as active.";
+        echo "<div class='alert alert-danger mt-3' role='alert'>".$message."</div>";
     }else{
         #check for escape strings, shouldn't be possible as both option is drop down
         $yearToActive= mysqli_real_escape_string(
@@ -61,18 +63,45 @@ if (isset($_POST['addSeasonButton'])){
         # set the current active season to inactive and set the new season as active
         $sql = "UPDATE season SET seasonStatus = 0 WHERE seasonStatus = 1";
         $sql2 = "UPDATE season SET seasonStatus = 1 WHERE seasonId = '$yearToActive' ";
-        $test = mysqli_query($db, $sql);
+        $setActive = mysqli_query($db, $sql);
+        $setInactive = mysqli_query($db, $sql2);
     
         # attempts the sql insert, if it fails the uniqueError is set
-        if(mysqli_query($db, $sql2)){
-                $activeSuccess="Season has been set to active. All other seasons are set to inactive";
+        if($setActive && $setInactive){
+            $message="Season has been set to active! All other seasons are set to inactive.";
+            echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
         } else {
-            $inactiveError="Error. Season was not set to active";
+            $message="Error. Season was not set to active.";
+            echo "<div class='alert alert-danger mt-3' role='alert'>".$message."</div>";
         }
     }
 }
 
+?>
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Season Manager</title>
 
+	<!--Open Sans Font-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+	rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+	
+	<!-- Font Awesome icon library -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+ 	<!--<link rel="stylesheet" type="text/css" href="css\bootstrap.css"> if wanted offline-->
+
+	<!-- custom CSS Stylesheet -->	  
+    <link rel="stylesheet" type="text/css" href="styles.css";>
+</head>
+
+<?php
 echo "<html>";
 echo "<body>";
 
@@ -99,14 +128,6 @@ echo "<body>";
         # submit button for adding a season
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addSeasonButton' name='addSeasonButton' value='Add'>";
         echo "</form>";
-        # prints errors
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
-            .$notUniqueError.
-        "</div>";
-        # prints success message
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
-            .$insertSuccess.
-        "</div>";
 
         echo "<h3 style='margin-left: 10px;margin-top: 15px'>Select Active Season</h3>";
         # Form for enabling the active season
@@ -117,13 +138,9 @@ echo "<body>";
         echo "<select name='inactiveSeason'>";
         echo "<option value='' disabled selected hidden>Inactive Season</option>";
 
-        # loops through all the records from ageGroup table
+        #loops through the seasons table, grabbing inactive seasons
         while ($row = $result->fetch_assoc()) {
-            unset($id);
-            # the id is the value that gets inserted when selected and submitted
             $id = $row['seasonId'];
-            # change the value inside of the row to populate what you want the 
-            # option to be called
             echo "<option value='$id'>$id</option>";
         }
         echo "</select><br><br>";
@@ -131,15 +148,8 @@ echo "<body>";
         # submit button for setting the active season
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='activateButton' name='activateButton' value='Activate'>";
         echo "</form>";
-        # prints errors
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
-            .$inactiveError.$requiredError.
-        "</div>";
-        # prints success message
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
-            .$activeSuccess.
-        "</div>";
     echo "</div>";
+echo"<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>";
 echo "</body>";
 echo "</html>";
 ?> 
