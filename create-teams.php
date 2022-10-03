@@ -62,13 +62,21 @@ if (isset($_POST['addTeamButton'])){
         $db, $_REQUEST['teamLocation']);
         $ageGroup = mysqli_real_escape_string(
         $db, $_REQUEST['ageGroup']);
+        $coachFirstName= mysqli_real_escape_string(
+        $db, $_REQUEST['coachFirstName']);
+        $coachLastName= mysqli_real_escape_string(
+        $db, $_REQUEST['coachLastName']);
+        $coachEmail= mysqli_real_escape_string(
+        $db, $_REQUEST['coachEmail']);
+        
+        
 
         # season logic where it selects the active current season to be automatically added into the new team
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";
         $seasonResult = mysqli_query($db, $seasonSql);
         $activeSeason = $seasonResult->fetch_array()[0] ?? '';
-        $sql = "INSERT INTO team (teamName, teamLocation, ageGroup, seasonId)
-        VALUES ('$teamName', '$teamLocation', '$ageGroup', '$activeSeason')";
+        $sql = "INSERT INTO team (teamName, teamLocation, ageGroup, seasonId, coachFirstName, coachLastName, coachEmail)
+        VALUES ('$teamName', '$teamLocation', '$ageGroup', '$activeSeason','$coachFirstName','$coachLastName','$coachEmail')";
 
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
@@ -88,6 +96,21 @@ echo "<body>";
         echo "<span> Team Name </span><br>";
         echo "<input class='teamName' type='text' id='teamName' name='teamName'
         placeholder='Enter a team name'>
+        <br><br>";
+        
+        echo "<span> Coach First Name </span><br>";
+        echo "<input class='coachFirstName' type='text' id='coachFirstName' name='coachFirstName'
+        placeholder='Enter coach first name  '>
+        <br><br>";
+    
+        echo "<span> Coach Last Name </span><br>";
+        echo "<input class='coachLastName' type='text' id='coachLastName' name='coachLastName'
+        placeholder='Enter coach last name' >
+        <br><br>";
+    
+        echo "<span> Coach Email</span><br>";
+        echo "<input class='coachEmail' type='text' id='coachEmail' name='coachEmail'
+        placeholder='Enter coach email' >
         <br><br>";
 
         # the sql select statement for ageGroup
