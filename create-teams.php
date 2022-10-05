@@ -90,12 +90,9 @@ if (isset($_POST['addTeamButton'])){
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
             $insertSuccess="team successfully created";
-            header("location:create-teams.php");    #unset POST to prevent duplicate inputs on refresh
-            exit();
+            
         } else {
             $notUniqueError="a team name with the same age group, location, and season already exists";
-            header("location:create-teams.php");    #unset POST to prevent duplicate inputs on refresh
-            exit();
         }
 
     } 
