@@ -73,10 +73,19 @@ if (isset($_POST['addTeamButton'])){
         $coachEmail= mysqli_real_escape_string(
         $db, $_REQUEST['coachEmail']);
         
-        #$IdNumber = find current max ID in database, add 1 to it 
-        $IdQuery = $db->query("SELECT MAX(teamId) FROM team");
-        $IdNumResult = $IdQuery-> fetch_all();
-        $IdNumber = $IdNumResult[0][0] + 1;     
+
+        
+        # get max id num	
+		$IdQuery = $db->query("select teamId from team");
+		$IdNumber = 0;
+        while ($row = $IdQuery->fetch_assoc()) {
+            unset($id);
+            $id = $row['teamId'];
+			if($IdNumber < $id) {
+				$IdNumber = $id;
+			}
+        }
+        $IdNumber++;
 
         #concatenate team data into a capitalized string in the form NSWWOODALL7u/CRUSADERS 
         $teamIdentifier = strtoupper($teamLocation.substr($coachFirstName,0,1).$coachLastName.$ageGroup)."u/".strtoupper($teamName)." (".$IdNumber.")";
@@ -85,8 +94,8 @@ if (isset($_POST['addTeamButton'])){
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";
         $seasonResult = mysqli_query($db, $seasonSql);
         $activeSeason = $seasonResult->fetch_array()[0] ?? '';
-        $sql = "INSERT INTO team (teamIdentifier, teamName, teamLocation, ageGroup, seasonId, coachFirstName, coachLastName, coachEmail)
-        VALUES ('$teamIdentifier','$teamName', '$teamLocation', '$ageGroup', '$activeSeason','$coachFirstName','$coachLastName','$coachEmail')";
+        $sql = "INSERT INTO team (teamId, teamIdentifier, teamName, teamLocation, ageGroup, seasonId, coachFirstName, coachLastName, coachEmail)
+        VALUES ('$IdNumber','$teamIdentifier','$teamName', '$teamLocation', '$ageGroup', '$activeSeason','$coachFirstName','$coachLastName','$coachEmail')";
 
 
 #ERROR MESSAGE

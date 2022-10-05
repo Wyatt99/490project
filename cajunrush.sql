@@ -23,7 +23,7 @@ CREATE TABLE teamLocation (
 );
 
 CREATE TABLE Team (
-    teamId int NOT NULL AUTO_INCREMENT,
+    teamId int NOT NULL,
 	  teamIdentifier VARCHAR(60),
     teamName VARCHAR(60) NOT NULL,
     coachFirstName VARCHAR(60) NOT NULL,
@@ -84,9 +84,13 @@ VALUES ('10');
 
 
 INSERT INTO teamLocation (teamLocation)
-VALUES ('southside');
+VALUES ('NS');
 INSERT INTO teamLocation (teamLocation)
-VALUES ('northside');
+VALUES ('PB');
+INSERT INTO teamLocation (teamLocation)
+VALUES ('RS');
+INSERT INTO teamLocation (teamLocation)
+VALUES ('PR');
 
 insert into Admins (username, password)
 values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
