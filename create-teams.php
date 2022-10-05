@@ -25,6 +25,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+mysqli_report(MYSQLI_REPORT_STRICT);
 
 
 # variable default values
