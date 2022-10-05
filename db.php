@@ -1,6 +1,10 @@
 <?php
 $db = new mysqli('localhost', 'root', '', 'cajun_rush_schedule');
 
+if($db === false){
+  die("ERROR: Could not connect. ". mysqli_connect_error());
+}
+
 #if no session, start an empty session
 if (!isset($_SESSION)) { session_start(); }
 
