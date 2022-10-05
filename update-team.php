@@ -43,6 +43,11 @@ if (isset($_POST['search'])){
     $res .= " OR coachEmail = '{$searchTerm}'";
     $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamLocation = '{$searchTerm}'";
+    $res .= " OR teamId = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachLastName, ' ', coachFirstName) = '{$searchTerm}'";
 }
 $query=mysqli_query($db, $res);
 

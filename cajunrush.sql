@@ -24,19 +24,19 @@ CREATE TABLE teamLocation (
 
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
-	teamIdentifier VARCHAR(60),
+	  teamIdentifier VARCHAR(60),
     teamName VARCHAR(60) NOT NULL,
     coachFirstName VARCHAR(60) NOT NULL,
-	coachLastName VARCHAR(60) NOT NULL,
-	coachEmail VARCHAR(60),
-	ageGroup INT(3) NOT NULL,
-	teamLocation VARCHAR(30) NOT NULL,
-	seasonId VARCHAR(20) NOT NULL,
+    coachLastName VARCHAR(60) NOT NULL,
+    coachEmail VARCHAR(60),
+    ageGroup INT(3) NOT NULL,
+    teamLocation VARCHAR(30) NOT NULL,
+    seasonId VARCHAR(20) NOT NULL,
     PRIMARY KEY (teamId),
-	FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
-	FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
-	FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation),
-	unique (ageGroup, teamLocation, teamName, seasonId)
+    FOREIGN KEY (seasonId) REFERENCES Season(seasonId),
+    FOREIGN KEY (ageGroup) REFERENCES ageGroup(ageGroup),
+    FOREIGN KEY (teamLocation) REFERENCES teamLocation(teamLocation),
+    unique (ageGroup, teamLocation, teamName, seasonId)
 ); 
 
 CREATE TABLE Park (

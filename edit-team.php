@@ -21,9 +21,6 @@
 </head>
 <!-- END OF HEADER -->
 
-
-
-
 <!-- START OF PHP-->
 <?php
 #Database
@@ -120,12 +117,13 @@ if (isset($_POST["Return"])){
     </div>
     
     <div class="mt-3">
-    <button type="submit" name="Update" class="btn btn-success mb-3 mb-lg-0">Update</button>
+    <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0">Update</button>
     <button type="submit" name="Return" class="btn btn-secondary mb-3 mb-lg-0">Return</button>
     </div>
   </form>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
 
