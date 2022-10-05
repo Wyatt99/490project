@@ -1,6 +1,10 @@
 <?php
 $db = new mysqli('localhost', 'root', '', 'cajun_rush_schedule');
 
+if($db === false){
+  die("ERROR: Could not connect. ". mysqli_connect_error());
+}
+
 #if no session, start an empty session
 if (!isset($_SESSION)) { session_start(); }
 
@@ -42,6 +46,7 @@ $promptMessage = function() {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
   }
+  
   if (isset($_GET['updateteamsuccess'])) {
     $message = "Update Team Success!";
     echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
