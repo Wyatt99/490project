@@ -42,6 +42,7 @@ $promptMessage = function() {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
   }
+  
   if (isset($_GET['updateteamsuccess'])) {
     $message = "Update Team Success!";
     echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
