@@ -24,6 +24,7 @@ CREATE TABLE teamLocation (
 
 CREATE TABLE Team (
     teamId int NOT NULL AUTO_INCREMENT,
+	teamIdentifier VARCHAR(60), 
     teamName VARCHAR(60) NOT NULL,
     coachFirstName VARCHAR(60) NOT NULL,
 	coachLastName VARCHAR(60) NOT NULL,
