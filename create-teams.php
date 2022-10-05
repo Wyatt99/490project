@@ -34,6 +34,8 @@ $notUniqueError="";
 $requiredError="";
 $insertSuccess="";
 
+
+
 # post process for when the button submit is activated
 if (isset($_POST['addTeamButton'])){
 
@@ -102,6 +104,15 @@ if (isset($_POST['addTeamButton'])){
 echo "<body>";
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
         echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Team</h3>";
+                # prints errors
+                echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
+                .$requiredError.$notUniqueError.
+            "</div>";
+            # prints success message
+            echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
+                .$insertSuccess.
+            "</div>";
+            
         # start of the form, the current action is create-teams.php
         echo "<form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>";
         echo "<span> Team Name </span><br>";
@@ -163,14 +174,7 @@ echo "<body>";
         # submit button
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Add'>";
         echo "</form>";
-        # prints errors
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
-            .$requiredError.$notUniqueError.
-        "</div>";
-        # prints success message
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
-            .$insertSuccess.
-        "</div>";
+
     echo "</div>";
     ?> 
     <!--php ends -->
