@@ -91,6 +91,7 @@ if (isset($_POST['addTeamButton'])){
         if(mysqli_query($db, $sql)){
             $insertSuccess="team successfully created";
         } else {
+            if(mysqli_errno($db) == 1062)
             $notUniqueError="a team name with the same age group, location, and season already exists";
         }
 
