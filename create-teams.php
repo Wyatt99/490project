@@ -4,7 +4,7 @@
     <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Admin Home</title>
+    <title>Create Teams</title>
 
     <!--Open Sans Font-->
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans' />
@@ -25,6 +25,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+
 
 # variable default values
 $error = false;
@@ -69,27 +70,39 @@ if (isset($_POST['addTeamButton'])){
         $coachEmail= mysqli_real_escape_string(
         $db, $_REQUEST['coachEmail']);
         
-        
+        #$IdNumber = find current max ID in database, add 1 to it 
+        $IdQuery = $db->query("SELECT MAX(teamId) FROM team");
+        $IdNumResult = $IdQuery-> fetch_all();
+        $IdNumber = $IdNumResult[0][0] + 1;     
 
+        #concatenate team data into a capitalized string in the form NSWWOODALL7u/CRUSADERS 
+        $teamIdentifier = strtoupper($teamLocation.substr($coachFirstName,0,1).$coachLastName.$ageGroup)."u/".strtoupper($teamName)." (".$IdNumber.")";
+        
         # season logic where it selects the active current season to be automatically added into the new team
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";
         $seasonResult = mysqli_query($db, $seasonSql);
         $activeSeason = $seasonResult->fetch_array()[0] ?? '';
-        $sql = "INSERT INTO team (teamName, teamLocation, ageGroup, seasonId, coachFirstName, coachLastName, coachEmail)
-        VALUES ('$teamName', '$teamLocation', '$ageGroup', '$activeSeason','$coachFirstName','$coachLastName','$coachEmail')";
+        $sql = "INSERT INTO team (teamIdentifier, teamName, teamLocation, ageGroup, seasonId, coachFirstName, coachLastName, coachEmail)
+        VALUES ('$teamIdentifier','$teamName', '$teamLocation', '$ageGroup', '$activeSeason','$coachFirstName','$coachLastName','$coachEmail')";
 
+
+#ERROR MESSAGE
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
             $insertSuccess="team successfully created";
+            header("location:create-teams.php");    #unset POST to prevent duplicate inputs on refresh
+            exit();
         } else {
             $notUniqueError="a team name with the same age group, location, and season already exists";
+            header("location:create-teams.php");    #unset POST to prevent duplicate inputs on refresh
+            exit();
         }
+
     } 
 }
 
 echo "<body>";
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-    # echo "<h2>Team Manager</h2>";
         echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Team</h3>";
         # start of the form, the current action is create-teams.php
         echo "<form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>";
