@@ -30,11 +30,6 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 
 # variable default values
 $error = false;
-$notUniqueError="";
-$requiredError="";
-$insertSuccess="";
-
-
 
 # post process for when the button submit is activated
 if (isset($_POST['addTeamButton'])){
@@ -73,8 +68,6 @@ if (isset($_POST['addTeamButton'])){
         $coachEmail= mysqli_real_escape_string(
         $db, $_REQUEST['coachEmail']);
         
-
-        
         # get max id num	
 		$IdQuery = $db->query("select teamId from team");
 		$IdNumber = 0;
@@ -101,10 +94,12 @@ if (isset($_POST['addTeamButton'])){
 #ERROR MESSAGE
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
-            $insertSuccess="team successfully created";
+            header("location:create-teams.php?teamAdded");
+            exit();
         } else {
             if(mysqli_errno($db) == 1062)
-            $notUniqueError="a team name with the same age group, location, and season already exists";
+            header("location:create-teams.php?duplicateTeam");
+            exit();
         }
 
     } 
@@ -113,20 +108,14 @@ if (isset($_POST['addTeamButton'])){
 echo "<body>";
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
         echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Team</h3>";
-        # prints errors
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: red;color: white; text-align: center;'>"
-            .$requiredError.$notUniqueError.
-        "</div>";
-        # prints success message
-        echo "<div style='margin-left: 10px; margin-top:10px; width: 15%;background-color: green;color: white; text-align: center;'>"
-            .$insertSuccess.
-        "</div>";
+        $promptMessage();
 
         # start of the form, the current action is create-teams.php
         echo "<form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>";
         echo "<span> Team Name </span><br>";
+
         echo "<input class='teamName' type='text' id='teamName' name='teamName'
-        placeholder='Enter a team name'>
+        placeholder='Enter a team name' required>
         <br><br>";
         
         echo "<span> Coach First Name </span><br>";
@@ -148,7 +137,7 @@ echo "<body>";
         $result = $db->query("select ageGroup from ageGroup");
 
         echo "<span>Age Group</span><br>";
-        echo "<select name='ageGroup'>";
+        echo "<select name='ageGroup' required>";
         echo "<option value='' disabled selected hidden>Age Group</option>";
 
         # loops through all the records from ageGroup table
@@ -167,7 +156,7 @@ echo "<body>";
         $result = $db->query("select teamLocation from teamLocation");
 
         echo "<span>Location</span><br>";
-        echo "<select name='teamLocation'>";
+        echo "<select name='teamLocation' required>";
         echo "<option value='' disabled selected hidden>Location</option>";
         # loops through all the records for teamLocation
         while ($row = $result->fetch_assoc()) {
