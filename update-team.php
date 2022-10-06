@@ -43,7 +43,7 @@ if (isset($_POST['search'])){
     $res .= " OR coachEmail = '{$searchTerm}'";
     $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR teamId = '{$searchTerm}'";
+    $res .= " OR teamId = '{$searchTerm}'"; #removing this fixes search by age group
     $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
@@ -54,12 +54,12 @@ $query=mysqli_query($db, $res);
 function outputTable($query){
     while($row=mysqli_fetch_array($query)){
         echo "<tr>";
-        echo  "<td>"; echo $row["teamName"];  echo "</td>";
-        echo  "<td>"; echo $row["coachFirstName"];  echo "</td>";
-        echo  "<td>"; echo $row["coachLastName"];  echo "</td>";
-        echo  "<td>"; echo $row["coachEmail"];  echo "</td>";
-        echo  "<td>"; echo $row["ageGroup"];  echo "</td>";
-        echo  "<td>"; echo $row["teamLocation"];echo "</td>";
+        echo  "<td>"; echo $row["teamName"]."</td>";
+        echo  "<td>"; echo $row["coachFirstName"]."</td>";
+        echo  "<td>"; echo $row["coachLastName"]."</td>";
+        echo  "<td>"; echo $row["coachEmail"]."</td>";
+        echo  "<td>"; echo $row["ageGroup"]."u</td>";
+        echo  "<td>"; echo $row["teamLocation"]."</td>";
         echo  "<td>"; ?> <a href="edit-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-success">Edit</button></a> <?php echo "</td>"; #update team
         echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
         echo"</tr>";

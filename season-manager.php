@@ -2,6 +2,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+mysqli_report(MYSQLI_REPORT_STRICT);
 
 # variable default values
 $error = false;
@@ -35,8 +36,10 @@ if (isset($_POST['addSeasonButton'])){
             $message="Season has been added!";
             echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
         } else {
+            if(mysqli_errno($db) == 1062) {
             $message = "This season already exists.";
             echo "<div class='alert alert-danger mt-3' role='alert'>".$message."</div>";
+            }
         }
     #post process for when the button for when activating a season.
 }elseif (isset($_POST['activateButton'])){
