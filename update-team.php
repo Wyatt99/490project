@@ -82,7 +82,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<div class="text-center p-2" >
+<div class="text-center p-2 mt-3" >
 <form name="search_form" method="POST" action="update-team.php">
 Search: <input type="text" name="search_box" value="" />
 
@@ -116,6 +116,6 @@ Search: <input type="text" name="search_box" value="" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
-
+<footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>
 
