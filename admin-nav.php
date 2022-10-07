@@ -16,6 +16,7 @@
                       <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
                       <a href="update-team.php" class="nav-item nav-link">Edit Teams</a>
                       <a href="season-manager.php" class="nav-item nav-link">Manage Season</a>
+                      <a href="parkselect.php" class="nav-item nav-link">Schedule Practices</a>
                 </div>
                 <div class="navbar-nav ms-auto">         
                     <a href="register.php" class="nav-item nav-link">Register Admin</a>     	
