@@ -29,7 +29,7 @@ ensure_logged_in();
 </head>
 
 <body>
-    <div class='centerContent mt-5 mb-2'><h1>Select Park</h1></div>
+    <div class='centerContent mt-5 mb-5'><h1>Select Park</h1></div>
 
     <div class="container centerContent">
     <div class="row">
