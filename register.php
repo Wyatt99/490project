@@ -16,6 +16,7 @@ if (isset( $_POST['submit'] )) {
         $registerPrep -> bind_param("ss", $name, $password_hash);
         $registerPrep -> execute();
         header("location: register.php?newAdminSuccess");
+        exit();
     }
 
     else {
@@ -24,6 +25,7 @@ if (isset( $_POST['submit'] )) {
       }
 }
 ?> <!--php ends-->
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>

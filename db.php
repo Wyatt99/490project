@@ -1,6 +1,10 @@
 <?php
 $db = new mysqli('localhost', 'root', '', 'cajun_rush_schedule');
 
+if($db === false){
+  die("ERROR: Could not connect. ". mysqli_connect_error());
+}
+
 #if no session, start an empty session
 if (!isset($_SESSION)) { session_start(); }
 
@@ -42,13 +46,22 @@ $promptMessage = function() {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
   }
+  
   if (isset($_GET['updateteamsuccess'])) {
-    $message = "Update Team Success!";
+    $message = "Team updated successfully";
     echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
 }
   if (isset($_GET['deleteteamsuccess'])) {
-    $message = "Delete Team Success!";
+    $message = "Team deleted successfully!";
     echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
+}
+if (isset($_GET['teamAdded'])) {
+  $message = "Team added successfully!";
+  echo "<div class='alert alert-success mt-3' role='alert'>".$message."</div>";
+}
+if (isset($_GET['duplicateTeam'])) {
+  $message = "Team with the same name, location, and age already exists!";
+  echo "<div class='alert alert-danger mt-3' role='alert'>".$message."</div>";
 }
 }
 ?> 
