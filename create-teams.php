@@ -107,7 +107,7 @@ if (isset($_POST['addTeamButton'])){
 
 echo "<body>";
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-        echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Team</h3>";
+        echo "<h1 style='margin-left: 10px;margin-top: 15px'>Add New Team</h1>";
         $promptMessage();
 
         # start of the form, the current action is create-teams.php
@@ -180,4 +180,5 @@ echo "<body>";
     <!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
+    <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>

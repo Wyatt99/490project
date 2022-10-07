@@ -109,8 +109,8 @@ echo "<html>";
 echo "<body>";
 
     echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-    echo "<h2>Season Manager</h2>";
-        echo "<h3 style='margin-left: 10px;margin-top: 15px'>Add New Season</h3>";
+    echo "<h1 class='mt-2'>Season Manager</h1>";
+        echo "<h4 class='mt-3 ml-2'>Add New Season</h4>";
         # Form for adding a new season
         echo "<form style='margin-left: 15px' id='seasonAdd' action='season-manager.php' method='POST'>";
         echo "<span> Spring/Fall </span><br>";
@@ -132,7 +132,7 @@ echo "<body>";
         echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addSeasonButton' name='addSeasonButton' value='Add'>";
         echo "</form>";
 
-        echo "<h3 style='margin-left: 10px;margin-top: 15px'>Select Active Season</h3>";
+        echo "<h4 class='mt-4 ml-2'>Select Active Season</h4>";
         # Form for enabling the active season
         echo "<form style='margin-left: 15px' id='seasonmanager' action='season-manager.php' method='POST'>";
         # selects the inactive seasons
@@ -154,5 +154,6 @@ echo "<body>";
     echo "</div>";
 echo"<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>";
 echo "</body>";
+echo "<footer class='centerContent'>Copyright &copy 2022 Cajun Rush Soccer Club</footer>";
 echo "</html>";
 ?> 

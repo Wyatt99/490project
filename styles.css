@@ -1,9 +1,28 @@
-
 body {
-    font-family: "Open-Sans" sans-serif;
+    font-family: "Open-Sans", sans-serif !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+footer {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:auto;
+  padding:15px;
+  width:auto;
+  color:white;
+  background-color:#1D3461;
+}
+
+h1 {
+  font-weight: 550;
+  color: #1D3461;
+}
+
 /* Modify the nav bar*/    
-.navbar-dark {background-color: #1153B1 !important;}
+.navbar-dark {background-color: #1D3461 !important;}
 
 .navbar-nav .nav-link {color:white !important;}
 
@@ -21,6 +40,16 @@ body {
 }
 /* end navbar modifications */
 
+.card {
+  transition: transform .5s;
+  margin-bottom:2%;
+  border:none;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
 /* general center in middle of page styling (add in addition to other bootstrap classes*/
 .vertical-center {
     min-height: 100%;
@@ -30,7 +59,7 @@ body {
     justify-content: center;
   }
   
-form {
+.registerForm {
     margin-top:20px;
   }
 
@@ -53,3 +82,10 @@ form {
     cursor: pointer;
     color: lightgray;
   }
+
+  .centerContent {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+

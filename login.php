@@ -53,7 +53,7 @@ if (is_password_correct($name, $password, $db)) {
     <div class="d-flex justify-content-center mx-auto">
 
     <form method="post">
-        <h3 class="fw-normal mx-auto d-flex justify-content-center mb-4 mt-4">Admin Login</h3>
+    <h1 class="mt-4 mb-3 centerContent ">Admin Login</h1>
         <div class="form-outline mb-2">
             <input type="text" name="name" id="name" class="form-control form-control-lg"/>
             <label class="form-label" for="name">Username</label>
@@ -90,5 +90,5 @@ if (is_password_correct($name, $password, $db)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
+<footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>

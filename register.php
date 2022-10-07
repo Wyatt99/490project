@@ -53,8 +53,8 @@ if (isset( $_POST['submit'] )) {
     <img src="images\CajunRushLogo.png" class="mx-auto d-flex pt-5 pb-0" width="110px" height="auto" alt="cajun rush logo">
     <div class="d-flex justify-content-center mx-auto">
 
-    <form method="post">
-        <h3 class="fw-normal mx-auto d-flex justify-content-center mb-4 mt-4">Register Admin</h3>
+    <form method="post" class="registerForm">
+        <h1 class="mt-2 mb-3 centerContent ">Register Admin</h1>
         <div class="form-outline mb-2">
             <input type="text" name="name" id="name" class="form-control form-control-lg" required/>
             <label class="form-label" for="name">Username</label>
