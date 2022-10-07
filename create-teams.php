@@ -67,7 +67,7 @@ if (isset($_POST['addTeamButton'])){
         $db, $_REQUEST['coachLastName']);
         $coachEmail= mysqli_real_escape_string(
         $db, $_REQUEST['coachEmail']);
-        
+         
         # get max id num	
 		$IdQuery = $db->query("select teamId from team");
 		$IdNumber = 0;
