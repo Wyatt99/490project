@@ -29,11 +29,11 @@ ensure_logged_in();
 </head>
 
 <body>
-    <div class='centerContent mt-5 mb-5'><h1>Select Park</h1></div>
+    <div class='centerContent mt-5 mb-3'><h1>Select Park</h1></div>
 
     <div class="container centerContent">
     <div class="row">
-        <div class="col centerContent">
+        <div class="col mb-2 centerContent">
             <div class="card" style="width: 25rem;">
             <a href="moore-scheduler.php"><img class="card-img" src='images/moorepark.jpg' alt="Card image cap"></a>
             </div>
