@@ -82,7 +82,6 @@ VALUES ('9');
 INSERT INTO ageGroup (ageGroup)
 VALUES ('10');
 
-
 INSERT INTO teamLocation (teamLocation)
 VALUES ('NS');
 INSERT INTO teamLocation (teamLocation)
@@ -92,8 +91,11 @@ VALUES ('RS');
 INSERT INTO teamLocation (teamLocation)
 VALUES ('PR');
 
-insert into Admins (username, password)
-values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
+INSERT INTO admins (username, password)
+VALUES ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
 
 INSERT INTO Season (seasonId, seasonStatus)
-values ('FALL 2022', '1');
+VALUES ('FALL 2022', '1');
+
+INSERT INTO park (parkId, parkName) 
+VALUES (1, 'Moore Park'), (2,'Youngsville Sports Complex');
