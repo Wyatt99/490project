@@ -2,6 +2,13 @@
 include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
+
+const parkID = 1;
+const parkName = "Moore Park";
+
+
+
+
 ?>
 <!--php ends-->
 
