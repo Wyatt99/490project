@@ -47,7 +47,7 @@ CREATE TABLE Park (
 
 CREATE TABLE Field (
    	fieldId int NOT NULL AUTO_INCREMENT,
-    fieldName VARCHAR(4) NOT NULL,
+    fieldName VARCHAR(40) NOT NULL,
     parkId int NOT NULL,
 	lights TINYINT(1) NOT NULL,
     PRIMARY KEY (fieldId),
