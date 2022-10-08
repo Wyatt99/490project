@@ -8,6 +8,30 @@ if($db === false){
 #if no session, start an empty session
 if (!isset($_SESSION)) { session_start(); }
 
+#fetch all fields in database and echo each as an option in select input
+function fieldSelect ($db, $parkId) {
+	$result = $db->query("SELECT fieldName FROM field WHERE parkId = '$parkId'");
+    $rows = mysqli_fetch_all($result);
+	if ($rows) {
+		foreach ($rows as $row) {
+			$fieldName = $row[0];
+			echo"<option value='$fieldName'>$fieldName</option>";
+		}
+	}
+}
+
+#fetch all ageGroups in database and echo each as an option in select input
+function ageGroupSelect ($db, $parkId) {
+	$result = $db->query("SELECT ageGroup FROM ageGroup");
+    $rows = mysqli_fetch_all($result);
+	if ($rows) {
+		foreach ($rows as $row) {
+			$ageGroup = $row[0];
+			echo"<option value='$ageGroup'>".$ageGroup."u</option>";
+		}
+	}
+}
+
 #connect to cajun_rush_schedule database if password is correct
 function is_password_correct ($name, $password, $db) {
     $inputName = ($name);
