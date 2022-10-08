@@ -40,7 +40,9 @@ const parkName = "Youngsville Sports Complex";
 	<form method="post" class="registerForm">
 		<div class='row'>
 			<div class='col-lg-6 col-sm-12'> <!--display 2 columns on md and up, 1 column on small-->
-
+			<div class="form-group">
+				<label for="field">Example select</label>
+				<select class="form-control" id="field">
 			</div>
 		</div>
 	</form>
