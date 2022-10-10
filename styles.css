@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 footer {
@@ -89,3 +90,7 @@ h1 {
     align-content: center;
   }
 
+.subText {
+  color: #1153B1;
+  font-weight: 400;
+}

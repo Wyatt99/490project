@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Update Team</title>
+	<title>Select Team</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -21,9 +21,6 @@
 </head>
 <!-- END OF HEADER -->
 
-
-
-
 <!-- PHP PORTION -->
 <?php
 #Database
@@ -31,12 +28,13 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
-$res= "Select * from Team ";
+$res= "SELECT * FROM team LEFT JOIN practice ON team.teamID = practice.teamId";
 
+#currently works with only showing teams who ARE scheduled already
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
-
-    $res .= "WHERE teamName = '{$searchTerm}' ";
+    $res .= " WHERE teamIdentifier = '{$searchTerm}' ";
+    $res .= " OR teamName = '{$searchTerm}' ";
     $res .= " OR coachFirstName = '{$searchTerm}'";
     $res .= " OR coachLastName = '{$searchTerm}'";
     $res .= " OR coachEmail = '{$searchTerm}'";
@@ -46,64 +44,54 @@ if (isset($_POST['search'])){
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, ' ', coachFirstName) = '{$searchTerm}'";
+    
 }
+
 $query=mysqli_query($db, $res);
 
 function outputTable($query){
     while($row=mysqli_fetch_array($query)){
+        if (!$row["teamId"]){ #if teamId NOT found in practice database on join, display results
         echo "<tr>";
-        echo  "<td>"; echo $row["teamName"]."</td>";
-        echo  "<td>"; echo $row["coachFirstName"]."</td>";
-        echo  "<td>"; echo $row["coachLastName"]."</td>";
-        echo  "<td>"; echo $row["coachEmail"]."</td>";
-        echo  "<td>"; echo $row["ageGroup"]."u</td>";
-        echo  "<td>"; echo $row["teamLocation"]."</td>";
-        echo  "<td>"; ?> <a href="edit-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-success">Edit</button></a> <?php echo "</td>"; #update team
-        echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
+        echo  "<td>"; echo $row["teamIdentifier"]."</td>";
+        echo  "<td>"; ?> <a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>"> <button type="button" class= "btn btn-success">Schedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
+        }
       }
 }
-?>
-<?php
+
 if (isset($_POST['showAll'])){
+    ?>
+        <script type="text/javascript">
+        window.location="team-select.php";
+        </script>
+    <?php
+    }
 ?>
-    <script type="text/javascript">
-    window.location="update-team.php";
-    </script>
-<?php
-}
-?>
+
 <!-- END OF PHP PORTION-->
-
-
-
 
 <!-- START OF BODY -->
 <body>
-<div class="text-center p-2 mt-3" >
-<form name="search_form" method="POST" action="update-team.php">
-Search: <input type="text" name="search_box" value="" />
-
+<div class="text-center p-2 mt-4" >
+<form name="search_form" method="POST" action="team-select.php">
+    Search: <input type="text" name="search_box" value="" />
 <input type="submit" name="search" value="Filter">
 <input type="submit" name="showAll" value="Show All">
 </form>
 </div>
 
-<div class="col-lg-12 p-2">
+<div class="col-lg-12 p-2 ">
 <?=$promptMessage()
 ?>
-<table class="table table-bordered">
+
+<h4 class="centerContent mt-3">Unscheduled Teams</h4>
+<table class="table table-bordered mx-lg-2 centerContent">
 <tbody>
     <thead>
       <tr>
-        <th>Team Name</th>
-        <th>Coach First Name</th>
-        <th>Coach Last Name</th>
-        <th>Coach Email</th>
-        <th>Age Group</th>
-        <th>Team Location</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Team</th>
+        <th>Schedule</th>
       </tr>
       <?=outputTable($query)?>
     </thead>
@@ -116,4 +104,3 @@ Search: <input type="text" name="search_box" value="" />
 <!-- END OF BODY -->
 <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>
-
