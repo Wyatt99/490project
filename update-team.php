@@ -34,7 +34,6 @@ ensure_logged_in();
 $res= "Select * from Team ";
 
 if (isset($_POST['search'])){
-	
     $searchTerm = $_POST['search_box'];
 
     $res .= "WHERE teamName = '{$searchTerm}' ";
@@ -43,7 +42,6 @@ if (isset($_POST['search'])){
     $res .= " OR coachEmail = '{$searchTerm}'";
     $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR teamId = '{$searchTerm}'"; #removing this fixes search by age group
     $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
