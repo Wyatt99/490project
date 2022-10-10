@@ -15,7 +15,11 @@ if (is_password_correct($name, $password, $db)) {
       session_start();
     }
     # if user and pass match, remember user info and redirect to home
-    $_SESSION["name"] = $name;     
+    $_SESSION["name"] = $name;
+
+    $idQuery = $db->query("SELECT adminId FROM admins WHERE username LIKE '$_SESSION[name]'");
+	$idStmnt = mysqli_fetch_all($idQuery);
+	$_SESSION["adminId"] = $idStmnt[0][0];     
     header("location: admin-home.php");
   }
   #else reload login page with error message
