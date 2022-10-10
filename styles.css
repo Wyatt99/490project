@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 footer {
@@ -90,6 +91,6 @@ h1 {
   }
 
 .subText {
-  color:#E5BD06;
+  color: #1153B1;
   font-weight: 400;
 }
