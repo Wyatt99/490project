@@ -5,6 +5,7 @@ ensure_logged_in();
 
 #Query to perform delete
 $id=$_GET["id"];
+mysqli_query($db, "delete from Practice where teamId=$id");
 mysqli_query($db, "delete from Team where teamId=$id");
 
 ?>
