@@ -28,6 +28,10 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
+if(isset($_SESSION['team'])) {
+    unset($_SESSION['team']);
+}
+
 $res= "SELECT * FROM team LEFT JOIN practice ON team.teamID = practice.teamId";
 
 #currently works with only showing teams who ARE scheduled already
