@@ -63,6 +63,7 @@ CREATE TABLE Practice (
 	endTime TIME NOT NULL,
 	day CHAR(9) NOT NULL,
 	adminId int NOT NULL,
+    parkname 
     PRIMARY KEY (practiceId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
@@ -91,6 +92,20 @@ INSERT INTO teamLocation (teamLocation)
 VALUES ('RS');
 INSERT INTO teamLocation (teamLocation)
 VALUES ('PR');
+
+INSERT INTO park (parkId, parkName)
+VALUES ('1', 'Moore Park'), ('2', 'Youngsville Sports Complex');
+
+INSERT INTO field (fieldName,parkId,lights)
+VALUES  ('field 1', 1, 1),
+        ('field 2', 1, 0),
+        ('field 3', 1, 1),
+        ('field 4', 1, 0),
+        ('field 1', 2, 1),
+        ('field 2', 2, 0),
+        ('field 3', 2, 1),
+        ('field 4', 2, 0);
+
 
 insert into Admins (username, password)
 values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
