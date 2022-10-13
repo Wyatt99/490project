@@ -30,6 +30,8 @@ ensure_logged_in();
 
 $id=$_GET["id"];
 
+$teamIdentifier="";
+
 $teamName ="";
 $coachFirstName ="";
 $coachLastName="";
@@ -53,7 +55,18 @@ while($row=mysqli_fetch_array($res)){
 
 <?php
 if (isset($_POST["Update"])){
+
+    $teamName2=$_POST['teamName'];
+    $coachFirstName2=$_POST['coachFirstName'];
+    $coachLastName2=$_POST['coachLastName'];
+    $teamLocation2=$_POST['teamLocation'];
+    $ageGroup2=$_POST['ageGroup'];
+    $teamIdentifier = strtoupper($teamLocation2.substr($coachFirstName2,0,1).$coachLastName2.$ageGroup2)."u/".strtoupper($teamName2)." (".$id.")";
+
+
     mysqli_query($db, "update Team set teamName ='$_POST[teamName]', coachFirstName ='$_POST[coachFirstName]', coachLastName ='$_POST[coachLastName]', coachEmail ='$_POST[coachEmail]', ageGroup ='$_POST[ageGroup]', teamLocation ='$_POST[teamLocation]' where teamId=$id");
+    mysqli_query($db, "update Team set teamIdentifier ='$teamIdentifier' where teamId=$id");
+
     ?>
     <script type="text/javascript">
     window.location="update-team.php?updateteamsuccess";
@@ -103,18 +116,27 @@ if (isset($_POST["Return"])){
 
     <div class="form-group">
       <label for="coachEmail">Coach Email</label>
-      <input type="email" class="form-control" id="coachEmail" placeholder="Enter email" name="coachEmail" value="<?=$coachEmail?>">
+      <input type="email" class="form-control" id="coachEmail" placeholder="Enter email" name="coachEmail" value="<?=$coachEmail?>" required>
     </div>
 
     <div class="form-group">
-      <label for="ageGroup">Age Group</label>
-      <input type="text" class="form-control" id="ageGroup" placeholder="Enter age group" name="ageGroup" value="<?=$ageGroup?>">
+			<label for="ageGroup">Age Group</label>
+				<select class="form-control" name="ageGroup" id="ageGroup" style="appearance:listbox;" required>
+				<option value="<?=$ageGroup?>"><?=$ageGroup.'u'?></option> 
+				<?=ageGroupSelect($db)?>
+			</select>
     </div>
 
     <div class="form-group">
-      <label for="teamLocation">Team Location</label>
-      <input type="text" class="form-control" id="teamLocation" placeholder="Enter Location" name="teamLocation" value="<?=$teamLocation?>">
+			<label for="teamLocation">Team Location</label>
+				<select class="form-control" name="teamLocation" id="teamLocation" style="appearance:listbox;" required>
+				<option value="<?=$teamLocation?>"><?=$teamLocation?></option> 
+				<?=teamLocationSelect($db)?>
+			</select>
     </div>
+
+  
+
     
     <div class="mt-3">
     <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0">Update</button>
@@ -126,5 +148,5 @@ if (isset($_POST["Return"])){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
-<footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
+<footer class="centerContent mt-3">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>
