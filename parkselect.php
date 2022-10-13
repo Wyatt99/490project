@@ -7,6 +7,11 @@ if (!isset($_SESSION['team'])) {
     $_SESSION['team'] = $_GET['team'];
 }
 
+if (isset($_SESSION['parkId'])) {
+    unset($_SESSION['parkId']);
+	unset($_SESSION['parkName']);
+}
+
 ?>
 
 <!--php ends-->
