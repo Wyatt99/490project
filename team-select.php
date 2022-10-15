@@ -59,7 +59,7 @@ function outputTable($query){
         if (!$row["teamId"]){ #if teamId NOT found in practice database on join, display results
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
-        echo  "<td>"; ?> <a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>"> <button type="button" class= "btn btn-success">Schedule</button></a> <?php echo "</td>"; #update team
+        echo  "<td>"; ?> <a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=0"> <button type="button" class= "btn btn-success">Schedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
         }
       }

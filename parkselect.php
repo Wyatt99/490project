@@ -3,6 +3,8 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
+$update = $_GET['update'];
+
 if (!isset($_SESSION['team'])) {
     $_SESSION['team'] = $_GET['team'];
 }
@@ -45,13 +47,13 @@ if (isset($_SESSION['parkId'])) {
     <div class="row">
         <div class="col mb-2 centerContent">
             <div class="card" style="width: 25rem;">
-            <a href="scheduler.php?team=<?=$_SESSION['team']?>&id=1"><img class="card-img" src='images/moorepark.jpg' alt="Card image cap"></a>
+            <a href="scheduler.php?team=<?=$_SESSION['team']?>&id=1&update=<?=$update?>"><img class="card-img" src='images/moorepark.jpg' alt="Card image cap"></a>
             </div>
         </div> <!--col end-->
 
         <div class="col centerContent">
             <div class="card" style="width: 25rem;">
-            <a href="scheduler.php?team=<?=$_SESSION['team']?>&id=2"><img class="card-img" src='images/ysc.jpg' alt="Card image cap"></a>
+            <a href="scheduler.php?team=<?=$_SESSION['team']?>&id=2&update=<?=$update?>"><img class="card-img" src='images/ysc.jpg' alt="Card image cap"></a>
             </div>
         </div> <!--col end-->
     </div> <!--row end-->
