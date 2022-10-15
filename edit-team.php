@@ -29,9 +29,7 @@ include 'admin-nav.php';
 ensure_logged_in();
 
 $id=$_GET["id"];
-
 $teamIdentifier="";
-
 $teamName ="";
 $coachFirstName ="";
 $coachLastName="";
