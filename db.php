@@ -22,6 +22,18 @@ function fieldSelect ($db, $parkId) {
 }
 
 #fetch all age groups in database and echo each as an option in select input
+function checkForTeams ($db) {
+	$result = $db->query("SELECT * FROM team");
+    $rows = mysqli_fetch_all($result);
+	if (!$rows) {
+      header("location: create-teams.php?noTeam");
+      exit();
+		}
+	}
+
+
+
+#fetch all age groups in database and echo each as an option in select input
 function ageGroupSelect ($db) {
 	$result = $db->query("SELECT ageGroup FROM ageGroup");
     $rows = mysqli_fetch_all($result);
@@ -78,31 +90,33 @@ $promptMessage = function() {
       $message = "Passwords do not match.";
       echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
-
   if (isset($_GET['newAdminSuccess'])) {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
-  
   if (isset($_GET['updateteamsuccess'])) {
     $message = "Team updated successfully";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
-}
+  }
   if (isset($_GET['deleteteamsuccess'])) {
     $message = "Team deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
-}
-if (isset($_GET['teamAdded'])) {
-  $message = "Team added successfully!";
-  echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
-}
-if (isset($_GET['duplicateTeam'])) {
-  $message = "Team with the same name, location, and age already exists!";
-  echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
-}
-if (isset($_GET['practiceSuccess'])) {
-  $message = "Team scheduled successfully!";
-  echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
-}
+  }
+  if (isset($_GET['teamAdded'])) {
+    $message = "Team added successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['duplicateTeam'])) {
+    $message = "Team with the same name, location, and age already exists!";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['practiceSuccess'])) {
+    $message = "Team scheduled successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['noTeam'])) {
+    $message = "No teams exist, you may add one here!";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
 }
 ?> 
