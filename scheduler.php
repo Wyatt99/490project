@@ -26,6 +26,7 @@ include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
+mysqli_report(MYSQLI_REPORT_STRICT);
 $message="";
 
 $update = $_GET["update"];
@@ -56,12 +57,12 @@ if (isset($_GET['submit'])
 		
 		# get the teamId number from the getter
 		$sql = "select * from team where teamIdentifier='$teamIdentifier'";
-		echo $sql;
 		$res=mysqli_query($db, $sql);
 		while($row=mysqli_fetch_array($res)){
 			$teamId=$row["teamId"];
 		}
-		echo $teamId;
+
+		$updateSqlConflict=mysqli_query($db, "select * from practice where teamId=$teamId");
 		$res2=mysqli_query($db, "delete from practice where teamId=$teamId");
 	}
 
@@ -91,7 +92,6 @@ if (isset($_GET['submit'])
 		if (($fieldIdCheck == $field)
 		&& ($fieldSectionCheck == $section) 
 		&& ($dayCheck == $day)) {
-			
 			if (($time1 < $time4) && ($time2 > $time3)){
 				$timeConflict = 1;
 			}
@@ -101,6 +101,21 @@ if (isset($_GET['submit'])
 			
 	if ($timeConflict) {
 		$message ="<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>Time Conflict!</div>";
+		if ($update == 1) {
+			while($row=mysqli_fetch_array($updateSqlConflict)){
+				$field=$row["fieldId"];
+				$section=$row['fieldSection'];
+				$teamId=$row['teamId'];
+				$startTime=$row['startTime'];
+				$endTime=$row['endTime'];
+				$day=$row['day'];
+				$adminId = $_SESSION['adminId'];
+
+			}
+			$updateSql="INSERT into practice (fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES ('$field', '$section', '$teamId', '$startTime', '$endTime', '$day', '$adminId')";
+			echo $updateSql;
+			$res2=mysqli_query($db, $updateSql);
+		}
 		
 	} else {
 
@@ -180,6 +195,7 @@ if (isset($_GET['submit'])
 		</div>
 
 		<input type="hidden" name="update" value="<?=$update;?>" />
+		<input type="hidden" name="team" value="<?=$_SESSION['team'];?>" />
 				
 		<!--submit-->
 		<div class="col-lg-1 col-3 contentCenter">
