@@ -63,7 +63,6 @@ CREATE TABLE Practice (
 	endTime TIME NOT NULL,
 	day CHAR(9) NOT NULL,
 	adminId int NOT NULL,
-    parkname 
     PRIMARY KEY (practiceId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
