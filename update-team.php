@@ -74,7 +74,7 @@ if (isset($_POST['showAll'])){
 <!-- START OF BODY -->
 <body>
 
-<h1 class='centerContent mt-4'>Teams</h1>
+<h1 class='centerContent mt-4'>Edit Teams</h1>
 <div class="text-center p-2 mt-2" >
 <form name="search_form" method="POST" action="update-team.php">
 Search: <input type="text" name="search_box" value="" />
@@ -87,13 +87,13 @@ Search: <input type="text" name="search_box" value="" />
 <div class="col-lg-12 p-2">
 <?=$promptMessage()
 ?>
-<table class="table table-bordered mx-lg-2 centerContent text-center">
+<table class="table table-bordered mx-lg-2 centerContent">
 <tbody>
     <thead>
       <tr>
-        <th>Team Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Team</th>
+        <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
       </tr>
       <?=outputTable($query)?>
     </thead>
