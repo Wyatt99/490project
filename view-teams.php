@@ -2,11 +2,34 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
-#if(isset($_POST['filter'])){}
-
-$sql = "SELECT teamIdentifier, coachFirstName, coachLastName, team.seasonId as teamSeason FROM team, season 
+$sql = "SELECT teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season 
     WHERE team.seasonId = season.seasonId AND seasonStatus = 1 ORDER BY ageGroup, teamLocation";
+
+if(isset($_POST['filter'])){
+    $group = $_POST['groupSelect'];
+    $location = $_POST['locationSelect'];
+    $sql = "SELECT teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season WHERE
+        team.seasonId = season.seasonId";
+
+    if(isset($_POST['inactive'])){
+        $sql.=" AND (seasonStatus = 0 OR seasonStatus = 1)";
+    }else{
+        $sql.=" AND seasonStatus = 1";
+    }
+
+    if($group != "1"){
+        $sql.=" AND ageGroup = {$group}";
+    }
+
+    if($location !="AA"){
+        $sql.=" AND teamLocation = '{$location}'";
+    }
+
+    $sql.=" ORDER BY ageGroup, teamLocation";
+}
+
 $query = mysqli_query($db, $sql);
 
 function printTable($query){
@@ -49,26 +72,34 @@ function printTable($query){
         <input type="checkbox" id="inactive" name="inactive" value="0">
         <label for="inactive"> Show Inactive</label>
 
+        <?php $result = $db->query("select ageGroup from agegroup");?>
         <select name='groupSelect'>
         <option value='1'>All Ages</option>
-        <option value='5'>5u</option>
-        <option value='6'>6u</option>
-        <option value='7'>7u</option>
-        <option value='8'>8u</option>
-        <option value='9'>9u</option>
-        <option value='10'>10u</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['ageGroup'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
         </select>
-
-        <select name='parkSelect'>
-        <option value='2'>All Parks</option>
-        <option value='1'>Moore Park</option>
-        <option value='2'>Youngsville</option>
+        
+        <?php $result = $db->query("select teamLocation from teamlocation");?>
+        <select name='locationSelect'>
+        <option value='AA'>All Locations</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['teamLocation'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
         </select>
 
         <input type="submit" name="filter" value="Filter">
+        <input type="submit" name="showAll" value="Show All">
     </form>
+
     <div class="col-lg-12 p-2">
-    <table class="table table-bordered mx-lg-2 centerContent text-center">
+    <table class="table table-bordered mx-lg-2 centerContent">
         <tbody>
             <thead>
             <tr>
@@ -81,8 +112,9 @@ function printTable($query){
         </tbody>
     </table>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
 <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
