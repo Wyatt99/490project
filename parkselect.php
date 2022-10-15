@@ -5,9 +5,9 @@ ensure_logged_in();
 
 $update = $_GET['update'];
 
-if (!isset($_SESSION['team'])) {
-    $_SESSION['team'] = $_GET['team'];
-}
+#if (!isset($_SESSION['team'])) {
+$_SESSION['team'] = $_GET['team'];
+#}
 
 if (isset($_SESSION['parkId'])) {
     unset($_SESSION['parkId']);

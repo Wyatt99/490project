@@ -26,6 +26,7 @@ include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
+$message="";
 
 $update = $_GET["update"];
 if (!isset($_SESSION['parkId'])) {
@@ -81,12 +82,10 @@ if (isset($_GET['submit'])
 		$time2 = $endTime;
 		$time3 = $startTimeCheck;
 		$time4 = $endTimeCheck;
-		echo $time1; echo"<br>";
-		echo $time2; echo"<br>";
+
 		$time3=date('H:i',strtotime($time3));
 		$time4=date('H:i',strtotime($time4));
-		echo $time3; echo"<br>";
-		echo $time4; echo"<br>";
+	
 		# change the value inside of the row to populate what you want the 
 		# option to be called
 		if (($fieldIdCheck == $field)
@@ -101,7 +100,7 @@ if (isset($_GET['submit'])
 	
 			
 	if ($timeConflict) {
-		echo "time conflict";
+		$message ="<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>Time Conflict!</div>";
 		
 	} else {
 
@@ -124,6 +123,7 @@ if (isset($_GET['submit'])
 <body>
 	<h1 class="mt-4 mb-2  text-center"><?=$_SESSION['parkName']?></h1>
 	<h3 class="subText  text-center ">Practice Scheduler</h3> 
+	<?php echo $message; ?>
 	
 <container class="centerContent w-40">
 	<form method="GET" action="scheduler.php" style="overflow-x:hidden">
