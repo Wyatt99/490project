@@ -27,6 +27,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 if(isset($_SESSION['team'])) {
     unset($_SESSION['team']);

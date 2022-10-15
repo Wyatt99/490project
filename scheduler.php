@@ -25,6 +25,7 @@
 include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 if (!isset($_SESSION['parkId'])) {
 	$_SESSION['parkId'] = $_GET['id'];

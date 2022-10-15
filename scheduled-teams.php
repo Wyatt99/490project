@@ -25,6 +25,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 $res= "Select * from team JOIN practice ON team.teamId = practice.teamId  ";
 
