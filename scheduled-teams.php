@@ -60,7 +60,7 @@ function outputTable($db,$searchQuery){
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
         echo "<td>".$practiceTime."</td>";
-        echo  "<td>"; ?> <a  href="scheduled-teams.php?id=<?php echo $row["teamIdentifier"];?>"> <button type="button" class= "btn btn-success">Edit</button></a> <?php echo "</td>"; #update team
+        echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
       }
 }
@@ -78,7 +78,8 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-    <div class="text-center p-2 mt-4" >
+<h1 class="centerContent my-3">Currently Scheduled Teams</h1>
+    <div class="text-center p-2" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
         Search: <input type="text" name="search_box" value="" />
 
@@ -90,14 +91,14 @@ if (isset($_POST['showAll'])){
     <div class="col-lg-12 p-2 ">
     <?=$promptMessage()?>
 
-    <h4 class="centerContent my-3">Currently Scheduled Teams</h4>
+ 
     <table class="table table-bordered mx-lg-2 centerContent">
     <tbody>
         <thead>
         <tr>
             <th>Team</th>
             <th>Practice Time</th>
-            <th class="text-center">Edit</th>
+            <th class="text-center">Reschedule</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
         </thead>

@@ -26,6 +26,7 @@ include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
 
+$update = $_GET["update"];
 if (!isset($_SESSION['parkId'])) {
 	$_SESSION['parkId'] = $_GET['id'];
 	$_SESSION['parkName'] = $_SESSION['parkId'] == 1 ? "Moore Park" : "Youngsville Sports Complex";
@@ -46,6 +47,21 @@ if (isset($_GET['submit'])
 	$teamIdQuery = $db->query("SELECT teamId FROM team WHERE teamIdentifier LIKE '$_SESSION[team]'");
 	$teamIdStmnt = mysqli_fetch_all($teamIdQuery);
 	$teamId = $teamIdStmnt[0][0];
+
+
+	if ($update == 1) {
+		$teamIdentifier = $_GET["team"];
+		
+		# get the teamId number from the getter
+		$sql = "select * from team where teamIdentifier='$teamIdentifier'";
+		echo $sql;
+		$res=mysqli_query($db, $sql);
+		while($row=mysqli_fetch_array($res)){
+			$teamId=$row["teamId"];
+		}
+		echo $teamId;
+		$res2=mysqli_query($db, "delete from practice where teamId=$teamId");
+	}
 
 	# the sql select statement for practice
 	$result = $db->query("SELECT * FROM practice");
@@ -85,8 +101,9 @@ if (isset($_GET['submit'])
 			
 	if ($timeConflict) {
 		echo "time conflict";
-
+		
 	} else {
+
 		$practicePrep = $db -> prepare("INSERT INTO practice(fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$practicePrep -> bind_param("isisssi", $field, $section, $teamId, $startTime, $endTime, $day, $_SESSION['adminId']);
 		$practicePrep -> execute();
@@ -95,6 +112,8 @@ if (isset($_GET['submit'])
 		unset($_SESSION['parkName']);
 		unset($_SESSION['team']);
 		exit();
+		
+
 	}
 }
 
@@ -158,6 +177,8 @@ if (isset($_GET['submit'])
 			<label for="endTime" class="form-label" style="display:block" required><strong>End Time</strong></label>
 			<input type="time" name='endTime' id="endtTime">
 		</div>
+
+		<input type="hidden" name="update" value="<?=$update;?>" />
 				
 		<!--submit-->
 		<div class="col-lg-1 col-3 contentCenter">
