@@ -30,6 +30,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 $res= "Select * from Team ";
 
@@ -69,9 +70,6 @@ if (isset($_POST['showAll'])){
 }
 ?>
 <!-- END OF PHP PORTION-->
-
-
-
 
 <!-- START OF BODY -->
 <body>
