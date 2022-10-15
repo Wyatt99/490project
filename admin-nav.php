@@ -14,6 +14,7 @@
                 <div class="navbar-nav">
                     <a href="admin-home.php" class="nav-item nav-link">Home</a>
                       <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
+                      <a href="view-teams.php" class="nav-item nav-link">View Teams</a>
                       <a href="update-team.php" class="nav-item nav-link">Edit Teams</a>
                       <a href="season-manager.php" class="nav-item nav-link">Manage Season</a>
                       <a href="team-select.php" class="nav-item nav-link">Schedule Practices</a>
