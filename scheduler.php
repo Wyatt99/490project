@@ -113,7 +113,6 @@ if (isset($_GET['submit'])
 
 			}
 			$updateSql="INSERT into practice (fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES ('$field', '$section', '$teamId', '$startTime', '$endTime', '$day', '$adminId')";
-			echo $updateSql;
 			$res2=mysqli_query($db, $updateSql);
 		}
 		
