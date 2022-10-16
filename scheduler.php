@@ -98,7 +98,7 @@ if (isset($_GET['submit'])
 		}		
 	}
 	
-			
+
 	if ($timeConflict) {
 		$message ="<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>Time Conflict!</div>";
 		if ($update == 1) {
@@ -210,40 +210,3 @@ if (isset($_GET['submit'])
 <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>
 
-<!-- time select 12hr format 
-
-		<div class="col-lg-auto col-12 ">
-		<select class="form-control mt-2 mt-lg-0" id='startHr' style="appearance:listbox;">
-					<option value="" disabled selected hidden>Hour</option> 
-					<option value='1'>01</option>
-					<option value='2'>02</option>
-					<option value='3'>03</option>
-					<option value='4'>04</option>
-					<option value='5'>05</option>
-					<option value='6'>06</option>
-					<option value='7'>07</option>
-					<option value='8'>08</option>
-					<option value='9'>09</option>
-					<option value='10'>10</option>
-					<option value='11'>11</option>
-					<option value='12'>12</option>
-				</select>
-				</div>
-
-				<div class="col-lg-auto col-12 mt-0">
-				<select class="form-control mt-2 mt-lg-0" id='startMin' style="appearance:listbox;">
-					<option value="" disabled selected hidden>Minute</option> 
-					<option value='00'>00</option>
-					<option value='15'>15</option>
-					<option value='30'>30</option>
-					<option value='45'>45</option>
-				</select>
-				</div>
-
-				<div class="col-lg-auto col-12 mt-0">
-				<select class="form-control mt-2 mt-lg-0" id='startAM-PM' style="appearance:listbox;">
-					<option value="" disabled selected hidden>AM/PM</option> 
-					<option value='AM'>AM</option>
-					<option value='PM'>PM</option>
-				</select>
--->
