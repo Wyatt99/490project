@@ -68,6 +68,14 @@ CREATE TABLE Practice (
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
 	FOREIGN KEY (adminId) REFERENCES Admins(adminId)
 ); 
+CREATE TABLE announcements (
+    announcementId INT(11),
+    announcement CHAR(255),
+    status TINYINT(1),
+    adminID INT (11),
+    PRIMARY KEY (announcementId),
+    FOREIGN KEY (adminId) REFERENCES admins(adminId)
+    );
 
 INSERT INTO ageGroup (ageGroup)
 VALUES ('5');
