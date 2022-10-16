@@ -32,7 +32,7 @@ ensure_logged_in();
 <div class="container mt-3 mt-lg-5 centerContent">
     <div class="row">
 		<!--add team-->
-        <div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+        <div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
             <div class="card" style="width: 10rem;">
 				<a href="create-teams.php"><img class="card-img-top" src='images/add-team.svg' alt="add team"></a>
 				<div class="card-body">
@@ -42,7 +42,7 @@ ensure_logged_in();
         </div> <!--col end-->
 
 	<!--view team-->
-	<div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 		<div class="card" style="width: 10rem;">
 				<a href="view-teams.php"><img class="card-img-top" src='images/view-teams.svg' alt="view teams"></a>
 			<div class="card-body">
@@ -52,7 +52,7 @@ ensure_logged_in();
 	</div> <!--col end-->
 
 		<!--edit team-->
-		<div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+		<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
             <div class="card" style="width: 10rem;">
 				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
 				<div class="card-body">
@@ -62,7 +62,7 @@ ensure_logged_in();
         </div> <!--col end-->
 
 	<!--schedule-->
-	<div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 	<div class="card" style="width: 7.5rem;">
 			<a href="team-select.php"><img class="card-img-top" src='images/schedule-teams.svg' alt="schedule teams"></a>
 		<div class="card-body">
@@ -73,7 +73,7 @@ ensure_logged_in();
 
 
 	<!--view schedule-->
-	<div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 		<div class="card" style="width: 8rem;">
 			<a href="scheduled-teams.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
 		<div class="card-body">
@@ -84,7 +84,7 @@ ensure_logged_in();
 	
 
 	<!--manage season-->
-	<div class="col-12 col-lg-4 mb-2 px-4 centerContent">
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 		<div class="card" style="width: 7.75rem;">
 			<a href="season-manager.php"><img class="card-img-top" src='images/manage-seasons.svg' alt="manage seasons"></a>
 		<div class="card-body">
