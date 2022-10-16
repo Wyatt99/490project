@@ -51,16 +51,35 @@ function outputTable($db,$searchQuery){
         $timeResult = $db->query($timeQuery);
         $time = mysqli_fetch_all($timeResult);
         
+        $fieldId = $row['fieldId'];
+        $fieldSection = $row['fieldSection'];
+        $parkIdRes = "SELECT * FROM field WHERE fieldId=$fieldId";
+        $parkIdQuery=mysqli_query($db, $parkIdRes);
+        while($parkIdRow=mysqli_fetch_array($parkIdQuery)){
+            $parkId = $parkIdRow['parkId'];
+            $fieldName = $parkIdRow['fieldName'];
+        }
+        $parkNameRes= "SELECT parkName FROM park where parkId=$parkId";
+        $parkNameQuery=mysqli_query($db, $parkNameRes);
+        while($parkNameRow=mysqli_fetch_array($parkNameQuery)){
+            $parkName = $parkNameRow['parkName'];
+        }
+        
         #TODO: convert to 12 hour format
         $startTime = $time[0][4];
         $endTime = $time[0][5];
         $day = $time[0][6];
-        
+        $startTime = date("g:i a", strtotime($startTime));
+        $endTime = date("g:i a", strtotime($endTime));
+         
         $practiceTime = $startTime." - ".$endTime." &nbsp<strong>".$day."</strong>";
 
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
         echo "<td>".$practiceTime."</td>";
+        echo "<td>".$parkName."</td>";
+        echo "<td>".$fieldName."</td>";
+        echo "<td>".$fieldSection."</td>";
         echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
       }
@@ -99,6 +118,9 @@ if (isset($_POST['showAll'])){
         <tr>
             <th>Team</th>
             <th>Practice Time</th>
+            <th>Park </th>
+            <th>Field </th>
+            <th>Section </th>
             <th class="text-center">Reschedule</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
