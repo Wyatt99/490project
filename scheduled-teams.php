@@ -89,7 +89,7 @@ function outputTable($db,$searchQuery){
 if (isset($_POST['showAll'])){
     ?>
     <script type="text/javascript">
-        window.location="team-select.php";
+        window.location="scheduled-teams.php";
     </script>
     <?php
     }
