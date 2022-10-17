@@ -59,7 +59,7 @@ if (isset($_POST["Update"])){
     $coachLastName2=$_POST['coachLastName'];
     $teamLocation2=$_POST['teamLocation'];
     $ageGroup2=$_POST['ageGroup'];
-    $teamIdentifier = strtoupper($teamLocation2.substr($coachFirstName2,0,1).$coachLastName2.$ageGroup2)."u/".strtoupper($teamName2)." (".$id.")";
+    $teamIdentifier = strtoupper($teamLocation2.'_'.substr($coachFirstName2,0,1).$coachLastName2.'_'.$ageGroup2)."u/".strtoupper($teamName2);
 
 
     mysqli_query($db, "update Team set teamName ='$_POST[teamName]', coachFirstName ='$_POST[coachFirstName]', coachLastName ='$_POST[coachLastName]', coachEmail ='$_POST[coachEmail]', ageGroup ='$_POST[ageGroup]', teamLocation ='$_POST[teamLocation]' where teamId=$id");
