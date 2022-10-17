@@ -37,12 +37,12 @@ $res= "Select * from Team ";
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
 
-    $res .= "WHERE teamName = '{$searchTerm}' ";
-    $res .= " OR coachFirstName = '{$searchTerm}'";
-    $res .= " OR coachLastName = '{$searchTerm}'";
-    $res .= " OR coachEmail = '{$searchTerm}'";
-    $res .= " OR ageGroup = '{$searchTerm}'";
-    $res .= " OR teamLocation = '{$searchTerm}'";
+    $res .= "WHERE teamName LIKE '{$searchTerm}%'";
+    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR coachEmail LIKE '{$searchTerm}%'";
+    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
+    $res .= " OR teamLocation LIKE '{$searchTerm}%'";
     $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
