@@ -4,13 +4,13 @@ include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
 
-$sql = "SELECT teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season 
+$sql = "SELECT teamId, teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season 
     WHERE team.seasonId = season.seasonId AND seasonStatus = 1 ORDER BY ageGroup, teamLocation";
 
 if(isset($_POST['filter'])){
     $group = $_POST['groupSelect'];
     $location = $_POST['locationSelect'];
-    $sql = "SELECT teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season WHERE
+    $sql = "SELECT teamId, teamIdentifier, coachFirstName, coachLastName, coachEmail, teamLocation, team.seasonId as teamSeason FROM team, season WHERE
         team.seasonId = season.seasonId";
 
     if(isset($_POST['inactive'])){
@@ -35,7 +35,8 @@ $query = mysqli_query($db, $sql);
 function printTable($query){
     while($row=mysqli_fetch_array($query)){
         echo "<tr>";
-        echo  "<td>"; echo $row["teamIdentifier"]."</td>";
+        echo  "<td>"; 
+        echo '<a href="team-info.php?id='.$row["teamId"].'">'.$row["teamIdentifier"].'</a>';
         $coachName = $row["coachFirstName"]." ".$row["coachLastName"];
         echo  "<td>"; echo $coachName."</td>";
         echo  "<td>"; echo $row["teamSeason"]."</td>";
