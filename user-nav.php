@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse " id="navbarCollapse">
                 <div class="navbar-nav">
                     <a href="index.php" class="nav-item nav-link">Home</a>
-                      <a href="view-schedule.php" class="nav-item nav-link">View Schedules</a>
+                      <a href="view-schedules.php" class="nav-item nav-link">View Schedules</a>
                 </div>
                 <div class="navbar-nav ms-auto">         
                     <a href="login.php" class="nav-item nav-link">Admin Login</a>     	
