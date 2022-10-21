@@ -10,7 +10,7 @@
             </button>
 
             <!--Collapsable Menu-->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse " id="navbarCollapse">
                 <div class="navbar-nav">
                     <a href="admin-home.php" class="nav-item nav-link">Home</a>
                       <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
