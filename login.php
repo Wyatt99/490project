@@ -68,11 +68,12 @@ if (is_password_correct($name, $password, $db)) {
             <i class="fa-solid fa-eye" id="eye"></i>
             <label class="form-label" for="password">Password</label>
         </div>
-
+       
             <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Login</button>
             <?=$promptMessage()?> <!--call prompt message function-->
+            <br><a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
         </form>
-        
+       
     </div>
 
     <script> 
