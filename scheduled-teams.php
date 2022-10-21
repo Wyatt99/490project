@@ -63,6 +63,12 @@ function outputTable($db,$searchQuery){
         $parkNameQuery=mysqli_query($db, $parkNameRes);
         while($parkNameRow=mysqli_fetch_array($parkNameQuery)){
             $parkName = $parkNameRow['parkName'];
+            if ($parkName == "Moore Park") {
+                $parkName = "Moore";
+            }
+            else {
+                $parkName = "YSC";
+            }
         }
         
         #TODO: convert to 12 hour format
@@ -117,10 +123,10 @@ if (isset($_POST['showAll'])){
         <thead>
         <tr>
             <th>Team</th>
-            <th>Practice Time</th>
+            <th>Time</th>
             <th>Park </th>
             <th>Field </th>
-            <th>Section </th>
+            <th>Sect.</th>
             <th class="text-center">Reschedule</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
