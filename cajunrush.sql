@@ -24,7 +24,7 @@ CREATE TABLE teamLocation (
 
 CREATE TABLE Team (
     teamId int NOT NULL,
-	  teamIdentifier VARCHAR(60),
+	teamIdentifier VARCHAR(60),
     teamName VARCHAR(60) NOT NULL,
     coachFirstName VARCHAR(60) NOT NULL,
     coachLastName VARCHAR(60) NOT NULL,
@@ -63,7 +63,6 @@ CREATE TABLE Practice (
 	endTime TIME NOT NULL,
 	day CHAR(9) NOT NULL,
 	adminId int NOT NULL,
-    parkname 
     PRIMARY KEY (practiceId),
 	FOREIGN KEY (fieldId) REFERENCES Field(fieldId),
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
@@ -83,6 +82,7 @@ VALUES ('9');
 INSERT INTO ageGroup (ageGroup)
 VALUES ('10');
 
+
 INSERT INTO teamLocation (teamLocation)
 VALUES ('NS');
 INSERT INTO teamLocation (teamLocation)
@@ -91,7 +91,6 @@ INSERT INTO teamLocation (teamLocation)
 VALUES ('RS');
 INSERT INTO teamLocation (teamLocation)
 VALUES ('PR');
-
 
 INSERT INTO park (parkId, parkName)
 VALUES ('1', 'Moore Park'), ('2', 'Youngsville Sports Complex');
@@ -106,12 +105,8 @@ VALUES  ('field 1', 1, 1),
         ('field 3', 2, 1),
         ('field 4', 2, 0);
 
-
 insert into Admins (username, password)
 values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
 
 INSERT INTO Season (seasonId, seasonStatus)
-VALUES ('FALL 2022', '1');
-
-INSERT INTO park (parkId, parkName) 
-VALUES (1, 'Moore Park'), (2,'Youngsville Sports Complex');
+values ('FALL 2022', '1');

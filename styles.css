@@ -94,3 +94,20 @@ h1 {
   color: #1153B1;
   font-weight: 400;
 }
+
+
+a:hover {
+    text-decoration: none;
+    color: #E5BD06;
+  }
+
+  @media screen and (max-width: 800px) { 
+  .viewSchedules {
+  font-size:small;
+  }
+  .tableView {
+    width: 90%;
+    overflow:scroll;
+  }
+
+}

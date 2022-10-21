@@ -27,10 +27,74 @@ ensure_logged_in();
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-<h1>Hello <?= $_SESSION["name"] ?>, welcome back!</h1> <!--to confirm session created, will remove/edit later-->
+<h1 class='text-center my-4'>Hello <?= $_SESSION["name"] ?>, welcome back!</h1> <!--to confirm session created, will remove/edit later-->
+
+<div class="container mt-3 mt-lg-5 centerContent">
+    <div class="row">
+		<!--add team-->
+        <div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+            <div class="card" style="width: 10rem;">
+				<a href="create-teams.php"><img class="card-img-top" src='images/add-team.svg' alt="add team"></a>
+				<div class="card-body">
+				<h5 class="centerContent" style="color: #1D3461;"><strong>Create Team</strong></h5>
+			</div>
+        </div>
+        </div> <!--col end-->
+
+	<!--view team-->
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+		<div class="card" style="width: 10rem;">
+				<a href="view-teams.php"><img class="card-img-top" src='images/view-teams.svg' alt="view teams"></a>
+			<div class="card-body">
+				<h5 class="centerContent" style="color: #1D3461;"><strong>View Teams</strong></h5>
+			</div>
+		</div>
+	</div> <!--col end-->
+
+		<!--edit team-->
+		<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+            <div class="card" style="width: 10rem;">
+				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
+				<div class="card-body">
+				<h5 class="centerContent" style="color: #1D3461;"><strong>Edit Teams</strong></h5>
+			</div>
+        </div>
+        </div> <!--col end-->
+
+	<!--schedule-->
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+	<div class="card" style="width: 7.5rem;">
+			<a href="team-select.php"><img class="card-img-top" src='images/schedule-teams.svg' alt="schedule teams"></a>
+		<div class="card-body">
+			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Schedule Practices</strong></h5>
+		</div>
+	</div>
+	</div> <!--col end-->
 
 
+	<!--view schedule-->
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+		<div class="card" style="width: 8rem;">
+			<a href="scheduled-teams.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
+		<div class="card-body">
+			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
+		</div>
+		</div>
+	</div> <!--col end-->
+	
 
+	<!--manage season-->
+	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
+		<div class="card" style="width: 7.75rem;">
+			<a href="season-manager.php"><img class="card-img-top" src='images/manage-seasons.svg' alt="manage seasons"></a>
+		<div class="card-body">
+			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Manage Seasons</strong></h5>
+		</div>
+		</div>
+	</div> <!--col end-->
+</div>
+	
+    </div> <!--container end-->
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->

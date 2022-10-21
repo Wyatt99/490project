@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Scheduled Teams</title>
+	<title>Schedules</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -23,9 +23,7 @@
 <?php
 #Database
 include 'db.php';
-include 'admin-nav.php';
-ensure_logged_in();
-checkForTeams($db);
+include 'user-nav.php';
 
 $res= "Select * from team JOIN practice ON team.teamId = practice.teamId  ";
 
@@ -71,14 +69,13 @@ function outputTable($db,$searchQuery){
             }
         }
         
-        #TODO: convert to 12 hour format
         $startTime = $time[0][4];
         $endTime = $time[0][5];
         $day = $time[0][6];
         $startTime = date("g:i a", strtotime($startTime));
         $endTime = date("g:i a", strtotime($endTime));
          
-        $practiceTime = $startTime." - ".$endTime." &nbsp<strong>".$day."</strong>";
+        $practiceTime = $startTime." - ".$endTime."<br><strong>".$day."</strong>";
 
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
@@ -86,7 +83,6 @@ function outputTable($db,$searchQuery){
         echo "<td>".$parkName."</td>";
         echo "<td>".$fieldName."</td>";
         echo "<td>".$fieldSection."</td>";
-        echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
       }
 }
@@ -104,7 +100,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<h1 class="centerContent my-3">Currently Scheduled Teams</h1>
+<h1 class="centerContent my-3">View Schedules</h1>
     <div class="text-center p-2 mb-2" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
         Search: <input type="text" name="search_box" value="" />
@@ -114,11 +110,11 @@ if (isset($_POST['showAll'])){
     </form>
     </div>
 
-    <div class="col-lg-12 p-2 ">
+
     <?=$promptMessage()?>
 
- 
-    <table class="table table-bordered mx-lg-2 centerContent">
+    <div class="table-responsive-sm centerContent tableView">
+    <table class="table table-bordered mx-l-2 centerContent viewSchedules">
     <tbody>
         <thead>
         <tr>
@@ -127,14 +123,13 @@ if (isset($_POST['showAll'])){
             <th>Park </th>
             <th>Field </th>
             <th>Sect.</th>
-            <th class="text-center">Reschedule</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
         </thead>
     </tbody>
-
     </table>
     </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->

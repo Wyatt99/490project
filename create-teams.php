@@ -81,7 +81,7 @@ if (isset($_POST['addTeamButton'])){
         $IdNumber++;
 
         #concatenate team data into a capitalized string in the form NSWWOODALL7u/CRUSADERS 
-        $teamIdentifier = strtoupper($teamLocation.substr($coachFirstName,0,1).$coachLastName.$ageGroup)."u/".strtoupper($teamName)." (".$IdNumber.")";
+        $teamIdentifier = strtoupper($teamLocation."_".substr($coachFirstName,0,1).$coachLastName."_".$ageGroup)."u/".strtoupper($teamName);
         
         # season logic where it selects the active current season to be automatically added into the new team
         $seasonSql = "SELECT * FROM season WHERE seasonStatus=1";

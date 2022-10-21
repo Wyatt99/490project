@@ -27,6 +27,7 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 if(isset($_SESSION['team'])) {
     unset($_SESSION['team']);
@@ -77,7 +78,8 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<div class="text-center p-2 mt-4" >
+<h1 class="centerContent my-3">Unscheduled Teams</h1>
+<div class="text-center p-2 mb-2" >
 <form name="search_form" method="POST" action="team-select.php">
     Search: <input type="text" name="search_box" value="" />
 <input type="submit" name="search" value="Filter">
@@ -85,11 +87,9 @@ if (isset($_POST['showAll'])){
 </form>
 </div>
 
-<div class="col-lg-12 p-2 ">
+<div class="col-lg-12 p-2">
 <?=$promptMessage()
 ?>
-
-<h4 class="centerContent mt-3">Unscheduled Teams</h4>
 <table class="table table-bordered mx-lg-2 centerContent">
 <tbody>
     <thead>

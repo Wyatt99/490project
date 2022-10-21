@@ -30,18 +30,19 @@
 include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
 
 $res= "Select * from Team ";
 
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
 
-    $res .= "WHERE teamName = '{$searchTerm}' ";
-    $res .= " OR coachFirstName = '{$searchTerm}'";
-    $res .= " OR coachLastName = '{$searchTerm}'";
-    $res .= " OR coachEmail = '{$searchTerm}'";
-    $res .= " OR ageGroup = '{$searchTerm}'";
-    $res .= " OR teamLocation = '{$searchTerm}'";
+    $res .= "WHERE teamName LIKE '{$searchTerm}%'";
+    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR coachEmail LIKE '{$searchTerm}%'";
+    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
+    $res .= " OR teamLocation LIKE '{$searchTerm}%'";
     $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
@@ -52,14 +53,9 @@ $query=mysqli_query($db, $res);
 function outputTable($query){
     while($row=mysqli_fetch_array($query)){
         echo "<tr>";
-        echo  "<td>"; echo $row["teamName"]."</td>";
-        echo  "<td>"; echo $row["coachFirstName"]."</td>";
-        echo  "<td>"; echo $row["coachLastName"]."</td>";
-        echo  "<td>"; echo $row["coachEmail"]."</td>";
-        echo  "<td>"; echo $row["ageGroup"]."u</td>";
-        echo  "<td>"; echo $row["teamLocation"]."</td>";
+        echo  "<td>"; echo $row["teamIdentifier"]."</td>";
         echo  "<td>"; ?> <a href="edit-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-success">Edit</button></a> <?php echo "</td>"; #update team
-        echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
+        echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"] ?> "onclick="return confirm('Are you sure you want to delete <?php echo $row['teamIdentifier'] ?>?') "><button type="button" class= "btn btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
         echo"</tr>";
       }
 }
@@ -75,12 +71,11 @@ if (isset($_POST['showAll'])){
 ?>
 <!-- END OF PHP PORTION-->
 
-
-
-
 <!-- START OF BODY -->
 <body>
-<div class="text-center p-2 mt-3" >
+
+<h1 class='centerContent mt-4'>Edit Teams</h1>
+<div class="text-center p-2 mt-2" >
 <form name="search_form" method="POST" action="update-team.php">
 Search: <input type="text" name="search_box" value="" />
 
@@ -92,18 +87,13 @@ Search: <input type="text" name="search_box" value="" />
 <div class="col-lg-12 p-2">
 <?=$promptMessage()
 ?>
-<table class="table table-bordered">
+<table class="table table-bordered mx-lg-2 centerContent">
 <tbody>
     <thead>
       <tr>
-        <th>Team Name</th>
-        <th>Coach First Name</th>
-        <th>Coach Last Name</th>
-        <th>Coach Email</th>
-        <th>Age Group</th>
-        <th>Team Location</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Team</th>
+        <th class="text-center">Edit</th>
+        <th class="text-center">Delete</th>
       </tr>
       <?=outputTable($query)?>
     </thead>

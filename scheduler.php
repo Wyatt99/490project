@@ -25,6 +25,9 @@
 include 'db.php'; //connect to database
 include 'admin-nav.php';
 ensure_logged_in();
+checkForTeams($db);
+mysqli_report(MYSQLI_REPORT_STRICT);
+$message="";
 
 $update = $_GET["update"];
 if (!isset($_SESSION['parkId'])) {
@@ -54,12 +57,12 @@ if (isset($_GET['submit'])
 		
 		# get the teamId number from the getter
 		$sql = "select * from team where teamIdentifier='$teamIdentifier'";
-		echo $sql;
 		$res=mysqli_query($db, $sql);
 		while($row=mysqli_fetch_array($res)){
 			$teamId=$row["teamId"];
 		}
-		echo $teamId;
+
+		$updateSqlConflict=mysqli_query($db, "select * from practice where teamId=$teamId");
 		$res2=mysqli_query($db, "delete from practice where teamId=$teamId");
 	}
 
@@ -80,27 +83,38 @@ if (isset($_GET['submit'])
 		$time2 = $endTime;
 		$time3 = $startTimeCheck;
 		$time4 = $endTimeCheck;
-		echo $time1; echo"<br>";
-		echo $time2; echo"<br>";
+
 		$time3=date('H:i',strtotime($time3));
 		$time4=date('H:i',strtotime($time4));
-		echo $time3; echo"<br>";
-		echo $time4; echo"<br>";
+	
 		# change the value inside of the row to populate what you want the 
 		# option to be called
 		if (($fieldIdCheck == $field)
 		&& ($fieldSectionCheck == $section) 
 		&& ($dayCheck == $day)) {
-			
 			if (($time1 < $time4) && ($time2 > $time3)){
 				$timeConflict = 1;
 			}
 		}		
 	}
 	
-			
+
 	if ($timeConflict) {
-		echo "time conflict";
+		$message ="<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>Time Conflict!</div>";
+		if ($update == 1) {
+			while($row=mysqli_fetch_array($updateSqlConflict)){
+				$field=$row["fieldId"];
+				$section=$row['fieldSection'];
+				$teamId=$row['teamId'];
+				$startTime=$row['startTime'];
+				$endTime=$row['endTime'];
+				$day=$row['day'];
+				$adminId = $_SESSION['adminId'];
+
+			}
+			$updateSql="INSERT into practice (fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES ('$field', '$section', '$teamId', '$startTime', '$endTime', '$day', '$adminId')";
+			$res2=mysqli_query($db, $updateSql);
+		}
 		
 	} else {
 
@@ -123,6 +137,7 @@ if (isset($_GET['submit'])
 <body>
 	<h1 class="mt-4 mb-2  text-center"><?=$_SESSION['parkName']?></h1>
 	<h3 class="subText  text-center ">Practice Scheduler</h3> 
+	<?php echo $message; ?>
 	
 <container class="centerContent w-40">
 	<form method="GET" action="scheduler.php" style="overflow-x:hidden">
@@ -179,6 +194,7 @@ if (isset($_GET['submit'])
 		</div>
 
 		<input type="hidden" name="update" value="<?=$update;?>" />
+		<input type="hidden" name="team" value="<?=$_SESSION['team'];?>" />
 				
 		<!--submit-->
 		<div class="col-lg-1 col-3 contentCenter">
@@ -194,40 +210,3 @@ if (isset($_GET['submit'])
 <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>
 
-<!-- time select 12hr format 
-
-		<div class="col-lg-auto col-12 ">
-		<select class="form-control mt-2 mt-lg-0" id='startHr' style="appearance:listbox;">
-					<option value="" disabled selected hidden>Hour</option> 
-					<option value='1'>01</option>
-					<option value='2'>02</option>
-					<option value='3'>03</option>
-					<option value='4'>04</option>
-					<option value='5'>05</option>
-					<option value='6'>06</option>
-					<option value='7'>07</option>
-					<option value='8'>08</option>
-					<option value='9'>09</option>
-					<option value='10'>10</option>
-					<option value='11'>11</option>
-					<option value='12'>12</option>
-				</select>
-				</div>
-
-				<div class="col-lg-auto col-12 mt-0">
-				<select class="form-control mt-2 mt-lg-0" id='startMin' style="appearance:listbox;">
-					<option value="" disabled selected hidden>Minute</option> 
-					<option value='00'>00</option>
-					<option value='15'>15</option>
-					<option value='30'>30</option>
-					<option value='45'>45</option>
-				</select>
-				</div>
-
-				<div class="col-lg-auto col-12 mt-0">
-				<select class="form-control mt-2 mt-lg-0" id='startAM-PM' style="appearance:listbox;">
-					<option value="" disabled selected hidden>AM/PM</option> 
-					<option value='AM'>AM</option>
-					<option value='PM'>PM</option>
-				</select>
--->
