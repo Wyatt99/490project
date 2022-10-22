@@ -25,21 +25,32 @@
 include 'db.php';
 include 'user-nav.php';
 
-$res= "Select * from team JOIN practice ON team.teamId = practice.teamId  ";
+$res= "Select t.*, p.*, f.* FROM team t 
+       JOIN practice p ON t.teamId = p.teamId 
+       JOIN field f ON f.fieldId = p.fieldId ";
 
-#currently works with only showing teams who ARE scheduled already
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
-    $res .= "WHERE teamIdentifier = '{$searchTerm}' ";
+
+    #create time from searchTerm (MUST be followed by AM or PM)
+    $time = date("G:i ", strtotime($searchTerm));
+    
+    #team info search
+    $res .= "WHERE teamIdentifier = '{$searchTerm}%' ";
     $res .= " OR coachFirstName = '{$searchTerm}'";
     $res .= " OR coachLastName = '{$searchTerm}'";
     $res .= " OR coachEmail = '{$searchTerm}'";
-    $res .= " OR ageGroup = '{$searchTerm}'";
+    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
+    $res .= " OR teamName LIKE '{$searchTerm}%'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, ' ', coachFirstName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}%'";
+
+    #practice info search
+    $res .= " OR day LIKE '{$searchTerm}%'";
+    $res .= " OR fieldSection = '{$searchTerm}'";
+    $res .= " OR fieldName = '{$searchTerm}'";
+    $res .= " OR startTime = '{$time}'";
+    $res .= " OR endTime = '{$time}'";
 }
 
 $searchQuery=mysqli_query($db, $res);
@@ -72,6 +83,33 @@ function outputTable($db,$searchQuery){
         $startTime = $time[0][4];
         $endTime = $time[0][5];
         $day = $time[0][6];
+        
+/*switch case for day shorthand
+        switch ($day) {
+            case "Monday":
+                $day = "M";
+                break;
+            case "Tuesday":
+                $day = "T";
+                break;
+            case "Wednesday":
+                $day = "W";
+                break;
+            case "Thursday":
+                $day = "TR";
+                break;
+            case "Friday":
+                $day = "F";
+                break;
+            case "Saturday":
+                $day = "SAT";
+                break;
+            case "Sunday":
+                $day = "SUN";
+                break;
+        } 
+*/
+
         $startTime = date("g:i a", strtotime($startTime));
         $endTime = date("g:i a", strtotime($endTime));
          
@@ -80,8 +118,8 @@ function outputTable($db,$searchQuery){
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
         echo "<td>".$practiceTime."</td>";
-        echo "<td>".$parkName."</td>";
-        echo "<td>".$fieldName."</td>";
+        echo "<td>".$parkName."<br>".$fieldName."</td>";
+
         echo "<td>".$fieldSection."</td>";
         echo"</tr>";
       }
@@ -91,7 +129,7 @@ function outputTable($db,$searchQuery){
 if (isset($_POST['showAll'])){
     ?>
     <script type="text/javascript">
-        window.location="scheduled-teams.php";
+        window.location="view-schedules.php";
     </script>
     <?php
     }
@@ -102,9 +140,9 @@ if (isset($_POST['showAll'])){
 <body>
 <h1 class="centerContent my-3">View Schedules</h1>
     <div class="text-center p-2 mb-2" >
-    <form name="search_form" method="POST" action="scheduled-teams.php">
-        Search: <input type="text" name="search_box" value="" />
-
+    <form name="search_form" method="POST" action="view-schedules.php">
+        Search: <input type="text" name="search_box" value="" class = "mb-lg-0 mb-2"/>
+    <br class="d-md-none">
         <input type="submit" name="search" value="Filter">
         <input type="submit" name="showAll" value="Show All">
     </form>
@@ -113,15 +151,14 @@ if (isset($_POST['showAll'])){
 
     <?=$promptMessage()?>
 
-    <div class="table-responsive-sm centerContent tableView">
-    <table class="table table-bordered mx-l-2 centerContent viewSchedules">
+    <div class="centerContent tableView">
+    <table class="table table-bordered mx-l-2 centerContent smallFont">
     <tbody>
         <thead>
         <tr>
             <th>Team</th>
             <th>Time</th>
-            <th>Park </th>
-            <th>Field </th>
+            <th>Park/Field </th>
             <th>Sect.</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
