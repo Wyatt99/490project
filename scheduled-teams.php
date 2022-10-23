@@ -87,6 +87,7 @@ function outputTable($db,$searchQuery){
         echo "<td>".$fieldName."</td>";
         echo "<td>".$fieldSection."</td>";
         echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
+        echo  "<td>"; ?> <a href="delete-practice.php?id=<?php echo $row["practiceId"] ?> "onclick="return confirm('Are you sure you want to cancel the practice for <?php echo $row['teamIdentifier'] ?> scheduled at <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') "><button type="button" class= "btn btn-danger">Cancel</button></a> <?php echo "</td>";
         echo"</tr>";
       }
 }
@@ -128,6 +129,7 @@ if (isset($_POST['showAll'])){
             <th>Field </th>
             <th>Sect.</th>
             <th class="text-center">Reschedule</th>
+            <th class="text-center">Cancel</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
         </thead>
