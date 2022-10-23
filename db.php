@@ -21,6 +21,7 @@ function fieldSelect ($db, $parkId) {
 	}
 }
 
+
 #fetch all age groups in database and echo each as an option in select input
 function checkForTeams ($db) {
 	$result = $db->query("SELECT * FROM team");
@@ -53,6 +54,18 @@ function teamLocationSelect ($db) {
 		foreach ($rows as $row) {
 			$teamLocation = $row[0];
 			echo"<option value='$teamLocation'>".$teamLocation."</option>";
+		}
+	}
+}
+
+#fetch all seasons in database and echo each as an option in select input
+function teamSeasonSelect ($db) {
+	$result = $db->query("SELECT seasonId FROM Season");
+    $rows = mysqli_fetch_all($result);
+	if ($rows) {
+		foreach ($rows as $row) {
+			$seasonId = $row[0];
+			echo"<option value='$seasonId'>".$seasonId."</option>";
 		}
 	}
 }
