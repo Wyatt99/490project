@@ -36,6 +36,7 @@ $coachLastName="";
 $coachEmail="";
 $ageGroup="";
 $teamLocation="";
+$seasonId="";
 
 
 $res=mysqli_query($db, "select * from Team where teamId=$id");
@@ -47,6 +48,7 @@ while($row=mysqli_fetch_array($res)){
     $coachEmail=$row["coachEmail"];
     $ageGroup=$row["ageGroup"];
     $teamLocation=$row["teamLocation"];
+    $seasonId=$row["seasonId"];
 
 }
 ?>
@@ -62,7 +64,7 @@ if (isset($_POST["Update"])){
     $teamIdentifier = strtoupper($teamLocation2.'_'.substr($coachFirstName2,0,1).$coachLastName2.'_'.$ageGroup2)."u/".strtoupper($teamName2);
 
 
-    mysqli_query($db, "update Team set teamName ='$_POST[teamName]', coachFirstName ='$_POST[coachFirstName]', coachLastName ='$_POST[coachLastName]', coachEmail ='$_POST[coachEmail]', ageGroup ='$_POST[ageGroup]', teamLocation ='$_POST[teamLocation]' where teamId=$id");
+    mysqli_query($db, "update Team set teamName ='$_POST[teamName]', coachFirstName ='$_POST[coachFirstName]', coachLastName ='$_POST[coachLastName]', coachEmail ='$_POST[coachEmail]', ageGroup ='$_POST[ageGroup]', teamLocation ='$_POST[teamLocation]', seasonId ='$_POST[seasonId]' where teamId=$id");
     mysqli_query($db, "update Team set teamIdentifier ='$teamIdentifier' where teamId=$id");
 
     ?>
@@ -130,6 +132,14 @@ if (isset($_POST["Return"])){
 				<select class="form-control" name="teamLocation" id="teamLocation" style="appearance:listbox;" required>
 				<option value="<?=$teamLocation?>"><?=$teamLocation?></option> 
 				<?=teamLocationSelect($db)?>
+			</select>
+    </div>
+
+    <div class="form-group">
+			<label for="teamLocation">Season</label>
+				<select class="form-control" name="seasonId" id="seasonId" style="appearance:listbox;" required>
+				<option value="<?=$seasonId?>"><?=$seasonId?></option> 
+				<?=teamSeasonSelect($db)?>
 			</select>
     </div>
 
