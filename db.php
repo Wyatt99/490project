@@ -102,6 +102,10 @@ $promptMessage = function() {
     $message = "Team deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  if (isset($_GET['deletePracticeSuccess'])) {
+    $message = "Practice canceled successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
   if (isset($_GET['teamAdded'])) {
     $message = "Team added successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
