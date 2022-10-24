@@ -84,32 +84,6 @@ function outputTable($db,$searchQuery){
         $endTime = $time[0][5];
         $day = $time[0][6];
         
-/*switch case for day shorthand
-        switch ($day) {
-            case "Monday":
-                $day = "M";
-                break;
-            case "Tuesday":
-                $day = "T";
-                break;
-            case "Wednesday":
-                $day = "W";
-                break;
-            case "Thursday":
-                $day = "TR";
-                break;
-            case "Friday":
-                $day = "F";
-                break;
-            case "Saturday":
-                $day = "SAT";
-                break;
-            case "Sunday":
-                $day = "SUN";
-                break;
-        } 
-*/
-
         $startTime = date("g:i a", strtotime($startTime));
         $endTime = date("g:i a", strtotime($endTime));
          
@@ -125,6 +99,9 @@ function outputTable($db,$searchQuery){
       }
 }
 
+if(isset($_POST['filter'])){
+    // TODO: work on drop down filtering
+}
 
 if (isset($_POST['showAll'])){
     ?>
@@ -148,6 +125,33 @@ if (isset($_POST['showAll'])){
     </form>
     </div>
 
+<div class="centerContent mb-2">
+    <form name="team filter form" method="POST" action="view-schedules.php">
+        <?php $result = $db->query("select ageGroup from agegroup");?>
+        <select name='groupSelect'>
+        <option value='1'>All Ages</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['ageGroup'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
+        </select>
+        
+        <?php $result = $db->query("select teamLocation from teamlocation");?>
+        <select name='locationSelect'>
+        <option value='AA'>All Locations</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['teamLocation'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
+        </select>
+
+        <input type="submit" name="filter" value="Filter">
+    </form>
+</div>
 
     <?=$promptMessage()?>
 
