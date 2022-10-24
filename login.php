@@ -58,6 +58,7 @@ if (is_password_correct($name, $password, $db)) {
 
     <form method="post">
     <h1 class="mt-4 mb-3 centerContent ">Admin Login</h1>
+    <?=$promptMessage()?> <!--call prompt message function-->
         <div class="form-outline mb-2">
             <input type="text" name="name" id="name" class="form-control form-control-lg"/>
             <label class="form-label" for="name">Username</label>
@@ -70,7 +71,7 @@ if (is_password_correct($name, $password, $db)) {
         </div>
        
             <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Login</button>
-            <?=$promptMessage()?> <!--call prompt message function-->
+           
             <br><a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
         </form>
        
