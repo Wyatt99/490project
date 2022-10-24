@@ -6,6 +6,9 @@ ensure_logged_in();
 
 if (isset( $_POST['submit'] )) {
     $name = $_POST['name'];
+    $result = $db->query("SELECT username FROM admins WHERE username = '$name'");
+    $rows = mysqli_fetch_assoc($result); 
+    if (!$rows) {
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
@@ -21,6 +24,11 @@ if (isset( $_POST['submit'] )) {
 
     else {
         header("location: register.php?errp");
+        exit();
+      }
+    }
+    else {
+        header("location: register.php?duplicateAdmin");
         exit();
       }
 }
@@ -55,6 +63,7 @@ if (isset( $_POST['submit'] )) {
 
     <form method="post" class="registerForm">
         <h1 class="mt-2 mb-3 centerContent ">Register Admin</h1>
+        <?=$promptMessage()?> <!--call prompt message function-->
         <div class="form-outline mb-2">
             <input type="text" name="name" id="name" class="form-control form-control-lg" required/>
             <label class="form-label" for="name">Username</label>
@@ -73,7 +82,7 @@ if (isset( $_POST['submit'] )) {
         </div>
 
             <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Register</button>
-            <?=$promptMessage()?> <!--call prompt message function-->
+            
         </form>
         
     </div>
