@@ -92,7 +92,7 @@ ensure_logged_in();
 		</div>
 		</div>
 	</div> <!--col end-->
-</div>
+</div> <!--row end-->
 	
     </div> <!--container end-->
 

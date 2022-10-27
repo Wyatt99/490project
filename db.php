@@ -103,6 +103,10 @@ $promptMessage = function() {
       $message = "Passwords do not match.";
       echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  if (isset($_GET['duplicateAdmin'])) {
+    $message = "Admin already exists";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+}
   if (isset($_GET['newAdminSuccess'])) {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";

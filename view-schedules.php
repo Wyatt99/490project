@@ -25,30 +25,35 @@
 include 'db.php';
 include 'user-nav.php';
 
-$res= "Select t.*, p.*, f.* FROM team t 
+$res= "Select t.*, p.*, f.*, pa.* FROM team t 
        JOIN practice p ON t.teamId = p.teamId 
-       JOIN field f ON f.fieldId = p.fieldId ";
+       JOIN field f ON f.fieldId = p.fieldId 
+       JOIN park pa ON pa.parkId = f.parkId ";
 
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
 
     #create time from searchTerm (MUST be followed by AM or PM)
-    $time = date("G:i ", strtotime($searchTerm));
+    $time = date("G:i a", strtotime($searchTerm));
     
+
     #team info search
-    $res .= "WHERE teamIdentifier = '{$searchTerm}%' ";
-    $res .= " OR coachFirstName = '{$searchTerm}'";
-    $res .= " OR coachLastName = '{$searchTerm}'";
-    $res .= " OR coachEmail = '{$searchTerm}'";
-    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
+    $res .= "WHERE teamIdentifier LIKE '{$searchTerm}%' ";
+    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR coachEmail = '{$searchTerm}'"; #maybe not worth including, just requiring exact match for now
+    $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamName LIKE '{$searchTerm}%'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}%'";
+    $res .= " OR CONCAT(coachFirstName, coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
 
     #practice info search
     $res .= " OR day LIKE '{$searchTerm}%'";
-    $res .= " OR fieldSection = '{$searchTerm}'";
+    $res .= " OR fieldSection = '{$searchTerm}'"; #depending on what the sections are called can modify this if needed
     $res .= " OR fieldName = '{$searchTerm}'";
+    $res .= " OR fieldName = CONCAT('field ', '{$searchTerm}')"; #an option so they dont have to type 'field ' when searching field name
+    $res .= " OR parkName LIKE '{$searchTerm}%'";
     $res .= " OR startTime = '{$time}'";
     $res .= " OR endTime = '{$time}'";
 }
@@ -84,32 +89,6 @@ function outputTable($db,$searchQuery){
         $endTime = $time[0][5];
         $day = $time[0][6];
         
-/*switch case for day shorthand
-        switch ($day) {
-            case "Monday":
-                $day = "M";
-                break;
-            case "Tuesday":
-                $day = "T";
-                break;
-            case "Wednesday":
-                $day = "W";
-                break;
-            case "Thursday":
-                $day = "TR";
-                break;
-            case "Friday":
-                $day = "F";
-                break;
-            case "Saturday":
-                $day = "SAT";
-                break;
-            case "Sunday":
-                $day = "SUN";
-                break;
-        } 
-*/
-
         $startTime = date("g:i a", strtotime($startTime));
         $endTime = date("g:i a", strtotime($endTime));
          
@@ -125,6 +104,9 @@ function outputTable($db,$searchQuery){
       }
 }
 
+if(isset($_POST['filter'])){
+    // TODO: work on drop down filtering
+}
 
 if (isset($_POST['showAll'])){
     ?>
@@ -147,7 +129,6 @@ if (isset($_POST['showAll'])){
         <input type="submit" name="showAll" value="Show All">
     </form>
     </div>
-
 
     <?=$promptMessage()?>
 
