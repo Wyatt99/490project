@@ -27,21 +27,64 @@ include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
 
-$res= "Select * from team JOIN practice ON team.teamId = practice.teamId  ";
+$res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
+JOIN practice p ON t.teamId = p.teamId 
+JOIN field f ON f.fieldId = p.fieldId 
+JOIN park pa ON pa.parkId = f.parkId 
+JOIN season s ON t.seasonId = s.seasonId";
 
-#currently works with only showing teams who ARE scheduled already
+if(isset($_POST['filter'])){
+    $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
+    JOIN practice p ON t.teamId = p.teamId 
+    JOIN field f ON f.fieldId = p.fieldId 
+    JOIN park pa ON pa.parkId = f.parkId 
+    JOIN season s ON t.seasonId = s.seasonId";
+
+    $group = $_POST['groupSelect'];
+    $location = $_POST['locationSelect'];
+    
+    if($group != "1"){
+        $res.=" AND ageGroup = {$group}";
+    }
+
+    if($location !="AA"){
+        $res.=" AND teamLocation = '{$location}'";
+    }
+    $res.=" ORDER BY ageGroup, teamLocation";
+}
+
 if (isset($_POST['search'])){
+    $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
+    JOIN practice p ON t.teamId = p.teamId 
+    JOIN field f ON f.fieldId = p.fieldId 
+    JOIN park pa ON pa.parkId = f.parkId 
+    JOIN season s ON t.seasonId = s.seasonId ";
+
     $searchTerm = $_POST['search_box'];
-    $res .= "WHERE teamIdentifier = '{$searchTerm}' ";
-    $res .= " OR coachFirstName = '{$searchTerm}'";
-    $res .= " OR coachLastName = '{$searchTerm}'";
-    $res .= " OR coachEmail = '{$searchTerm}'";
+
+    #create time from searchTerm (MUST be followed by AM or PM)
+    $time = date("G:i a", strtotime($searchTerm));
+    
+
+    #team info search
+    $res .= "WHERE teamIdentifier LIKE '{$searchTerm}%' ";
+    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR coachEmail = '{$searchTerm}'"; #maybe not worth including, just requiring exact match for now
     $res .= " OR ageGroup = '{$searchTerm}'";
+    $res .= " OR teamName LIKE '{$searchTerm}%'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, coachLastName) = '{$searchTerm}'";
     $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, ' ', coachFirstName) = '{$searchTerm}'";
+
+    #practice info search
+    $res .= " OR day LIKE '{$searchTerm}%'";
+    $res .= " OR fieldSection = '{$searchTerm}'"; #depending on what the sections are called can modify this if needed
+    $res .= " OR fieldName = '{$searchTerm}'";
+    $res .= " OR fieldName = CONCAT('field ', '{$searchTerm}')"; #an option so they dont have to type 'field ' when searching field name
+    $res .= " OR parkName LIKE '{$searchTerm}%'";
+    $res .= " OR startTime = '{$time}'";
+    $res .= " OR endTime = '{$time}'";
 }
 
 $searchQuery=mysqli_query($db, $res);
@@ -71,14 +114,14 @@ function outputTable($db,$searchQuery){
             }
         }
         
-        #TODO: convert to 12 hour format
         $startTime = $time[0][4];
         $endTime = $time[0][5];
         $day = $time[0][6];
+        
         $startTime = date("g:i a", strtotime($startTime));
         $endTime = date("g:i a", strtotime($endTime));
          
-        $practiceTime = $startTime." - ".$endTime." &nbsp<strong>".$day."</strong>";
+        $practiceTime = $startTime." - ".$endTime."<br><strong>".$day."</strong>";
 
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
@@ -91,6 +134,7 @@ function outputTable($db,$searchQuery){
         echo"</tr>";
       }
 }
+
 
 
 if (isset($_POST['showAll'])){
@@ -106,24 +150,23 @@ if (isset($_POST['showAll'])){
 <!-- START OF BODY -->
 <body>
 <h1 class="centerContent my-3">Currently Scheduled Teams</h1>
+    <!-- search bar filter -->
     <div class="text-center p-2 mb-1" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
-        Search: <input type="text" name="search_box" value="" />
+        Search: <input type="text" name="search_box" style="width:205px;" value="" />
 
-        <input type="submit" name="search" value="Filter">
-        <input type="submit" name="showAll" value="Show All">
+        <input type="submit" name="search" value="Filter" style="margin-left:2px;">
     </form>
     </div>
 
     <div class="col-lg-12 p-2 ">
     <?=$promptMessage()?>
-
-    <div class="centerContent mb-2">
     
     <!--drop down form-->
+    <div class="centerContent mb-2">
     <form name="team filter form" method="POST" action="scheduled-teams.php">
         <?php $result = $db->query("select ageGroup from agegroup");?>
-        <select name='groupSelect'>
+        <select name='groupSelect' style="margin-left:55px;">
         <option value='1'>All Ages</option>
         <?php
         while ($row = $result->fetch_assoc()) {
@@ -134,8 +177,9 @@ if (isset($_POST['showAll'])){
         </select>
         
         <?php $result = $db->query("select teamLocation from teamlocation");?>
-        <select name='locationSelect'>
+        <select name='locationSelect' style="margin-left:5px;">
         <option value='AA'>All Locations</option>
+
         <?php
         while ($row = $result->fetch_assoc()) {
             $id = $row['teamLocation'];
@@ -143,11 +187,15 @@ if (isset($_POST['showAll'])){
         }
         ?>
         </select>
+        <input type="submit" name="filter" value="Filter" style="margin-left:5px;">
+    </div>    
 
-        <input type="submit" name="filter" value="Filter">
-    </form>
-</div>
- 
+    <div class="centerContent mb-3">
+        <input type="submit" name="showAll" value="showAll" style="width:200px;">
+     </div>
+</form>
+    <!--drop down form end -->
+
     <table class="table table-bordered mx-lg-2 centerContent">
     <tbody>
         <thead>
