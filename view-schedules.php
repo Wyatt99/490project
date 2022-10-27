@@ -25,30 +25,35 @@
 include 'db.php';
 include 'user-nav.php';
 
-$res= "Select t.*, p.*, f.* FROM team t 
+$res= "Select t.*, p.*, f.*, pa.* FROM team t 
        JOIN practice p ON t.teamId = p.teamId 
-       JOIN field f ON f.fieldId = p.fieldId ";
+       JOIN field f ON f.fieldId = p.fieldId 
+       JOIN park pa ON pa.parkId = f.parkId ";
 
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
 
     #create time from searchTerm (MUST be followed by AM or PM)
-    $time = date("G:i ", strtotime($searchTerm));
+    $time = date("G:i a", strtotime($searchTerm));
     
+
     #team info search
-    $res .= "WHERE teamIdentifier = '{$searchTerm}%' ";
-    $res .= " OR coachFirstName = '{$searchTerm}'";
-    $res .= " OR coachLastName = '{$searchTerm}'";
-    $res .= " OR coachEmail = '{$searchTerm}'";
-    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
+    $res .= "WHERE teamIdentifier LIKE '{$searchTerm}%' ";
+    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR coachEmail = '{$searchTerm}'"; #maybe not worth including, just requiring exact match for now
+    $res .= " OR ageGroup = '{$searchTerm}'";
     $res .= " OR teamName LIKE '{$searchTerm}%'";
     $res .= " OR teamLocation = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}%'";
+    $res .= " OR CONCAT(coachFirstName, coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
 
     #practice info search
     $res .= " OR day LIKE '{$searchTerm}%'";
-    $res .= " OR fieldSection = '{$searchTerm}'";
+    $res .= " OR fieldSection = '{$searchTerm}'"; #depending on what the sections are called can modify this if needed
     $res .= " OR fieldName = '{$searchTerm}'";
+    $res .= " OR fieldName = CONCAT('field ', '{$searchTerm}')"; #an option so they dont have to type 'field ' when searching field name
+    $res .= " OR parkName LIKE '{$searchTerm}%'";
     $res .= " OR startTime = '{$time}'";
     $res .= " OR endTime = '{$time}'";
 }
@@ -124,34 +129,6 @@ if (isset($_POST['showAll'])){
         <input type="submit" name="showAll" value="Show All">
     </form>
     </div>
-
-<div class="centerContent mb-2">
-    <form name="team filter form" method="POST" action="view-schedules.php">
-        <?php $result = $db->query("select ageGroup from agegroup");?>
-        <select name='groupSelect'>
-        <option value='1'>All Ages</option>
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['ageGroup'];
-            echo "<option value='$id'>$id</option>";
-        }
-        ?>
-        </select>
-        
-        <?php $result = $db->query("select teamLocation from teamlocation");?>
-        <select name='locationSelect'>
-        <option value='AA'>All Locations</option>
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['teamLocation'];
-            echo "<option value='$id'>$id</option>";
-        }
-        ?>
-        </select>
-
-        <input type="submit" name="filter" value="Filter">
-    </form>
-</div>
 
     <?=$promptMessage()?>
 
