@@ -105,7 +105,7 @@ if (isset($_POST['showAll'])){
 <!-- START OF BODY -->
 <body>
 <h1 class="centerContent my-3">Currently Scheduled Teams</h1>
-    <div class="text-center p-2 mb-2" >
+    <div class="text-center p-2 mb-1" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
         Search: <input type="text" name="search_box" value="" />
 
@@ -117,6 +117,35 @@ if (isset($_POST['showAll'])){
     <div class="col-lg-12 p-2 ">
     <?=$promptMessage()?>
 
+    <div class="centerContent mb-2">
+    
+    <!--drop down form-->
+    <form name="team filter form" method="POST" action="scheduled-teams.php">
+        <?php $result = $db->query("select ageGroup from agegroup");?>
+        <select name='groupSelect'>
+        <option value='1'>All Ages</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['ageGroup'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
+        </select>
+        
+        <?php $result = $db->query("select teamLocation from teamlocation");?>
+        <select name='locationSelect'>
+        <option value='AA'>All Locations</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['teamLocation'];
+            echo "<option value='$id'>$id</option>";
+        }
+        ?>
+        </select>
+
+        <input type="submit" name="filter" value="Filter">
+    </form>
+</div>
  
     <table class="table table-bordered mx-lg-2 centerContent">
     <tbody>
