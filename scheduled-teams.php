@@ -163,7 +163,7 @@ if (isset($_POST['showAll'])){
     <?=$promptMessage()?>
     
     <!--drop down form-->
-    <div class="centerContent mb-2">
+    <div class="centerContent mb-3">
     <form name="team filter form" method="POST" action="scheduled-teams.php">
         <?php $result = $db->query("select ageGroup from agegroup");?>
         <select name='groupSelect' style="margin-left:55px;">
@@ -171,13 +171,13 @@ if (isset($_POST['showAll'])){
         <?php
         while ($row = $result->fetch_assoc()) {
             $id = $row['ageGroup'];
-            echo "<option value='$id'>$id</option>";
+            echo "<option value='$id'>".$id."u</option>";
         }
         ?>
         </select>
         
         <?php $result = $db->query("select teamLocation from teamlocation");?>
-        <select name='locationSelect' style="margin-left:5px;">
+        <select name='locationSelect' style="margin-left:2px;">
         <option value='AA'>All Locations</option>
 
         <?php
@@ -191,7 +191,7 @@ if (isset($_POST['showAll'])){
     </div>    
 
     <div class="centerContent mb-3">
-        <input type="submit" name="showAll" value="showAll" style="width:200px;">
+        <input type="submit" name="showAll" value="Show All" style="width:200px;">
      </div>
 </form>
     <!--drop down form end -->
