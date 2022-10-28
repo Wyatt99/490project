@@ -96,14 +96,25 @@ INSERT INTO park (parkId, parkName)
 VALUES ('1', 'Moore Park'), ('2', 'Youngsville Sports Complex');
 
 INSERT INTO field (fieldName,parkId,lights)
-VALUES  ('field 1', 1, 1),
-        ('field 2', 1, 0),
-        ('field 3', 1, 1),
-        ('field 4', 1, 0),
-        ('field 1', 2, 1),
-        ('field 2', 2, 0),
-        ('field 3', 2, 1),
-        ('field 4', 2, 0);
+VALUES  ('field 11', 1, 0),
+        ('field 12', 1, 0),
+        ('field 13', 1, 0),
+        ('field 14', 1, 0),
+        ('field 15', 1, 0),
+        ('field 16', 1, 0),
+        ('field 17', 1, 0),
+        ('field 18', 1, 1),
+        ('field 19', 1, 1),
+        ('field 20', 1, 1),
+        ('field 21', 1, 1),
+        ('field 22', 1, 1),
+        ('field 23', 1, 0),
+        ('field 24', 1, 0),
+        ('field 25', 1, 0),
+        ('field 26', 1, 0),
+        ('field 27', 1, 0),
+        ('field 2', 2, 1),
+        ('field 6', 2, 1);
 
 insert into Admins (username, password)
 values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
