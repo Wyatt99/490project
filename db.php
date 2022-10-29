@@ -14,7 +14,6 @@ function fieldSelect ($db, $parkId) {
     $rows = mysqli_fetch_all($result);
 	if ($rows) {
 		foreach ($rows as $row) {
-      $lightsString ="";
       $fieldId = $row[0];
 			$fieldName = $row[1];
       $lights = $row[3];
