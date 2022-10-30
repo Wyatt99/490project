@@ -12,17 +12,11 @@
             <!--Collapsable Menu-->
             <div class="collapse navbar-collapse " id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="admin-home.php" class="nav-item nav-link">Home</a>
-                      <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
-                      <a href="view-teams.php" class="nav-item nav-link">View Teams</a>
-                      <a href="update-team.php" class="nav-item nav-link">Edit Teams</a>
-                      <a href="season-manager.php" class="nav-item nav-link">Manage Season</a>
-                      <a href="team-select.php" class="nav-item nav-link">Schedule Practices</a>
-                      <a href="scheduled-teams.php" class="nav-item nav-link">View Schedules</a>
+                    <a href="index.php" class="nav-item nav-link">Home</a>
+                      <a href="view-schedules.php" class="nav-item nav-link">View Schedules</a>
                 </div>
                 <div class="navbar-nav ms-auto">         
-                    <a href="register.php" class="nav-item nav-link">Register Admin</a>     	
-                    <a href="logout.php" class="nav-item nav-link">Log Out</a>
+                    <a href="login.php" class="nav-item nav-link">Admin Login</a>     	
                 </div>
             </div>
         </div>

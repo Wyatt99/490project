@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Scheduled Teams</title>
+	<title>Schedules</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -23,43 +23,14 @@
 <?php
 #Database
 include 'db.php';
-include 'admin-nav.php';
-ensure_logged_in();
-checkForTeams($db);
+include 'user-nav.php';
 
-$res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
-JOIN practice p ON t.teamId = p.teamId 
-JOIN field f ON f.fieldId = p.fieldId 
-JOIN park pa ON pa.parkId = f.parkId 
-JOIN season s ON t.seasonId = s.seasonId";
-
-if(isset($_POST['filter'])){
-    $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
-    JOIN practice p ON t.teamId = p.teamId 
-    JOIN field f ON f.fieldId = p.fieldId 
-    JOIN park pa ON pa.parkId = f.parkId 
-    JOIN season s ON t.seasonId = s.seasonId";
-
-    $group = $_POST['groupSelect'];
-    $location = $_POST['locationSelect'];
-    
-    if($group != "1"){
-        $res.=" AND ageGroup = {$group}";
-    }
-
-    if($location !="AA"){
-        $res.=" AND teamLocation = '{$location}'";
-    }
-    $res.=" ORDER BY ageGroup, teamLocation";
-}
+$res= "Select t.*, p.*, f.*, pa.* FROM team t 
+       JOIN practice p ON t.teamId = p.teamId 
+       JOIN field f ON f.fieldId = p.fieldId 
+       JOIN park pa ON pa.parkId = f.parkId ";
 
 if (isset($_POST['search'])){
-    $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
-    JOIN practice p ON t.teamId = p.teamId 
-    JOIN field f ON f.fieldId = p.fieldId 
-    JOIN park pa ON pa.parkId = f.parkId 
-    JOIN season s ON t.seasonId = s.seasonId ";
-
     $searchTerm = $_POST['search_box'];
 
     #create time from searchTerm (MUST be followed by AM or PM)
@@ -126,21 +97,21 @@ function outputTable($db,$searchQuery){
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
         echo "<td>".$practiceTime."</td>";
-        echo "<td>".$parkName."</td>";
-        echo "<td>".$fieldName."</td>";
+        echo "<td>".$parkName."<br>".$fieldName."</td>";
+
         echo "<td>".$fieldSection."</td>";
-        echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
-        echo  "<td>"; ?> <a href="delete-practice.php?id=<?php echo $row["practiceId"] ?> "onclick="return confirm('Are you sure you want to cancel the practice for <?php echo $row['teamIdentifier'] ?> scheduled at <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') "><button type="button" class= "btn btn-danger">Cancel</button></a> <?php echo "</td>";
         echo"</tr>";
       }
 }
 
-
+if(isset($_POST['filter'])){
+    // TODO: work on drop down filtering
+}
 
 if (isset($_POST['showAll'])){
     ?>
     <script type="text/javascript">
-        window.location="scheduled-teams.php";
+        window.location="view-schedules.php";
     </script>
     <?php
     }
@@ -149,71 +120,34 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<h1 class="centerContent my-3">Currently Scheduled Teams</h1>
-    <!-- search bar filter -->
-    <div class="text-center p-2 mb-1" >
-    <form name="search_form" method="POST" action="scheduled-teams.php">
-        Search: <input type="text" name="search_box" style="width:205px;" value="" />
-
-        <input type="submit" name="search" value="Filter" style="margin-left:2px;">
+<h1 class="centerContent my-3">View Schedules</h1>
+    <div class="text-center p-2 mb-2" >
+    <form name="search_form" method="POST" action="view-schedules.php">
+        Search: <input type="text" name="search_box" value="" class = "mb-lg-0 mb-2"/>
+    <br class="d-md-none">
+        <input type="submit" name="search" value="Filter">
+        <input type="submit" name="showAll" value="Show All">
     </form>
     </div>
 
-    <div class="col-lg-12 p-2 ">
     <?=$promptMessage()?>
-    
-    <!--drop down form-->
-    <div class="centerContent mb-3">
-    <form name="team filter form" method="POST" action="scheduled-teams.php">
-        <?php $result = $db->query("select ageGroup from agegroup");?>
-        <select name='groupSelect' style="margin-left:55px;">
-        <option value='1'>All Ages</option>
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['ageGroup'];
-            echo "<option value='$id'>".$id."u</option>";
-        }
-        ?>
-        </select>
-        
-        <?php $result = $db->query("select teamLocation from teamlocation");?>
-        <select name='locationSelect' style="margin-left:2px;">
-        <option value='AA'>All Locations</option>
 
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['teamLocation'];
-            echo "<option value='$id'>$id</option>";
-        }
-        ?>
-        </select>
-        <input type="submit" name="filter" value="Filter" style="margin-left:5px;">
-    </div>    
-
-    <div class="centerContent mb-3">
-        <input type="submit" name="showAll" value="Show All" style="width:200px;">
-     </div>
-</form>
-    <!--drop down form end -->
-
-    <table class="table table-bordered mx-lg-2 centerContent">
+    <div class="centerContent tableView">
+    <table class="table table-bordered mx-l-2 centerContent smallFont">
     <tbody>
         <thead>
         <tr>
             <th>Team</th>
             <th>Time</th>
-            <th>Park </th>
-            <th>Field </th>
+            <th>Park/Field </th>
             <th>Sect.</th>
-            <th class="text-center">Reschedule</th>
-            <th class="text-center">Cancel</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
         </thead>
     </tbody>
-
     </table>
     </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
