@@ -70,6 +70,27 @@ include 'user-nav.php';
 		</div>";
 	}
 	?>
+	<a class="centerContent" href="view-announcement.php">view all announcements</a><br><br>
+
+	<!-- needed fieldStatus creation ui, field status attribute, and select statements for field status -->
+
+	<!--<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Field Closures</strong></h5>-->
+	<?php
+	/* $result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC LIMIT 2");
+	if(!$result) {
+		die(mysqli_error($db));
+	}
+	while ($row = $result->fetch_assoc()) {
+		unset($announcement);
+		$announcement = $row['announcement'];
+		echo "
+		<div class='articlePrev mb-4' style='  background-color:#f8d7da; width:400px; padding:15px; margin-left:2%; margin-bottom:1%; border-radius:4px;'> 
+		<p class='mb-2' style='width:350px'>$announcement</p>
+		</div>";
+	}
+	*/
+	?>
+	<br><br>
 	</div>
 
 <!-- row ends -->
