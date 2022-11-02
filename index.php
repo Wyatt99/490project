@@ -70,7 +70,7 @@ include 'user-nav.php';
 		</div>";
 	}
 	?>
-	<a class="centerContent" href="view-announcement.php">view all announcements</a><br><br>
+	<a class="centerContent" href="view-announcements.php">view all announcements</a><br><br>
 
 	<!-- needed fieldStatus creation ui, field status attribute, and select statements for field status -->
 
