@@ -35,7 +35,7 @@ include 'user-nav.php';
 		<!--coaching resources-->
 		<div class="col-12 col-md-6 col-lg-4 order-2 order-md-1 order-lg-1 mb-2 px-4 centerContent">
             <div class="card" style="">
-				<a href="update-team.php"><img class="card-img-top" src='images/view-teams.svg' alt="coach resources"></a>
+				<a href="resources.php"><img class="card-img-top" src='images/view-teams.svg' alt="coach resources"></a>
 				<div class="card-body">
 				<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
 			</div>
