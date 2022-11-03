@@ -14,9 +14,8 @@
                 <div class="navbar-nav">
                     <a href="index.php" class="nav-item nav-link">Home</a>
                       <a href="view-schedules.php" class="nav-item nav-link">View Schedules</a>
-                      <a href="coach-resources.php" class="nav-item nav-link">Coaching Resources</a>
+                      <a href="resources.php" class="nav-item nav-link">Coaching Resources</a>
                       <a href="view-announcements.php" class="nav-item nav-link">View Announcements</a>
-
                 </div>
                 <div class="navbar-nav ms-auto">
                 <?php 
