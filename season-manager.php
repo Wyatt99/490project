@@ -81,6 +81,7 @@ if (isset($_POST['addSeasonButton'])){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -104,56 +105,62 @@ if (isset($_POST['addSeasonButton'])){
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 
-<?php
-echo "<html>";
-echo "<body>";
+<html>
+<body>
 
-    echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-    echo "<h1 class='mt-2'>Season Manager</h1>";
-        echo "<h4 class='mt-3 ml-2'>Add New Season</h4>";
-        # Form for adding a new season
-        echo "<form style='margin-left: 15px' id='seasonAdd' action='season-manager.php' method='POST'>";
-        echo "<span> Spring/Fall </span><br>";
-        echo "<select name='seasonSel'>";
-        echo "<option value='FALL'>Fall</option>";
-        echo "<option value='SPRING'>Spring</option>";
-        echo "</select><br><br>";
+    <div style='margin-left: 20px;margin-top: 10px'>   
+    <h1 class='mt-2'>Season Manager</h1>
+        <h4 class='mt-3 ml-2'>Add New Season</h4>
+        <!--  Form for adding a new season -->
+        <form style='margin-left: 15px' id='seasonAdd' action='season-manager.php' method='POST'>
+        <span> Spring/Fall </span><br>
+        <select name='seasonSel'>
+        <option value='FALL'>Fall</option>
+        <option value='SPRING'>Spring</option>
+        </select><br><br>
 
+        <?php
         # Drop down menu for current or next year
         $year = date("Y");
         $nextYear = $year +1;
-        echo "<span>Year</span><br>";
-        echo "<select name='year'>";
-        echo "<option value='$year'>$year</option>";
-        echo "<option value='$nextYear'>$nextYear</option>";
-        echo "</select><br><br>";
+        ?>
+        <span>Year</span><br>
+        <select name='year'>
+        <?php
+        echo"<option value='$year'>$year</option>";
+        echo"<option value='$nextYear'>$nextYear</option>";
+        ?>
+        </select><br><br>
 
-        # submit button for adding a season
-        echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addSeasonButton' name='addSeasonButton' value='Add'>";
-        echo "</form>";
+        <!-- submit button for adding a season -->
+        <input class='Add navbar-dark navbar-brand ' type='submit' id='addSeasonButton' name='addSeasonButton' value='Add'>
+        </form>
 
-        echo "<h4 class='mt-4 ml-2'>Select Active Season</h4>";
-        # Form for enabling the active season
-        echo "<form style='margin-left: 15px' id='seasonmanager' action='season-manager.php' method='POST'>";
+        <h4 class='mt-4 ml-2'>Select Active Season</h4>
+        <!-- Form for enabling the active season -->
+        <form style='margin-left: 15px' id='seasonmanager' action='season-manager.php' method='POST'>
+        <?php
         # selects the inactive seasons
-        $result = $db->query("select seasonId from season where seasonStatus = 0");
-        echo "<span>Inactive Seasons</span><br>";
-        echo "<select name='inactiveSeason'>";
-        echo "<option value='' disabled selected hidden>Inactive Season</option>";
-
+        $result = $db->query("select seasonId from season where seasonStatus = 0")
+        ?>
+        <span>Inactive Seasons</span><br>
+        <select name='inactiveSeason'>
+        <option value='' disabled selected hidden>Inactive Season</option>
+        
+        <?php
         #loops through the seasons table, grabbing inactive seasons
         while ($row = $result->fetch_assoc()) {
             $id = $row['seasonId'];
             echo "<option value='$id'>$id</option>";
         }
-        echo "</select><br><br>";
+        ?>
+        </select><br><br>
 
-        # submit button for setting the active season
-        echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='activateButton' name='activateButton' value='Activate'>";
-        echo "</form>";
-    echo "</div>";
-echo"<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>";
-echo "</body>";
-echo "<footer class='centerContent'>Copyright &copy 2022 Cajun Rush Soccer Club</footer>";
-echo "</html>";
-?> 
+        <!-- submit button for setting the active season -->
+        <input class='Add navbar-dark navbar-brand ' type='submit' id='activateButton' name='activateButton' value='Activate'>
+        </form>
+    </div>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
+</body>
+<footer class='centerContent'>Copyright &copy 2022 Cajun Rush Soccer Club</footer>
+</html>
