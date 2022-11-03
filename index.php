@@ -34,8 +34,8 @@ include 'user-nav.php';
 
 		<!--coaching resources-->
 		<div class="col-12 col-md-6 col-lg-4 order-2 order-md-1 order-lg-1 mb-2 px-4 centerContent">
-            <div class="card" style="">
-				<a href="resources.php"><img class="card-img-top" src='images/view-teams.svg' alt="coach resources"></a>
+            <div class="card" style="width: 15rem;">
+				<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
 				<div class="card-body">
 				<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
 			</div>
@@ -44,7 +44,7 @@ include 'user-nav.php';
 
 	<!--view schedule-->
 	<div class="col-12 col-md-6 col-lg-4 order-3 order-md-2 order-lg-2 mb-2 px-4 centerContent">
-		<div class="card" style="">
+		<div class="card mt-0 mt-lg-2" style="width: 10rem;">
 			<a href="coach-resources.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
 		<div class="card-body">
 			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
@@ -53,7 +53,7 @@ include 'user-nav.php';
 	</div> <!--col end-->
 
 
-	<div class="col-12 col-md-6 col-lg-4 order-1 order-md-3 order-lg-3 mb-2 px-4" style="">
+	<div class="col-12 col-md-6 col-lg-4 order-1 order-md-3 order-lg-3 mb-2 px-4">
 	<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h5>
 
 	<?php
@@ -70,7 +70,7 @@ include 'user-nav.php';
 		</div>";
 	}
 	?>
-	<a class="centerContent" href="view-announcements.php">view all announcements</a><br><br>
+	<a class="centerContent" href="view-announcements.php" style="text-decoration:none">View All Announcements</a>
 
 	<!-- needed fieldStatus creation ui, field status attribute, and select statements for field status -->
 
