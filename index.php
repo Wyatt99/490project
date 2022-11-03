@@ -31,7 +31,6 @@ include 'user-nav.php';
 <div class="container mt-3 mt-lg-5 centerContent">
     <div class="row">
 
-
 		<!--coaching resources-->
 		<div class="col-12 col-md-6 col-lg-4 order-2 order-md-1 order-lg-1 mb-2 px-4 centerContent">
             <div class="card" style="width: 15rem;">
