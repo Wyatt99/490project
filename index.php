@@ -27,7 +27,7 @@ include 'user-nav.php';
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-
+<h1 class='text-center my-4 my-lg-5 px-5'>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
 <div class="container mt-3 mt-lg-5 centerContent">
     <div class="row">
 
