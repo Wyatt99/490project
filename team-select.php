@@ -128,16 +128,7 @@ if (isset($_POST['addAnnounButton'])){
             }
         }
 }
-    echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-    echo "<h1 class='mt-2'>Season Manager</h1>";
-        echo "<h4 class='mt-3 ml-2'>Add New Season</h4>";
-        # Form for adding a new season
-        echo "<form style='margin-left: 15px' id='seasonAdd' action='season-manager.php' method='POST'>";
-        echo "<span> Spring/Fall </span><br>";
-        echo "<select name='seasonSel'>";
-        echo "<option value='FALL'>Fall</option>";
-        echo "<option value='SPRING'>Spring</option>";
-        echo "</select><br><br>";
+   
 ?>
     
     
