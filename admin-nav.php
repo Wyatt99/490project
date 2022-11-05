@@ -12,17 +12,33 @@
             <!--Collapsable Menu-->
             <div class="collapse navbar-collapse " id="navbarCollapse">
                 <div class="navbar-nav">
+                <ul class="navbar-nav">
                     <a href="admin-home.php" class="nav-item nav-link">Home</a>
-                      <a href="create-teams.php" class="nav-item nav-link">Create Team</a>
-                      <a href="view-teams.php" class="nav-item nav-link">View Teams</a>
-                      <a href="update-team.php" class="nav-item nav-link">Edit Teams</a>
-                      <a href="season-manager.php" class="nav-item nav-link">Manage Season</a>
-                      <a href="team-select.php" class="nav-item nav-link">Schedule Practices</a>
-                      <a href="scheduled-teams.php" class="nav-item nav-link">View Schedules</a>
+                    <a href="season-manager.php" class="nav-item nav-link">Seasons</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teams</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="create-teams.php">Create Team</a></li>
+                            <li><a class="dropdown-item" href="update-team.php">Edit Teams</a></li>
+                            <li><a class="dropdown-item" href="view-teams.php">View Teams</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Schedule</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="team-select.php">Schedule Practices</a></li>
+                        <li><a class="dropdown-item" href="scheduled-teams.php">View Schedules</a></li>
+                    </ul>
+                </li>
+                </ul>
                 </div>
                 <div class="navbar-nav ms-auto">         
-                    <a href="register.php" class="nav-item nav-link">Register Admin</a>
-                    <a href="index.php" class="nav-item nav-link">User Home Page</a>      	
+                    <a href="index.php" class="nav-item nav-link">User Site</a> 
+                                        <a href="register.php" class="nav-item nav-link">Register</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </div>
