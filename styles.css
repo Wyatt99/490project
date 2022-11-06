@@ -109,7 +109,8 @@ a:hover {
 
   @media screen and (max-width: 800px) { 
   .smallFont {
-  font-size:x-small;
+  font-size:small;
+  vertical-align: middle;
   }
   .tableView {
     width: 95%;
