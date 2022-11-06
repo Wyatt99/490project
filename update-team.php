@@ -76,7 +76,7 @@ if (isset($_POST['showAll'])){
 <body>
 
 <h1 class='centerContent mt-4'>Edit Teams</h1>
-<div class="text-center p-2 mt-2" >
+<div class="text-center mt-2" >
 <form name="search_form" method="POST" action="update-team.php">
 Search: <input type="text" class='mb-2' name="search_box" value="" />
 <br class="d-md-none">
