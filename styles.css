@@ -22,7 +22,13 @@ h1 {
   color: #1D3461;
 }
 
-/* Modify the nav bar*/    
+/* Modify the nav bar*/ 
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}	
+   
 .navbar-dark {background-color: #1D3461 !important;}
 
 .navbar-nav .nav-link {color:white !important;}
