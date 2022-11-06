@@ -59,7 +59,7 @@ function outputTable($query){
         if (!$row["teamId"]){ #if teamId NOT found in practice database on join, display results
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
-        echo  "<td>"; ?> <a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=0"> <button type="button" class= "btn btn-success">Schedule</button></a> <?php echo "</td>"; #update team
+        echo  "<td>"; ?> <a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=0"> <button type="button" class= "btn btn-sm btn-success">Schedule</button></a> <?php echo "</td>"; #update team
         echo"</tr>";
         }
       }
@@ -81,24 +81,27 @@ if (isset($_POST['showAll'])){
 <h1 class="centerContent my-3">Unscheduled Teams</h1>
 <div class="text-center p-2 mb-2" >
 <form name="search_form" method="POST" action="team-select.php">
-    Search: <input type="text" name="search_box" value="" />
+    Search: <input type="text" class='mb-2 mb-md-0' name="search_box" value="" />
+    <br class="d-md-none">
 <input type="submit" name="search" value="Filter">
 <input type="submit" name="showAll" value="Show All">
 </form>
 </div>
 
-<div class="col-lg-12 p-2">
+
 <?=$promptMessage()
 ?>
-<table class="table table-bordered mx-lg-2 centerContent">
-<tbody>
+<table class="table table-hover mx-lg-2 centerContent smallFont">
+
     <thead>
+    <tbody>
       <tr>
         <th>Team</th>
         <th>Schedule</th>
       </tr>
+      </thead>
       <?=outputTable($query)?>
-    </thead>
+  
 </tbody>
 
 </table>
@@ -130,7 +133,7 @@ if (isset($_POST['addAnnounButton'])){
 }
    
 ?>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->
