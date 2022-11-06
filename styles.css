@@ -105,7 +105,10 @@ td {
   font-weight: 400;
 }
 
-
+.table-head {
+  background-color:#cfdbee;
+  color:#1D3461
+}
 a:hover {
     text-decoration: none;
     color: #E5BD06;
