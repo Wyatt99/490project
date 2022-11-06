@@ -91,11 +91,11 @@ if (isset($_POST['showAll'])){
 
 <?=$promptMessage()
 ?>
-<table class="table table-hover mx-lg-2 centerContent smallFont">
+<table class="table table-bordered table-hover mt-1 centerContent smallFont">
 
     <thead>
     <tbody>
-      <tr>
+      <tr class='table-head'>
         <th>Team</th>
         <th>Schedule</th>
       </tr>

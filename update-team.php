@@ -85,13 +85,13 @@ Search: <input type="text" class='mb-2' name="search_box" value="" />
 </form>
 </div>
 
-<div class="col-lg-12 p-2">
+<div class="mt-2">
 <?=$promptMessage()?>
-<table class="table table-hover centerContent smallFont">
+<table class="table table-bordered table-hover centerContent smallFont mt-2">
 
     <thead>
     <tbody>
-      <tr>
+      <tr class='table-head'>
         <th scope="col">Team</th>
         <th class="text-center" scope="col">Edit</th>
         <th class="text-center" scope="col">Delete</th>

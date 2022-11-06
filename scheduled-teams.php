@@ -124,18 +124,18 @@ function outputTable($db,$searchQuery){
         $practiceTime = $startTime." - ".$endTime."<br><strong>".$day."</strong>";
 
         echo "<tr>";
-        echo  "<td>"; echo $row["teamIdentifier"]."</td>";
+        echo  "<td><div class='mb-1'>"; echo $row["teamIdentifier"]?></div><a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> 
+        <button type="button" class= "btn btn-sm btn-success">Reschedule</button></a> 
+        <a href="delete-practice.php?id=<?php echo $row["practiceId"] ?> "onclick="return confirm('Are you sure you want to cancel the practice for 
+        <?php echo $row['teamIdentifier'] ?> scheduled at 
+        <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') ">
+        <button type="button" class= "btn btn-sm btn-danger">Cancel</button></a>
+        <?php echo "</td>";
         echo "<td>".$practiceTime."</td>";
-        echo "<td>".$parkName."</td>";
-        echo "<td>".$fieldName."</td>";
-        echo "<td>".$fieldSection."</td>";
-        echo  "<td>"; ?> <a  href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> <button type="button" class= "btn btn-success">Reschedule</button></a> <?php echo "</td>"; #update team
-        echo  "<td>"; ?> <a href="delete-practice.php?id=<?php echo $row["practiceId"] ?> "onclick="return confirm('Are you sure you want to cancel the practice for <?php echo $row['teamIdentifier'] ?> scheduled at <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') "><button type="button" class= "btn btn-danger">Cancel</button></a> <?php echo "</td>";
+        echo "<td>".$parkName."<br>".$fieldName."<br>sect: ".$fieldSection."</td>";
         echo"</tr>";
       }
 }
-
-
 
 if (isset($_POST['showAll'])){
     ?>
@@ -149,9 +149,9 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<h1 class="centerContent my-3">Currently Scheduled Teams</h1>
+<h1 class="centerContent my-3">Scheduled Teams</h1>
     <!-- search bar filter -->
-    <div class="text-center p-2 mb-1" >
+    <div class="text-center  mb-1" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
         Search: <input type="text" name="search_box" style="width:205px;" value="" />
 
@@ -163,7 +163,7 @@ if (isset($_POST['showAll'])){
     <?=$promptMessage()?>
     
     <!--drop down form-->
-    <div class="centerContent mb-3">
+    <div class="centerContent mb-2">
     <form name="team filter form" method="POST" action="scheduled-teams.php">
         <?php $result = $db->query("select ageGroup from agegroup");?>
         <select name='groupSelect' style="margin-left:55px;">
@@ -193,20 +193,16 @@ if (isset($_POST['showAll'])){
     <div class="centerContent mb-3">
         <input type="submit" name="showAll" value="Show All" style="width:200px;">
      </div>
-</form>
+    </form>
     <!--drop down form end -->
 
-    <table class="table table-bordered mx-lg-2 centerContent">
-    <tbody>
+    <table class="table table-bordered table-hover px-1 mt-2 centerContent smallFont">
         <thead>
-        <tr>
+        <tbody>
+        <tr class='table-head px-2'>
             <th>Team</th>
             <th>Time</th>
-            <th>Park </th>
-            <th>Field </th>
-            <th>Sect.</th>
-            <th class="text-center">Reschedule</th>
-            <th class="text-center">Cancel</th>
+            <th>Location</th>
         </tr>
         <?=outputTable($db, $searchQuery)?>
         </thead>
