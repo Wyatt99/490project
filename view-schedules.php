@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Schedules</title>
+	<title>View Schedules</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -95,11 +95,10 @@ function outputTable($db,$searchQuery){
         $practiceTime = $startTime." - ".$endTime."<br><strong>".$day."</strong>";
 
         echo "<tr>";
-        echo  "<td>"; echo $row["teamIdentifier"]."</td>";
+        echo  "<td><div class='mb-1'>"; echo $row["teamIdentifier"]?></div><a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> 
+        <?php echo "</td>";
         echo "<td>".$practiceTime."</td>";
-        echo "<td>".$parkName."<br>".$fieldName."</td>";
-
-        echo "<td>".$fieldSection."</td>";
+        echo "<td>".$parkName."<br>".$fieldName."<br>sect: ".$fieldSection."</td>";
         echo"</tr>";
       }
 }
@@ -120,8 +119,8 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<h1 class="centerContent my-3">View Schedules</h1>
-    <div class="text-center p-2 mb-2" >
+<h1 class="text-center my-3">View Schedules</h1>
+    <div class="text-center mb-3" >
     <form name="search_form" method="POST" action="view-schedules.php">
         Search: <input type="text" name="search_box" value="" class = "mb-lg-0 mb-2"/>
     <br class="d-md-none">
@@ -132,33 +131,19 @@ if (isset($_POST['showAll'])){
 
     <?=$promptMessage()?>
 
-    <div class="centerContent tableView">
-    <table class="table table-bordered mx-l-2 centerContent smallFont">
+    <table class="table table-bordered px-1 mt-1 centerContent smallFont">
+    <theadth>
     <tbody>
-        <thead>
-        <tr>
+        <tr class="table-head">
             <th>Team</th>
             <th>Time</th>
-            <th>Park/Field </th>
-            <th>Sect.</th>
+            <th>Location</th>
         </tr>
-        <?=outputTable($db, $searchQuery)?>
         </thead>
+        <?=outputTable($db, $searchQuery)?>
+  
     </tbody>
     </table>
-    </div>
-    <h3  class="centerContent my-3">Moore Park</h3>
-    <span> 
-        <div class="centerContent my-3" style="border:5px;">
-        <iframe width="280" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=280&amp;height=300&amp;hl=en&amp;q=198%20Laser%20Ln,%20Lafayette,%20LA%2070507%20%20Lafayette+(Moore%20Park%20)&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-        </div>
-    </span>
-    <h3  class="centerContent my-3">Youngsville Sports Complex</h3>
-    <span>
-        <div class="centerContent my-3" style="border:5px;">
-        <iframe width="280" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=280&amp;height=300&amp;hl=en&amp;q=801%20Savoy%20Rd,%20Youngsville,%20LA%2070592%20%20Lafayette+(Youngsville%20Sports%20Complex)&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-        </div>
-    </span>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
