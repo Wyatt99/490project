@@ -175,9 +175,11 @@ if (isset($_GET['submit'])
 			<label for="section" class="form-label"><strong>Section</strong></label>
 				<select class="form-control" name="section" id="section" style="appearance:listbox;" required>
 				<option value="" disabled selected hidden>Select</option> 
-				<option value="L">Left</option>
-				<option value="R">Right</option>
-				<option value="C">Center</option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
+				<option value="F">F</option>
 				</select>
         </div>
 
