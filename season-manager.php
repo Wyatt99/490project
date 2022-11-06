@@ -107,10 +107,10 @@ $inactiveError="";
         </form>
     </container>
 <?php
-echo "<container class='centerContent w-20 px-sm-10'>";
+
 # post process for when the button for adding a season is clicked
 if (isset($_POST['addSeasonButton'])){
-
+    echo "<container class='centerContent w-20 px-sm-10'>";
     if($db === false){
         die("ERROR: Could not connect. ". mysqli_connect_error());
     }
@@ -137,8 +137,10 @@ if (isset($_POST['addSeasonButton'])){
             echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
             }
         }
+            echo "</container>";
     #post process for when the button for when activating a season.
 }elseif (isset($_POST['activateButton'])){
+    echo "<container class='centerContent w-20 px-sm-10'>";
     if($db === false){
         die("ERROR: Could not connect. ". mysqli_connect_error());
     }
@@ -174,8 +176,9 @@ if (isset($_POST['addSeasonButton'])){
             echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
         }
     }
+    echo "</container>";
 }
-echo "</container>";
+
 ?>
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
 </body>
