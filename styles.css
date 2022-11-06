@@ -74,6 +74,10 @@ h1 {
     position: relative;
 }
 
+td {
+  vertical-align:middle;
+}
+
 /*eye toggle for password hide/show*/
 #eye {
     position: absolute;
@@ -112,6 +116,7 @@ a:hover {
   font-size:small;
   vertical-align: middle;
   }
+
   .tableView {
     width: 95%;
     overflow:scroll;
