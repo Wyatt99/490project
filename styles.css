@@ -109,19 +109,32 @@ td {
   background-color:#cfdbee;
   color:#1D3461
 }
+
+a {
+  text-decoration:none;
+}
+
 a:hover {
     text-decoration: none;
     color: #E5BD06;
   }
 
+  .longParagraph {
+    display:flex;
+    margin:auto;
+    width: 650px;
+  }
   @media screen and (max-width: 800px) { 
   .smallFont {
   font-size:small;
   vertical-align: middle;
   }
-
+ 
+  .longParagraph {
+    width: auto;
+  }
   .tableView {
-    width: 95%;
+    width: 80%;
     overflow:scroll;
     margin-left:2%;
     margin-right:5%;
