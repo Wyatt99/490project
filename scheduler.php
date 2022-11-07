@@ -135,7 +135,7 @@ if (isset($_GET['submit'])
 <!--php ends-->
 
 <body>
-	<h1 class="mt-4 mb-2  text-center"><?=$_SESSION['parkName']?></h1>
+	<h1 class="mt-4 mb-2 px-2 text-center"><?=$_SESSION['parkName']?></h1>
 	<h3 class="subText  text-center ">Practice Scheduler</h3> 
 	<?php echo $message; ?>
 	
@@ -146,7 +146,7 @@ if (isset($_GET['submit'])
 	<p class='text-center mt-0'><strong>Team: <?=$_SESSION['team']?></strong></p>
 
 		<!--day-->
-		<div class="col-lg-auto col-12 mt-3  mt-lg-3 mb-0">
+		<div class="col-lg-auto col-12 mt-2  mt-lg-3 mb-0">
 			<label for="day" class="form-label"><strong>Day</strong></label>
 			<select class="form-control " name='day' id='day' style="appearance:listbox;" required>
 				<option value="" disabled selected hidden>Select</option> 
@@ -184,13 +184,13 @@ if (isset($_GET['submit'])
         </div>
 
 		<!--start time-->
-		<div class="col-lg-auto col-3">
+		<div class="col-lg-auto col-4 mx-sm-0 mx-2">
 			<label for="startTime" class="form-label" style="display:block" required><strong>Start Time</strong></label>
 			<input type="time" name='startTime' id="startTime">
 		</div>
 
 		<!--end time-->
-		<div class="col-lg-auto col-3 mx-sm-0 mx-2">
+		<div class="col-lg-auto col-4 mx-sm-0 mx-2">
 			<label for="endTime" class="form-label" style="display:block" required><strong>End Time</strong></label>
 			<input type="time" name='endTime' id="endtTime">
 		</div>
@@ -199,8 +199,8 @@ if (isset($_GET['submit'])
 		<input type="hidden" name="team" value="<?=$_SESSION['team'];?>" />
 				
 		<!--submit-->
-		<div class="col-lg-1 col-3 contentCenter">
-			<button class="btn-primary btn-lg btn-block mt-3" type="submit" name='submit' id='submit' value='submit'>Submit</button>
+		<div class="col-lg-1 col-4 mt-4 mt-lg-5 contentCenter">
+			<button class="btn-primary btn-lg btn-block " type="submit" name='submit' id='submit' value='submit'>Submit</button>
 		</div>
 
     </div> <!--row ends-->
