@@ -1,28 +1,34 @@
 body {
-    font-family: "Open-Sans", sans-serif !important;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+  font-family: "Open-Sans", sans-serif !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 footer {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:auto;
-  padding:15px;
-  width:auto;
-  color:white;
-  background-color:#1D3461;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-top:auto;
+padding:15px;
+width:auto;
+color:white;
+background-color:#1D3461;
 }
 
 h1 {
-  font-weight: 550;
-  color: #1D3461;
+font-weight: 550;
+color: #1D3461;
 }
 
-/* Modify the nav bar*/    
+/* Modify the nav bar*/ 
+@media all and (min-width: 992px) {
+.navbar .nav-item .dropdown-menu{ display: none; }
+.navbar .nav-item:hover .dropdown-menu{ display: block; }
+.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}	
+ 
 .navbar-dark {background-color: #1D3461 !important;}
 
 .navbar-nav .nav-link {color:white !important;}
@@ -32,84 +38,118 @@ h1 {
 .nav-link:hover{color:#E5BD06 !important;}
 
 .navbar-brand{
-    margin-right:0.25rem;
+  margin-right:0.25rem;
 }
 
 .navbar-brand img {
-    margin-right: 7.5px;
-    margin-left: 0px;
+  margin-right: 7.5px;
+  margin-left: 0px;
 }
 /* end navbar modifications */
 
 .card {
-  transition: transform .5s;
-  margin-bottom:2%;
-  border:none;
+transition: transform .5s;
+margin-bottom:2%;
+border:none;
 }
 
 .card:hover {
-  transform: scale(1.05);
+transform: scale(1.05);
 }
 
 /* general center in middle of page styling (add in addition to other bootstrap classes*/
 .vertical-center {
-    min-height: 100%;
-    min-height: 100vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  min-height: 100%;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .registerForm {
-    margin-top:20px;
-  }
+  margin-top:20px;
+}
 
 .password-container {
-    position: relative;
+  position: relative;
+}
+
+td {
+vertical-align:middle;
 }
 
 /*eye toggle for password hide/show*/
 #eye {
-    position: absolute;
-    top: 20%;
-    right: 4%;
-    cursor: pointer;
-    color: lightgray;
-  }
-  #eye2 {
-    position: absolute;
-    top: 20%;
-    right: 4%;
-    cursor: pointer;
-    color: lightgray;
-  }
-
-  .centerContent {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-.subText {
-  color: #1153B1;
-  font-weight: 400;
+  position: absolute;
+  top: 20%;
+  right: 4%;
+  cursor: pointer;
+  color: lightgray;
+}
+#eye2 {
+  position: absolute;
+  top: 20%;
+  right: 4%;
+  cursor: pointer;
+  color: lightgray;
 }
 
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.subText {
+color: #1153B1;
+font-weight: 400;
+}
+
+.table-head {
+background-color:#cfdbee;
+color:#1D3461
+}
+
+a {
+text-decoration:none;
+}
 
 a:hover {
-    text-decoration: none;
-    color: #E5BD06;
-  }
+  text-decoration: none;
+  color: #E5BD06;
+}
 
-  @media screen and (max-width: 800px) { 
-  .smallFont {
-  font-size:x-small;
-  }
-  .tableView {
-    width: 95%;
-    overflow:scroll;
-    margin-left:2%;
-    margin-right:5%;
-  }
+.longParagraph {
+  display:flex;
+  margin:auto;
+  line-height: 1.75em;
+  width: 650px;
+}
+
+.schedule {
+  margin-right:auto;
+  margin-left:auto;
+}
+
+@media screen and (max-width: 800px) { 
+.smallFont {
+font-size:small;
+vertical-align: middle;
+}
+
+.schedule {
+  margin-left:0;
+  margin-right:0;
+}
+.longParagraph {
+  width: auto;
+  text-align: center;
+}
+.tableView {
+  width: 80%;
+  overflow:scroll;
+  margin-left:2%;
+  margin-right:5%;
+}
 
 }

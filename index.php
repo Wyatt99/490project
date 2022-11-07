@@ -33,7 +33,7 @@ include 'user-nav.php';
 
 		<!--coaching resources-->
 		<div class="col-12 col-md-6 col-lg-4 order-2 order-md-1 order-lg-1 mb-2 px-4 centerContent">
-            <div class="card" style="width: 15rem;">
+            <div class="card mt-0 mt-lg-2" style="width: 10rem;">
 				<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
 				<div class="card-body">
 				<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
@@ -43,7 +43,7 @@ include 'user-nav.php';
 
 	<!--view schedule-->
 	<div class="col-12 col-md-6 col-lg-4 order-3 order-md-2 order-lg-2 mb-2 px-4 centerContent">
-		<div class="card mt-0 mt-lg-2" style="width: 10rem;">
+		<div class="card mt-0 mt-lg-2" style="width: 7rem;">
 			<a href="view-schedules.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
 		<div class="card-body">
 			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
@@ -64,7 +64,7 @@ include 'user-nav.php';
 		unset($announcement);
 		$announcement = $row['announcement'];
 		echo "
-		<div class='articlePrev mb-4' style='  background-color:#f8d7da; width:400px; padding:15px; margin-left:2%; margin-bottom:1%; border-radius:4px;'> 
+		<div class='mb-4 mx-4 mx-lg-0' style='background-color:#f8d7da; width:350px; padding:15px; margin-left:2%; margin-bottom:1%; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'>$announcement</p>
 		</div>";
 	}
@@ -94,11 +94,11 @@ include 'user-nav.php';
 
 <!-- row ends -->
 </div>
-	
-    </div> <!--container end-->
+</div> <!--container end-->
+
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-<footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
+<footer class="centerContent" style='width:100%;'>Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>

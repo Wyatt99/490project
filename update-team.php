@@ -54,8 +54,9 @@ function outputTable($query){
     while($row=mysqli_fetch_array($query)){
         echo "<tr>";
         echo  "<td>"; echo $row["teamIdentifier"]."</td>";
-        echo  "<td>"; ?> <a href="edit-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-success">Edit</button></a> <?php echo "</td>"; #update team
-        echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"] ?> "onclick="return confirm('Are you sure you want to delete <?php echo $row['teamIdentifier'] ?>?') "><button type="button" class= "btn btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
+        echo  "<td>"; ?> <a href="edit-team.php?id=<?php echo $row["teamId"];?>"> <button type="button" class= "btn btn-sm btn-success ">Edit</button></a> <?php echo "</td>"; #update team
+        echo  "<td>"; ?> <a href="delete-team.php?id=<?php echo $row["teamId"] ?> "onclick="return confirm('Are you sure you want to delete <?php echo $row['teamIdentifier'] ?>?') ">
+        <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; #delete team
         echo"</tr>";
       }
 }
@@ -75,29 +76,30 @@ if (isset($_POST['showAll'])){
 <body>
 
 <h1 class='centerContent mt-4'>Edit Teams</h1>
-<div class="text-center p-2 mt-2" >
+<div class="text-center mt-2" >
 <form name="search_form" method="POST" action="update-team.php">
-Search: <input type="text" name="search_box" value="" />
-
+Search: <input type="text" class='mb-2' name="search_box" value="" />
+<br class="d-md-none">
 <input type="submit" name="search" value="Filter">
 <input type="submit" name="showAll" value="Show All">
 </form>
 </div>
 
-<div class="col-lg-12 p-2">
-<?=$promptMessage()
-?>
-<table class="table table-bordered mx-lg-2 centerContent">
-<tbody>
+<div class="mt-2">
+<?=$promptMessage()?>
+<table class="table table-bordered table-hover centerContent smallFont mt-2">
+
     <thead>
-      <tr>
-        <th>Team</th>
-        <th class="text-center">Edit</th>
-        <th class="text-center">Delete</th>
+    <tbody>
+      <tr class='table-head'>
+        <th scope="col">Team</th>
+        <th class="text-center" scope="col">Edit</th>
+        <th class="text-center" scope="col">Delete</th>
       </tr>
+      </thead>
+  
       <?=outputTable($query)?>
-    </thead>
-</tbody>
+    </tbody>
 
 </table>
 </div>

@@ -36,7 +36,7 @@ function printTable($query){
     while($row=mysqli_fetch_array($query)){
         echo "<tr>";
         echo  "<td>"; 
-        echo '<a href="team-info.php?id='.$row["teamId"].'">'.$row["teamIdentifier"].'</a>';
+        echo '<a style="text-decoration:none;" href="team-info.php?id='.$row["teamId"].'">'.$row["teamIdentifier"].'</a>';
         $coachName = $row["coachFirstName"]." ".$row["coachLastName"];
         echo  "<td>"; echo $coachName."</td>";
         echo  "<td>"; echo $row["teamSeason"]."</td>";
@@ -79,7 +79,7 @@ function printTable($query){
         <?php
         while ($row = $result->fetch_assoc()) {
             $id = $row['ageGroup'];
-            echo "<option value='$id'>$id</option>";
+            echo "<option value='$id'>".$id."u</option>";
         }
         ?>
         </select>
@@ -94,16 +94,18 @@ function printTable($query){
         }
         ?>
         </select>
-
+        <br class="d-md-none">
+        <div class='mt-2'>
         <input type="submit" name="filter" value="Filter">
         <input type="submit" name="showAll" value="Show All">
+        </div>
     </form>
 
-    <div class="col-lg-12 p-2">
-    <table class="table table-bordered mx-lg-2 centerContent">
-        <tbody>
+
+    <table class="table table-bordered table-hover centerContent smallFont mt-2 ">
             <thead>
-            <tr>
+            <tbody>
+            <tr class='table-head'>
                 <th>Team</th>
                 <th>Coach</th>
                 <th>Season</th>
@@ -112,7 +114,7 @@ function printTable($query){
             </thead>
         </tbody>
     </table>
-    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
