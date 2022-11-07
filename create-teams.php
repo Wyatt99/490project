@@ -102,43 +102,43 @@ if (isset($_POST['addTeamButton'])){
 
     } 
 }
+?>
 
-echo "<body>";
-    echo "<div style='margin-left: 20px;margin-top: 10px'>";    
-        echo "<h1 style='margin-left: 10px;margin-top: 15px'>Add New Team</h1>";
-        $promptMessage();
+<body>
+    <div style='margin-left: 20px;margin-top: 10px'>
+        <h1 style='margin-left: 10px;margin-top: 15px'>Add New Team</h1>
+        <?=$promptMessage();?>
 
-        # start of the form, the current action is create-teams.php
-        echo "<form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>";
-        echo "<span> Team Name </span><br>";
+        <form style='margin-left: 15px' id='createteams' action='create-teams.php' method='POST'>
+        <span> Team Name </span><br>
 
-        echo "<input class='teamName' type='text' id='teamName' name='teamName'
+        <input class='teamName' type='text' id='teamName' name='teamName'
         placeholder='Enter a team name' required>
-        <br><br>";
+        <br><br>
         
-        echo "<span> Coach First Name </span><br>";
-        echo "<input class='coachFirstName' type='text' id='coachFirstName' name='coachFirstName'
+        <span> Coach First Name </span><br>
+        <input class='coachFirstName' type='text' id='coachFirstName' name='coachFirstName'
         placeholder='Enter coach first name  '>
-        <br><br>";
+        <br><br>
     
-        echo "<span> Coach Last Name </span><br>";
-        echo "<input class='coachLastName' type='text' id='coachLastName' name='coachLastName'
+        <span> Coach Last Name </span><br>
+        <input class='coachLastName' type='text' id='coachLastName' name='coachLastName'
         placeholder='Enter coach last name' >
-        <br><br>";
+        <br><br>
     
-        echo "<span> Coach Email</span><br>";
-        echo "<input class='coachEmail' type='text' id='coachEmail' name='coachEmail'
+        <span> Coach Email</span><br>
+        <input class='coachEmail' type='text' id='coachEmail' name='coachEmail'
         placeholder='Enter coach email' >
-        <br><br>";
+        <br><br>
 
-        # the sql select statement for ageGroup
-        $result = $db->query("select ageGroup from ageGroup");
 
-        echo "<span>Age Group</span><br>";
-        echo "<select name='ageGroup' required>";
-        echo "<option value='' disabled selected hidden>Age Group</option>";
+        <?php $result = $db->query("select ageGroup from ageGroup");?>
 
-        # loops through all the records from ageGroup table
+        <span>Age Group</span><br>
+        <select name='ageGroup' required>
+        <option value='' disabled selected hidden>Age Group</option>
+
+        <?php
         while ($row = $result->fetch_assoc()) {
             unset($id, $name);
             # the id is the value that gets inserted when selected and submitted
@@ -147,16 +147,15 @@ echo "<body>";
             # option to be called
             $name = $row['ageGroup']; 
             echo '<option value="'.$id.'">'.$name.'u</option>';
-        }
-        echo "</select><br><br>";
+        }?>
+        </select><br><br>
 
-        # new sql select statement for the teamLocation table
-        $result = $db->query("select teamLocation from teamLocation");
+        <?php $result = $db->query("select teamLocation from teamLocation");?>
 
-        echo "<span>Location</span><br>";
-        echo "<select name='teamLocation' required>";
-        echo "<option value='' disabled selected hidden>Location</option>";
-        # loops through all the records for teamLocation
+        <span>Location</span><br>
+        <select name='teamLocation' required>
+        <option value='' disabled selected hidden>Location</option>
+        <?php
         while ($row = $result->fetch_assoc()) {
 
             unset($id, $name);
@@ -164,12 +163,13 @@ echo "<body>";
             $id = $row['teamLocation'];
             $name = $row['teamLocation']; 
             echo '<option value="'.$id.'">'.$name.'</option>';
-        }
-        echo "</select><br><br>";
+        }?>
+        </select><br><br>
 
-        echo "<span>Season</span><br>";
-        echo "<select name='seasonId' required>";
-        echo "<option value='' disabled selected hidden>Season</option>";
+        <span>Season</span><br>
+        <select name='seasonId' required>
+        <option value='' disabled selected hidden>Season</option>
+        <?php
         $result = $db->query("select seasonId from season");
         # loops through all the seasons 
         while ($row = $result->fetch_assoc()) {
@@ -179,17 +179,14 @@ echo "<body>";
             # change the value inside of the row to populate what you want the 
             # option to be called
             echo '<option value="'.$seasonId.'">'.$seasonId.'</option>';
-        }
-        echo "</select><br><br>";
+        }?>
+        </select><br><br>
 
-        # submit button
-        echo "<input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Add'>";
-        echo "</form>";
+        <input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Add'>
+        </form>
 
-    echo "</div>";
-    ?> 
-    <!--php ends -->
-    
+    </div>
+        
     <!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
