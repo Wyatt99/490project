@@ -27,7 +27,7 @@ include 'user-nav.php';
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-    <h3 class="centerContent mt-4"><strong>Announcements</strong></h3>
+    <h1 class="centerContent mt-4">Announcements</h1>
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC");
 	if(!$result) {
@@ -37,7 +37,7 @@ include 'user-nav.php';
 		unset($announcement);
 		$announcement = $row['announcement'];
 		echo "
-		<div class='articlePrev centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
+		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
 		margin-right:auto; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'>$announcement</p>
 		</div>";
