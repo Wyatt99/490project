@@ -122,6 +122,7 @@ a:hover {
   .longParagraph {
     display:flex;
     margin:auto;
+    line-height: 1.75em;
     width: 650px;
   }
   @media screen and (max-width: 800px) { 
@@ -132,6 +133,7 @@ a:hover {
  
   .longParagraph {
     width: auto;
+    text-align: center;
   }
   .tableView {
     width: 80%;
