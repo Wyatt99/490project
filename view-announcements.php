@@ -43,7 +43,7 @@ include 'user-nav.php';
 		</div>";
 	}
 	?>
-	</div>
+	<a href="index.php" style="display:block; text-decoration:none" class="mt-3 mx-auto">Return to home</a>
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->
