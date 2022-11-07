@@ -125,12 +125,22 @@ a:hover {
   line-height: 1.75em;
   width: 650px;
 }
+
+.schedule {
+  margin-right:auto;
+  margin-left:auto;
+}
+
 @media screen and (max-width: 800px) { 
 .smallFont {
 font-size:small;
 vertical-align: middle;
 }
 
+.schedule {
+  margin-left:0;
+  margin-right:0;
+}
 .longParagraph {
   width: auto;
   text-align: center;
