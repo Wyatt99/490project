@@ -27,10 +27,7 @@ include 'user-nav.php';
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-<br><br>
-
-
-    <h5 class="centerContent" style="color: #1D3461; margin-top:50px; white-space:nowrap;"><strong>Announcements</strong></h5>
+    <h1 class="centerContent mt-4">Announcements</h1>
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC");
 	if(!$result) {
@@ -40,12 +37,12 @@ include 'user-nav.php';
 		unset($announcement);
 		$announcement = $row['announcement'];
 		echo "
-		<div class='articlePrev centerContent' style='  background-color:#f8d7da; width:400px; padding:15px; margin-top:10px;  margin-bottom:10px; margin-left:auto; margin-right:auto; border-radius:4px;'> 
+		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
+		margin-right:auto; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'>$announcement</p>
 		</div>";
 	}
 	?>
-
 	</div>
 
 <!-- Body ends -->
