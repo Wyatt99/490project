@@ -32,12 +32,15 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 $error = false;
 
 # post process for when the button submit is activated
-if (isset($_POST['addTeamButton'])){
-    $announcement = $_POST['announcement'];
-    $sql = "INSERT INTO announcements (announcement) VALUES ('$announcement')";
-    $db ->query($sql);
+if (isset($_GET['submit'])){
+    $announcement = $_GET['announcement'];
+    $date = date("Y/m/d");
+    $annPrep = $db -> prepare("INSERT INTO announcements(announcement, adminID, announcementDate) VALUES (?, ?, ?)");
+    $annPrep -> bind_param("sis", $announcement, $_SESSION['adminId'], $date);
+    $annPrep -> execute();
+    header("location: add-announcements.php?postSuccess");
+    exit();
 }
-
 ?>
 
 <body class='centerContent'>
@@ -45,14 +48,14 @@ if (isset($_POST['addTeamButton'])){
         <h1 style='margin-left: 10px;margin-top: 15px; align-content: center;'>Add New Announcement</h1>
         <?=$promptMessage();?>
 
-        <form style='margin-left: 15px; align-content: center;' id='createteams' action='add-announcements.php' method='POST'>
+        <form style='margin-left: 15px; align-content: center;' id='announcement' action='add-announcements.php' method='GET'>
         <span> Type an announcement to post: </span><br>
 
-        <input class='teamName'style='height: 150px; width: 400px;' type='text' id='announcement' name='announcement'
-        placeholder='Announcement Message' required>
+        <textarea style='height: 150px; width: 400px;' id='announcement' name='announcement'
+        required></textarea>
         <br><br>
 
-        <input class='Add navbar-dark navbar-brand ' type='submit' id='addTeamButton' name='addTeamButton' value='Post'>
+        <button class="btn-primary btn-lg btn-block" type="submit" id='submit' name='submit' value='submit'>Post</button>
         </form>
 
     </div>
