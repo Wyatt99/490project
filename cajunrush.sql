@@ -68,11 +68,13 @@ CREATE TABLE Practice (
 	FOREIGN KEY (teamId) REFERENCES Team(teamId),
 	FOREIGN KEY (adminId) REFERENCES Admins(adminId)
 ); 
+
 CREATE TABLE announcements (
-    announcementId INT(11),
+    announcementId INT(11) AUTO_INCREMENT,
     announcement CHAR(255),
     status TINYINT(1),
     adminID INT (11),
+    announcementDate DATE,
     PRIMARY KEY (announcementId),
     FOREIGN KEY (adminId) REFERENCES admins(adminId)
     );
