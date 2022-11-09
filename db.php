@@ -143,5 +143,9 @@ $promptMessage = function() {
     $message = "No teams exist, you may add one here!";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  if (isset($_GET['postSuccess'])) {
+    $message = "Announcement posted successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
 }
 ?> 
