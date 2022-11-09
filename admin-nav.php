@@ -15,6 +15,7 @@
                 <ul class="navbar-nav">
                     <a href="admin-home.php" class="nav-item nav-link">Home</a>
                     <a href="season-manager.php" class="nav-item nav-link">Seasons</a>
+                    <a href="add-announcements.php" class="nav-item nav-link">Announcements</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teams</a>
@@ -32,7 +33,6 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="team-select.php">Schedule Practices</a></li>
                         <li><a class="dropdown-item" href="scheduled-teams.php">View Schedules</a></li>
-                        <li><a class="dropdown-item" href="add-announcements.php">Post Announcements</a></li>
                     </ul>
                 </li>
                 </ul>
