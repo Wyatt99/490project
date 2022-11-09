@@ -35,7 +35,6 @@ $inactiveError="";
 	<!-- custom CSS Stylesheet -->	  
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
-<html>
 <body>
 
 
@@ -48,7 +47,7 @@ $inactiveError="";
         <div class="row g-3 px-4 centerContent">
             <div class="col-auto mt-2 mb-0">
                 <span><strong>Season</strong></span><br>
-                <select name='seasonSel' id='seasonSel'>
+                <select class='mt-2' name='seasonSel' id='seasonSel'>
                 <option value='FALL'>Fall</option>
                 <option value='SPRING'>Spring</option>
             </select>
@@ -63,7 +62,7 @@ $inactiveError="";
 
             <div class="col-auto mt-2">
                 <span><strong>Year</strong></span><br>
-                <select name='year'>
+                <select class='mt-2' name='year'>
                 <?php
                 echo"<option value='$year'>$year</option>";
                 echo"<option value='$nextYear'>$nextYear</option>";
@@ -73,7 +72,7 @@ $inactiveError="";
 
         <div class="col-auto mt-4 mb-3">
             <!-- submit button for adding a season -->
-            <button class="btn-primary btn-sm btn-block" type="submit" id='addSeasonButton' name='addSeasonButton' value='Add'>Add</button>
+            <button class="btn-primary btn-lg btn-block" type="submit" id='addSeasonButton' name='addSeasonButton' value='Add'>Add</button>
         </div>
     </div>
 
@@ -87,7 +86,7 @@ $inactiveError="";
                 $result = $db->query("select seasonId from season where seasonStatus = 0")
                 ?>
                 <span><strong>Select Active</strong></span><br>
-                <select name='inactiveSeason'>
+                <select class='mt-2' name='inactiveSeason'>
                 <option value='' disabled selected hidden>Select</option>
                 
                 <?php
@@ -101,7 +100,7 @@ $inactiveError="";
             </div>
             <div class="col-auto mt-4 mb-3">
                 <!-- submit button for setting the active season -->
-                <button class="btn-primary btn-sm btn-block" type="submit" id='activateButton' name='activateButton' value='Activate'>Select</button>
+                <button class="btn-primary btn-lg btn-block" type="submit" id='activateButton' name='activateButton' value='Activate'>Select</button>
             </div>
     </div>
         </form>
