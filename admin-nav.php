@@ -32,6 +32,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="team-select.php">Schedule Practices</a></li>
                         <li><a class="dropdown-item" href="scheduled-teams.php">View Schedules</a></li>
+                        <li><a class="dropdown-item" href="add-announcements.php">Post Announcements</a></li>
                     </ul>
                 </li>
                 </ul>
