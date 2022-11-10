@@ -65,10 +65,11 @@ include 'user-nav.php';
 		$date = date_create($row['announcementDate']);
 		$adminQ = $db->query("SELECT username FROM admins WHERE adminId = '$row[adminID]'");
 		$adminId = mysqli_fetch_array($adminQ);
-		echo "<div class='mx-4 mx-lg-0'>".date_format($date,"m-d-Y")."</div>";
+		echo "<div class='mx-4 mx-lg-0 centerContent'>".date_format($date,"m-d-Y")."</div>";
 		$announcement = $row['announcement'];
 		echo "
-		<div class='mb-4 mx-3 mx-lg-0' style='background-color:#f8d7da; width:400px; padding:15px; margin-left:2%; margin-bottom:1%; border-radius:4px;'> 
+		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
+		margin-right:auto; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'><strong>Posted by $adminId[0]</strong> <br>$announcement</p>
 		</div>";
 	}
