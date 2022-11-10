@@ -68,37 +68,56 @@ if (isset($_GET['submit'])
 
 	# the sql select statement for practice
 	$result = $db->query("SELECT * FROM practice");
-	
+
+	$seasonResult = $db->query("SELECT s.seasonId FROM season s, team t WHERE t.seasonId = s.seasonId AND t.teamId=$teamId");
+	while ($row = $seasonResult->fetch_assoc()) {
+		$season = $row['seasonId'];
+	}
+
 	# loops through all the records from practice table
 	$timeConflict = 0;
 	while ($row = $result->fetch_assoc()) {
 		unset($fieldIdCheck, $fieldSectionCheck, $dayCheck, $startTimeCheck, $endTimeCheck);
-		# the id is the value that gets inserted when selected and submitted
 		$fieldIdCheck = $row['fieldId'];
 		$fieldSectionCheck = $row['fieldSection'];
 		$dayCheck = $row['day'];
 		$startTimeCheck = $row['startTime'];
 		$endTimeCheck = $row['endTime'];
+		$teamIdCheck = $row['teamId'];
 		$time1 = $startTime;
 		$time2 = $endTime;
 		$time3 = $startTimeCheck;
 		$time4 = $endTimeCheck;
-
 		$time3=date('H:i',strtotime($time3));
 		$time4=date('H:i',strtotime($time4));
-	
-		# change the value inside of the row to populate what you want the 
-		# option to be called
-		if (($fieldIdCheck == $field)
-		&& ($fieldSectionCheck == $section) 
+		$seasonResultCheck = $db->query("SELECT s.seasonId FROM season s, team t WHERE t.seasonId = s.seasonId AND t.teamId=$teamIdCheck");
+		while ($row = $seasonResultCheck->fetch_assoc()) {
+			$seasonCheck = $row['seasonId'];
+		}
+		if (($seasonCheck == $season)
+		&& ($fieldIdCheck == $field) 
 		&& ($dayCheck == $day)) {
+
 			if (($time1 < $time4) && ($time2 > $time3)){
-				$timeConflict = 1;
+				if  ( ($fieldSectionCheck == 'F') 
+				&& (($section == 'A') 
+				|| ($section == 'B') 
+				|| ($section == 'C') 
+				|| ($section == 'D')) ){
+					$timeConflict = 1;
+				} elseif ( ($section == 'F') 
+				&& (($fieldSectionCheck == 'A') 
+				|| ($fieldSectionCheck == 'B') 
+				|| ($fieldSectionCheck == 'C') 
+				|| ($fieldSectionCheck == 'D')) ){
+					$timeConflict = 1;
+				} elseif ($fieldSectionCheck == $section) {
+					$timeConflict = 1;
+				}
 			}
 		}		
 	}
 	
-
 	if ($timeConflict) {
 		$message ="<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>Time Conflict!</div>";
 		if ($update == 1) {
@@ -115,9 +134,7 @@ if (isset($_GET['submit'])
 			$updateSql="INSERT into practice (fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES ('$field', '$section', '$teamId', '$startTime', '$endTime', '$day', '$adminId')";
 			$res2=mysqli_query($db, $updateSql);
 		}
-		
 	} else {
-
 		$practicePrep = $db -> prepare("INSERT INTO practice(fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$practicePrep -> bind_param("isisssi", $field, $section, $teamId, $startTime, $endTime, $day, $_SESSION['adminId']);
 		$practicePrep -> execute();
@@ -126,11 +143,8 @@ if (isset($_GET['submit'])
 		unset($_SESSION['parkName']);
 		unset($_SESSION['team']);
 		exit();
-		
-
 	}
 }
-
 ?>
 <!--php ends-->
 
