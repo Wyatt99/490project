@@ -52,8 +52,8 @@ include 'user-nav.php';
 	</div> <!--col end-->
 
 
-	<div class="col-12 col-md-6 col-lg-4 order-1 order-md-3 order-lg-3 mb-2 px-4">
-	<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h5>
+	<div class="col-12 col-md-12 col-lg-4 order-1 order-md-3 order-lg-3 mb-0 px-4">
+	<h5 class="centerContent mb-3 mb-lg-2" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h5>
 
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC LIMIT 2");
@@ -65,10 +65,10 @@ include 'user-nav.php';
 		$date = date_create($row['announcementDate']);
 		$adminQ = $db->query("SELECT username FROM admins WHERE adminId = '$row[adminID]'");
 		$adminId = mysqli_fetch_array($adminQ);
-		echo "<div class='mx-auto mx-lg-0'>".date_format($date,"m-d-Y")."</div>";
+		echo "<div class='mx-auto text-lg-start text-center mx-lg-0'>".date_format($date,"m-d-Y")."</div>";
 		$announcement = $row['announcement'];
 		echo "
-		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
+		<div class='centerContent mb-3' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
 		margin-right:auto; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'><strong>Posted by $adminId[0]</strong> <br>$announcement</p>
 		</div>";
@@ -100,6 +100,27 @@ include 'user-nav.php';
 <!-- row ends -->
 </div>
 </div> <!--container end-->
+
+<div class="row centerContent mb-4">
+<h4 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Park Locations</strong></h4>
+<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2 px-4">
+	<h5  class="subtext centerContent my-2">Moore Park</h5>
+    <span> 
+        <div class="centerContent my-2" style="border:5px;">
+        <iframe width="280" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=280&amp;height=300&amp;hl=en&amp;q=198%20Laser%20Ln,%20Lafayette,%20LA%2070507%20%20Lafayette+(Moore%20Park%20)&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+    </span>
+	</div>
+
+	<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2 px-4">
+    <h5 class="subtext centerContent my-2">Youngsville Sports Complex</h5>
+    <span>
+        <div class="centerContent my-2" style="border:5px;">
+        <iframe width="280" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=280&amp;height=300&amp;hl=en&amp;q=801%20Savoy%20Rd,%20Youngsville,%20LA%2070592%20%20Lafayette+(Youngsville%20Sports%20Complex)&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+    </span>
+		</div>
+	</div>
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->
