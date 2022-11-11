@@ -48,7 +48,7 @@ if (isset($_GET['submit'])){
     <div class='mx-auto mt-4' style='width:350px;'><?=$promptMessage();?></div>
         <h1 class='mt-4'>Add Announcement</h1>
 
-        <p>Type an announcement to post: </p>
+        <p>Type an announcement to post.</p>
         </div>
 
         <form class='mx-auto' id='announcement' action='add-announcements.php' method='GET'>
