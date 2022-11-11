@@ -27,7 +27,7 @@ include 'user-nav.php';
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-<h1 class='text-center my-4 px-5'>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
+<h1 class='text-center mt-4 '>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
 <div class="container mt-3 mt-lg-5 centerContent">
     <div class="row">
 
@@ -65,7 +65,7 @@ include 'user-nav.php';
 		$date = date_create($row['announcementDate']);
 		$adminQ = $db->query("SELECT username FROM admins WHERE adminId = '$row[adminID]'");
 		$adminId = mysqli_fetch_array($adminQ);
-		echo "<div class='mx-4 mx-lg-0 centerContent'>".date_format($date,"m-d-Y")."</div>";
+		echo "<div class='mx-auto mx-lg-0'>".date_format($date,"m-d-Y")."</div>";
 		$announcement = $row['announcement'];
 		echo "
 		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
