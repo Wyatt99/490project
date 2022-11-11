@@ -45,8 +45,9 @@ if (isset($_GET['submit'])){
 
 <body>
     <div class='text-center'>
+    <div class='mx-auto mt-4' style='width:350px;'><?=$promptMessage();?></div>
         <h1 class='mt-4'>Add Announcement</h1>
-        <?=$promptMessage();?>
+
         <p>Type an announcement to post: </p>
         </div>
 
@@ -56,6 +57,7 @@ if (isset($_GET['submit'])){
         <br>
         <button class="d-block btn-primary btn-lg btn-block mt-2 ms-auto" type="submit" id='submit' name='submit' value='submit'>Post</button>
         </form>
+        
 
 
 
