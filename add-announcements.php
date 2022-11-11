@@ -43,22 +43,22 @@ if (isset($_GET['submit'])){
 }
 ?>
 
-<body class='centerContent'>
-    <div style='margin-left: 20px;margin-top: 10px; align-content: center;'>
-        <h1 style='margin-left: 10px;margin-top: 15px; align-content: center;'>Add New Announcement</h1>
+<body>
+    <div class='text-center'>
+        <h1 class='mt-4'>Add Announcement</h1>
         <?=$promptMessage();?>
+        <p>Type an announcement to post: </p>
+        </div>
 
-        <form style='margin-left: 15px; align-content: center;' id='announcement' action='add-announcements.php' method='GET'>
-        <span> Type an announcement to post: </span><br>
-
-        <textarea style='height: 150px; width: 400px;' id='announcement' name='announcement'
+        <form class='mx-auto' id='announcement' action='add-announcements.php' method='GET'>
+        <textarea style='height: 150px; width: 350px;' id='announcement' name='announcement'
         required></textarea>
-        <br><br>
-
-        <button class="btn-primary btn-lg btn-block" type="submit" id='submit' name='submit' value='submit'>Post</button>
+        <br>
+        <button class="d-block btn-primary btn-lg btn-block mt-2 ms-auto" type="submit" id='submit' name='submit' value='submit'>Post</button>
         </form>
 
-    </div>
+
+
         
     <!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
