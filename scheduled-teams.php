@@ -126,11 +126,8 @@ function outputTable($db,$searchQuery){
         echo "<tr>";
         echo  "<td><div class='mb-1'>"; echo $row["teamIdentifier"]?></div><a href="parkselect.php?team=<?php echo $row["teamIdentifier"];?>&update=1"> 
         <button type="button" class= "btn btn-sm btn-success">Reschedule</button></a> 
-        <a href="delete-practice.php?id=<?php echo $row["practiceId"] ?> "onclick="return confirm('Are you sure you want to cancel the practice for 
-        <?php echo $row['teamIdentifier'] ?> scheduled at 
-        <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') ">
-        <button type="button" class= "btn btn-sm btn-danger">Cancel</button></a>
-        <?php echo "</td>";
+        <a href="delete-practice.php?id=<?php echo $row["practiceId"]?> "onclick="return confirm('Are you sure you want to cancel the practice for <?php echo $row['teamIdentifier'] ?> scheduled at <?php echo date('g:i a', strtotime($row['startTime'])) ?> on <?php echo $row['day'] ?>?') ">
+        <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>";
         echo "<td>".$practiceTime."</td>";
         echo "<td>".$parkName."<br>".$fieldName."<br>sect: ".$fieldSection."</td>";
         echo"</tr>";
@@ -153,7 +150,7 @@ if (isset($_POST['showAll'])){
     <!-- search bar filter -->
     <div class="text-center  mb-1" >
     <form name="search_form" method="POST" action="scheduled-teams.php">
-        Search: <input type="text" name="search_box" style="width:205px;" value="" />
+        Search: <input type="text" name="search_box" style="width:205px;" placeholder="Search..." value="<?=$searchTerm?>" />
 
         <input type="submit" name="search" value="Filter" style="margin-left:2px;">
     </form>
@@ -165,9 +162,19 @@ if (isset($_POST['showAll'])){
     <!--drop down form-->
     <div class="centerContent mb-2">
     <form name="team filter form" method="POST" action="scheduled-teams.php">
+
+        <!-- Age Group Select Start -->
         <?php $result = $db->query("select ageGroup from agegroup");?>
         <select name='groupSelect' style="margin-left:55px;">
+
+        <?php 
+        if (isset($_POST['filter']) && ($group != "1")){?>
+            <option value="<?=$group?>"><?=$group."u"?></option>
+        <?php 
+        }
+        ?>
         <option value='1'>All Ages</option>
+
         <?php
         while ($row = $result->fetch_assoc()) {
             $id = $row['ageGroup'];
@@ -175,9 +182,18 @@ if (isset($_POST['showAll'])){
         }
         ?>
         </select>
+        <!-- Age Group Select End -->
         
+        <!-- Location Select Start -->
         <?php $result = $db->query("select teamLocation from teamlocation");?>
         <select name='locationSelect' style="margin-left:2px;">
+
+        <?php 
+        if (isset($_POST['filter']) && ($location != "AA")){?>
+            <option value="<?=$location?>"><?=$location?></option>
+        <?php 
+        }
+        ?>
         <option value='AA'>All Locations</option>
 
         <?php
@@ -187,6 +203,8 @@ if (isset($_POST['showAll'])){
         }
         ?>
         </select>
+        <!-- Location Select End -->
+
         <input type="submit" name="filter" value="Filter" style="margin-left:5px;">
     </div>    
 
