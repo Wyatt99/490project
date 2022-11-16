@@ -147,5 +147,13 @@ $promptMessage = function() {
     $message = "Announcement posted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  if (isset($_GET['updateAnnouncementSuccess'])) {
+    $message = "Announcement updated successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['deleteAnnouncementSuccess'])) {
+    $message = "Announcement deleted successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
 }
 ?> 

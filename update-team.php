@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Update Team</title>
+	<title>Manage Teams</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -75,10 +75,11 @@ if (isset($_POST['showAll'])){
 <!-- START OF BODY -->
 <body>
 
-<h1 class='centerContent mt-4'>Edit Teams</h1>
+<h1 class='centerContent mt-4'>Manage Teams</h1>
 <div class="text-center mt-2" >
 <form name="search_form" method="POST" action="update-team.php">
-Search: <input type="text" class='mb-2' name="search_box" value="" />
+Search: <input type="text" class='mb-2' name="search_box" placeholder= "Search..." value="<?=$searchTerm?>" />
+
 <br class="d-md-none">
 <input type="submit" name="search" value="Filter">
 <input type="submit" name="showAll" value="Show All">
