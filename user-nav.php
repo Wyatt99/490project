@@ -21,7 +21,7 @@
                 <?php 
                 if (!isset($_SESSION["name"])) {
                     ?>
-                    <a href="login.php" class="nav-item nav-link">Admin Login</a>     	
+                    <a href="login.php" class="nav-item nav-link">Admin</a>     	
                     <?php
                 } else {
                     
