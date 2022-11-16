@@ -1,15 +1,9 @@
-<?php 
-include 'db.php';
-include 'user-nav.php';
-?>
-<!--php ends-->
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
+	<title>Manage Announcements</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -26,8 +20,19 @@ include 'user-nav.php';
 	<!-- custom CSS Stylesheet -->	  
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
+
+<?php 
+include 'db.php';
+include 'admin-nav.php';
+ensure_logged_in();
+?>
+<!--php ends-->
+
 <body>
-    <h1 class="centerContent mt-4">Announcements</h1>
+
+    <h1 class="centerContent mt-4 mb0">Manage Announcements</h1>
+    <?=$promptMessage()?>
+    <a href="add-announcements.php" style="display:block; text-decoration:none" class="mt-0 mx-auto">Post a new announcement</a>
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC");
 	if(!$result) {
@@ -43,9 +48,20 @@ include 'user-nav.php';
 		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
 		margin-right:auto; border-radius:4px;'> 
 		<p class='mb-2' style='width:350px'><strong>Posted by $adminId[0]</strong> <br>$announcement</p>
-		</div>";
+        <div class = 'centerContent'>
+        "
+        ?> 
+
+        <a href="edit-announcements.php?id=<?php echo $row["announcementId"];?>"> <button type="button" class= "btn btn-sm"><i class="fa fa-pencil icon-cog" style="color:green"></i></button></a>
+        <a href="delete-announcements.php?id=<?php echo $row["announcementId"];?> "onclick="return confirm('Are you sure you want to delete this announcement made on <?php echo $row['announcementDate']?>? ANNOUNCEMENT: <?php echo $row['announcement'] ?>')">
+        <button type="button" class= "btn btn-sm"><i class="fa fa-trash icon-cog" style="color:red"></i> </button> </a>
+        
+        <?php
+        echo"</div>";
+		echo"</div>";
 	}
-	?>
+	    ?>
+	
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->

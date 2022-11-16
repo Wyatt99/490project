@@ -81,7 +81,7 @@ if (isset($_POST['showAll'])){
 <h1 class="centerContent my-3">Unscheduled Teams</h1>
 <div class="text-center p-2 mb-2" >
 <form name="search_form" method="POST" action="team-select.php">
-    Search: <input type="text" class='mb-2 mb-md-0' name="search_box" value="" />
+    Search: <input type="text" class='mb-2 mb-md-0' name="search_box" placeholder="Search..." value="<?=$searchTerm?>" />
     <br class="d-md-none">
 <input type="submit" name="search" value="Filter">
 <input type="submit" name="showAll" value="Show All">

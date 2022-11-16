@@ -4,7 +4,7 @@
     <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Create Teams</title>
+    <title>Post Announcement</title>
 
     <!--Open Sans Font-->
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans' />
@@ -38,14 +38,17 @@ if (isset($_GET['submit'])){
     $annPrep = $db -> prepare("INSERT INTO announcements(announcement, adminID, announcementDate) VALUES (?, ?, ?)");
     $annPrep -> bind_param("sis", $announcement, $_SESSION['adminId'], $date);
     $annPrep -> execute();
-    header("location: add-announcements.php?postSuccess");
-    exit();
+    ?>
+    <script type="text/javascript">
+        window.location="update-announcements.php?postSuccess";
+    </script>
+<?php    
 }
 ?>
 
 <body>
     <div class='text-center'>
-    <div class='mx-auto mt-4' style='width:350px;'><?=$promptMessage();?></div>
+    <div class='mx-auto mt-4' style='width:350px;'></div>
         <h1 class='mt-4'>Add Announcement</h1>
 
         <p>Type an announcement to post.</p>

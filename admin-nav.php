@@ -15,16 +15,28 @@
                 <ul class="navbar-nav">
                     <a href="admin-home.php" class="nav-item nav-link">Home</a>
                     <a href="season-manager.php" class="nav-item nav-link">Seasons</a>
-                    <a href="add-announcements.php" class="nav-item nav-link">Announcements</a>
+                   
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Announcements</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="add-announcements.php">Post Announcement</a></li>
+                            <li><a class="dropdown-item" href="update-announcements.php">Manage Announcements</a></li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teams</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="create-teams.php">Create Team</a></li>
-                            <li><a class="dropdown-item" href="update-team.php">Edit Teams</a></li>
+                            <li><a class="dropdown-item" href="update-team.php">Manage Teams</a></li>
                             <li><a class="dropdown-item" href="view-teams.php">View Teams</a></li>
                         </ul>
                     </li>
+
+                    
 
 
                     <li class="nav-item dropdown">
