@@ -122,7 +122,7 @@ if (isset($_POST['showAll'])){
 <h1 class="text-center my-3">View Schedules</h1>
     <div class="text-center mb-3" >
     <form name="search_form" method="POST" action="view-schedules.php">
-        Search: <input type="text" name="search_box" value="" class = "mb-lg-0 mb-2"/>
+        Search: <input type="text" name="search_box" placeholder="Search..." value="<?=$searchTerm?>" class = "mb-lg-0 mb-2"/>
     <br class="d-md-none">
         <input type="submit" name="search" value="Filter">
         <input type="submit" name="showAll" value="Show All">
