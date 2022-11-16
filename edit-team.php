@@ -93,12 +93,12 @@ if (isset($_POST["Return"])){
 <!-- START OF BODY -->
 <body>
 
-<div class="container mt-3">
-<h1>Edit Team</h1>
+<div class="container mt-3 centerContent">
 <div class="col-lg-4">
 
   <form action="" name = "form1" method = "post">
-      
+  <h1 class="centerContent">Edit Team</h1>
+
     <div class="form-group">
       <label for="teamName">Team Name</label>
       <input type="text" class="form-control" id="teamName" placeholder="Enter team name" name="teamName" value="<?=$teamName?>">
