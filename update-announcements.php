@@ -29,7 +29,6 @@ ensure_logged_in();
 <!--php ends-->
 
 <body>
-
     <h1 class="centerContent mt-4 mb0">Manage Announcements</h1>
     <?=$promptMessage()?>
     <a href="add-announcements.php" style="display:block; text-decoration:none" class="mt-0 mx-auto">Post a new announcement</a>
@@ -61,7 +60,7 @@ ensure_logged_in();
 		echo"</div>";
 	}
 	    ?>
-	
+	<br>
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->
