@@ -44,19 +44,19 @@ ensure_logged_in();
 	<!--view team-->
 	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 		<div class="card" style="width: 10rem;">
-				<a href="view-teams.php"><img class="card-img-top" src='images/view-teams.svg' alt="view teams"></a>
-			<div class="card-body">
-				<h5 class="centerContent" style="color: #1D3461;"><strong>View Teams</strong></h5>
+				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
+				<div class="card-body">
+				<h5 class="centerContent" style="color: #1D3461;"><strong>Edit Teams</strong></h5>
 			</div>
 		</div>
 	</div> <!--col end-->
 
 		<!--edit team-->
 		<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
-            <div class="card" style="width: 10rem;">
-				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
+            <div class="card" style="width: 8rem;">
+				<a href="add-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="add announcements"></a>
 				<div class="card-body">
-				<h5 class="centerContent" style="color: #1D3461;"><strong>Edit Teams</strong></h5>
+				<h5 class="centerContent" style="color: #1D3461;"><strong>Announcements</strong></h5>
 			</div>
         </div>
         </div> <!--col end-->
