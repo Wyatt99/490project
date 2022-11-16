@@ -38,7 +38,7 @@
                 </ul>
                 </div>
                 <div class="navbar-nav ms-auto">         
-                    <a href="index.php" class="nav-item nav-link">User Site</a> 
+                    <a href="index.php" class="nav-item nav-link">User</a> 
                                         <a href="register.php" class="nav-item nav-link">Register</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
