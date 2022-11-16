@@ -28,11 +28,10 @@ include 'user-nav.php';
 </head>
 <body>
 <h1 class='text-center mt-4 '>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
-<div class="container mt-3 mt-lg-5 centerContent">
-    <div class="row">
-
+<div class="container mt-4 mt-lg-5 centerContent">
+    <div class="row centerContent">
 		<!--coaching resources-->
-		<div class="col-12 col-md-6 col-lg-4 order-2 order-md-1 order-lg-1 mb-2 px-4 centerContent">
+		<div class="col-12 col-md-6 col-lg-4 order-1 order-md-1 order-lg-1 mb-2  centerContent">
             <div class="card mt-0 mt-lg-2" style="width: 10rem;">
 				<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
 				<div class="card-body">
@@ -42,7 +41,7 @@ include 'user-nav.php';
         </div> <!--col end-->
 
 	<!--view schedule-->
-	<div class="col-12 col-md-6 col-lg-4 order-3 order-md-2 order-lg-2 mb-2 px-4 centerContent">
+	<div class="col-12 col-md-6 col-lg-4 order-2 order-md-2 order-lg-2 mb-2 px-4 centerContent">
 		<div class="card mt-0 mt-lg-2" style="width: 7rem;">
 			<a href="view-schedules.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
 		<div class="card-body">
@@ -52,9 +51,8 @@ include 'user-nav.php';
 	</div> <!--col end-->
 
 
-	<div class="col-12 col-md-12 col-lg-4 order-1 order-md-3 order-lg-3 mb-0 px-4">
-	<h5 class="centerContent mb-3 mb-lg-2" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h5>
-
+	<div class="col-auto order-3 order-md-3 order-lg-3 mb-0 mt-3 mt-lg-4">
+	<h2 class="centerContent mb-3 mb-lg-2" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h2>
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC LIMIT 2");
 	if(!$result) {
@@ -75,25 +73,6 @@ include 'user-nav.php';
 	}
 	?>
 	<a class="centerContent" href="view-announcements.php" style="text-decoration:none">View All Announcements</a>
-
-	<!-- needed fieldStatus creation ui, field status attribute, and select statements for field status -->
-
-	<!--<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Field Closures</strong></h5>-->
-	<?php
-	/* $result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC LIMIT 2");
-	if(!$result) {
-		die(mysqli_error($db));
-	}
-	while ($row = $result->fetch_assoc()) {
-		unset($announcement);
-		$announcement = $row['announcement'];
-		echo "
-		<div class='articlePrev mb-4' style='  background-color:#f8d7da; width:400px; padding:15px; margin-left:2%; margin-bottom:1%; border-radius:4px;'> 
-		<p class='mb-2' style='width:350px'>$announcement</p>
-		</div>";
-	}
-	*/
-	?>
 	<br><br>
 	</div>
 
@@ -102,7 +81,7 @@ include 'user-nav.php';
 </div> <!--container end-->
 
 <div class="row centerContent mb-4">
-<h4 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Park Locations</strong></h4>
+<h2 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Park Locations</strong></h2>
 <div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2 px-4">
 	<h5  class="subtext centerContent my-2">Moore Park</h5>
     <span> 
