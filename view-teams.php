@@ -75,6 +75,12 @@ function printTable($query){
 
         <?php $result = $db->query("select ageGroup from agegroup");?>
         <select name='groupSelect'>
+        <?php 
+        if (isset($_POST['filter']) && ($group != "1")){?>
+            <option value="<?=$group?>"><?=$group."u"?></option>
+        <?php 
+        }
+        ?>
         <option value='1'>All Ages</option>
         <?php
         while ($row = $result->fetch_assoc()) {
@@ -86,6 +92,12 @@ function printTable($query){
         
         <?php $result = $db->query("select teamLocation from teamlocation");?>
         <select name='locationSelect'>
+        <?php 
+        if (isset($_POST['filter']) && ($location != "AA")){?>
+            <option value="<?=$location?>"><?=$location?></option>
+        <?php 
+        }
+        ?>
         <option value='AA'>All Locations</option>
         <?php
         while ($row = $result->fetch_assoc()) {
