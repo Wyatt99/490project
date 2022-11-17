@@ -56,7 +56,10 @@ if (isset($_POST['search'])){
     $res .= " OR parkName LIKE '{$searchTerm}%'";
     $res .= " OR startTime = '{$time}'";
     $res .= " OR endTime = '{$time}'";
+} else {
+    $searchTerm = '';
 }
+
 
 $searchQuery=mysqli_query($db, $res);
 function outputTable($db,$searchQuery){

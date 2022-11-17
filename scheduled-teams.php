@@ -27,6 +27,7 @@ include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
 
+
 $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
 JOIN practice p ON t.teamId = p.teamId 
 JOIN field f ON f.fieldId = p.fieldId 
@@ -85,6 +86,8 @@ if (isset($_POST['search'])){
     $res .= " OR parkName LIKE '{$searchTerm}%'";
     $res .= " OR startTime = '{$time}'";
     $res .= " OR endTime = '{$time}'";
+} else {
+    $searchTerm = '';
 }
 
 $searchQuery=mysqli_query($db, $res);
