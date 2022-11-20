@@ -94,6 +94,14 @@ vertical-align:middle;
   color: lightgray;
 }
 
+#eye3{
+  position: absolute;
+  top: 20%;
+  right: 4%;
+  cursor: pointer;
+  color: lightgray;
+}
+
 .centerContent {
   display: flex;
   justify-content: center;
