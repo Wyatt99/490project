@@ -155,5 +155,17 @@ $promptMessage = function() {
     $message = "Announcement deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  if (isset($_GET['errPassCheck'])) {
+    $message = "Current Password Incorrect!";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['errNewPassMatch'])) {
+    $message = "New Passwords Don't Match!";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  if (isset($_GET['newPassSet'])) {
+    $message = "Your Password Has Been Changed!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+}
 }
 ?> 
