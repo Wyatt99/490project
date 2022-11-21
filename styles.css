@@ -6,6 +6,16 @@ body {
   overflow-x: hidden;
 }
 
+.btn-primary {
+  background-color: #1D3461 !important;
+  border-color: #1D3461;
+}
+
+.btn-primary:hover {
+  background-color: #1153B1 !important;
+  border-color: #1D3461;
+}
+
 footer {
 display:flex;
 align-items:center;
