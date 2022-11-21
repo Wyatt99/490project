@@ -91,7 +91,7 @@ function printTable($query){
         </select>
         
         <?php $result = $db->query("select teamLocation from teamlocation");?>
-        <select name='locationSelect'>
+        <select name='locationSelect' class='mx-1'>
         <?php 
         if (isset($_POST['filter']) && ($location != "AA")){?>
             <option value="<?=$location?>"><?=$location?></option>
@@ -106,11 +106,11 @@ function printTable($query){
         }
         ?>
         </select>
-        <br class="d-md-none">
-        <div class='mt-2'>
+        <div class="d-md-none mt-2 mt-md-0"></div>
+        <span>
         <input type="submit" name="filter" value="Filter">
         <input type="submit" name="showAll" value="Show All">
-        </div>
+    </span>
     </form>
 
 

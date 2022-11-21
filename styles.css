@@ -8,7 +8,7 @@ body {
 
 .btn-primary {
   background-color: #1D3461 !important;
-  border-color: #1D3461;
+  border-color: #1D3461 !important;
 }
 
 .btn-primary:hover {

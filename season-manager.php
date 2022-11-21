@@ -72,7 +72,7 @@ $inactiveError="";
 
         <div class="col-auto mt-4 mb-3">
             <!-- submit button for adding a season -->
-            <button class="btn-primary btn-lg btn-block" type="submit" id='addSeasonButton' name='addSeasonButton' value='Add'>Add</button>
+            <button class="btn-primary btn-sm btn-block mt-2" type="submit" id='addSeasonButton' name='addSeasonButton' value='Add'>Add</button>
         </div>
     </div>
 
@@ -100,7 +100,7 @@ $inactiveError="";
             </div>
             <div class="col-auto mt-4 mb-3">
                 <!-- submit button for setting the active season -->
-                <button class="btn-primary btn-lg btn-block" type="submit" id='activateButton' name='activateButton' value='Activate'>Select</button>
+                <button class="btn-primary btn-sm btn-block mt-2" type="submit" id='activateButton' name='activateButton' value='Activate'>Select</button>
             </div>
     </div>
         </form>
