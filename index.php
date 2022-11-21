@@ -28,31 +28,11 @@ include 'user-nav.php';
 </head>
 <body>
 <h1 class='text-center mt-4 '>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
-<div class="container mt-4 mt-lg-5 centerContent">
+
+<div class="container mt-3 centerContent">
     <div class="row centerContent">
-		<!--coaching resources-->
-		<div class="col-12 col-md-6 col-lg-4 order-1 order-md-1 order-lg-1 mb-2  centerContent">
-            <div class="card mt-0 mt-lg-2" style="width: 10rem;">
-				<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
-				<div class="card-body">
-				<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
-			</div>
-        </div>
-        </div> <!--col end-->
-
-	<!--view schedule-->
-	<div class="col-12 col-md-6 col-lg-4 order-2 order-md-2 order-lg-2 mb-2 px-4 centerContent">
-		<div class="card mt-0 mt-lg-2" style="width: 7rem;">
-			<a href="view-schedules.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
-		<div class="card-body">
-			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
-		</div>
-		</div>
-	</div> <!--col end-->
-
-
-	<div class="col-auto order-3 order-md-3 order-lg-3 mb-0 mt-3 mt-lg-4">
-	<h2 class="centerContent mb-3 mb-lg-2" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h2>
+	<div class="col-12 order-1 order-md-1 order-lg-1 mb-1">
+	<h2 class="centerContent mb-3 mb-lg-3" style="color: #1D3461; white-space:nowrap;"><strong>Recent Announcements</strong></h2>
 	<?php
 	$result = mysqli_query($db, "select * from announcements ORDER BY announcementId DESC LIMIT 2");
 	if(!$result) {
@@ -72,17 +52,46 @@ include 'user-nav.php';
 		</div>";
 	}
 	?>
-	<a class="centerContent" href="view-announcements.php" style="text-decoration:none">View All Announcements</a>
-	<br><br>
+	<a class="centerContent mb-3" href="view-announcements.php" style="text-decoration:none">View All Announcements</a>
 	</div>
+
+	<!--view schedule-->
+	<div class="col-12 col-md-6 col-lg-3 order-2 order-md-2 order-lg-2 mt-1 centerContent">
+		<div class="card mt-0 mt-lg-2" style="width: 7rem;">
+			<a href="view-schedules.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
+		<div class="card-body">
+			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
+		</div>
+		</div>
+	</div> <!--col end-->
+
+	<!--coaching resources-->
+	<div class="col-12 col-md-6 col-lg-3 order-3 order-md-3 order-lg-3 mt-1 centerContent">
+		<div class="card mt-0 mt-lg-2" style="width: 10rem;">
+			<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
+			<div class="card-body">
+			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
+		</div>
+		</div>
+	</div> <!--col end-->
+
+	<!--announcements-->
+	<div class="col-12 col-md-6 col-lg-3 order-4 order-md-4 order-lg-4 mt-1 mt-md-0 centerContent">
+	<div class="card" style="width: 8rem;">
+		<a href="view-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="view announcements"></a>
+		<div class="card-body">
+		<h5 class="centerContent" style="color: #1D3461;"><strong>Announcements</strong></h5>
+	</div>
+	</div>
+	</div> <!--col end-->
 
 <!-- row ends -->
 </div>
 </div> <!--container end-->
 
-<div class="row centerContent mb-4">
+<div class="row centerContent my-3">
 <h2 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Park Locations</strong></h2>
-<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2 px-4">
+<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2">
 	<h5  class="subtext centerContent my-2">Moore Park</h5>
     <span> 
         <div class="centerContent my-2" style="border:5px;">
@@ -91,7 +100,7 @@ include 'user-nav.php';
     </span>
 	</div>
 
-	<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2 px-4">
+	<div class="col-12 col-md-6 col-lg-auto order-1 order-md-3 order-lg-3 mb-2">
     <h5 class="subtext centerContent my-2">Youngsville Sports Complex</h5>
     <span>
         <div class="centerContent my-2" style="border:5px;">
