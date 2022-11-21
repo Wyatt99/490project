@@ -51,7 +51,7 @@ ensure_logged_in();
 		</div>
 	</div> <!--col end-->
 
-		<!--edit team-->
+		<!--announcements-->
 		<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
             <div class="card" style="width: 8rem;">
 				<a href="add-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="add announcements"></a>
