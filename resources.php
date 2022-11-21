@@ -9,7 +9,7 @@ include 'user-nav.php';
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Resources</title>
+	<title>Coaching Resources</title>
 
 	<!--Open Sans Font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
@@ -27,7 +27,7 @@ include 'user-nav.php';
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-    <h1 class='centerContent mt-4'> Coaching Resources</h1>
+    <h1 class='centerContent mt-4'>Coaching Resources</h1>
         <!-- Practice Sessions -->
         <h3 class='centerContent subtext mt-2 mb-2'><strong>Practice Sessions</strong></h3>
         <p class="centerContent text-left longParagraph px-3">Many first time coaches volunteer or are volunteered to the job. The first thing is to relax.  
