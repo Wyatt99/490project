@@ -33,7 +33,7 @@ if(isset($_SESSION['team'])) {
     unset($_SESSION['team']);
 }
 
-$res= "SELECT * FROM team LEFT JOIN practice ON team.teamID = practice.teamId";
+$res= "SELECT * FROM team LEFT JOIN practice ON team.teamID = practice.teamId JOIN season s ON team.seasonId = s.seasonId and s.seasonStatus = 1";
 
 #currently works with only showing teams who ARE scheduled already
 if (isset($_POST['search'])){

@@ -32,14 +32,14 @@ $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t
 JOIN practice p ON t.teamId = p.teamId 
 JOIN field f ON f.fieldId = p.fieldId 
 JOIN park pa ON pa.parkId = f.parkId 
-JOIN season s ON t.seasonId = s.seasonId";
+JOIN season s ON t.seasonId = s.seasonId and s.seasonStatus = 1";
 
 if(isset($_POST['filter'])){
     $res = "Select t.*, p.*, f.*, pa.*, s.* FROM team t 
     JOIN practice p ON t.teamId = p.teamId 
     JOIN field f ON f.fieldId = p.fieldId 
     JOIN park pa ON pa.parkId = f.parkId 
-    JOIN season s ON t.seasonId = s.seasonId";
+    JOIN season s ON t.seasonId = s.seasonId and s.seasonStatus = 1";
 
     $group = $_POST['groupSelect'];
     $location = $_POST['locationSelect'];
@@ -59,7 +59,7 @@ if (isset($_POST['search'])){
     JOIN practice p ON t.teamId = p.teamId 
     JOIN field f ON f.fieldId = p.fieldId 
     JOIN park pa ON pa.parkId = f.parkId 
-    JOIN season s ON t.seasonId = s.seasonId ";
+    JOIN season s ON t.seasonId = s.seasonId and s.seasonStatus = 1 ";
 
     $searchTerm = $_POST['search_box'];
 

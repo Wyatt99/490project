@@ -32,21 +32,21 @@ include 'admin-nav.php';
 ensure_logged_in();
 checkForTeams($db);
 
-$res= "Select * from Team ";
+$res= "Select * from Team join season on season.seasonId = team.seasonId and season.seasonStatus =1 ";
 
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
 
-    $res .= "WHERE teamName LIKE '{$searchTerm}%'";
-    $res .= " OR coachFirstName LIKE '{$searchTerm}%'";
-    $res .= " OR coachLastName LIKE '{$searchTerm}%'";
-    $res .= " OR coachEmail LIKE '{$searchTerm}%'";
-    $res .= " OR ageGroup LIKE '{$searchTerm}%'";
-    $res .= " OR teamLocation LIKE '{$searchTerm}%'";
-    $res .= " OR CONCAT(coachFirstName, '', coachLastName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachFirstName, ' ', coachLastName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, '', coachFirstName) = '{$searchTerm}'";
-    $res .= " OR CONCAT(coachLastName, ' ', coachFirstName) = '{$searchTerm}'";
+    $res .= "WHERE team.teamName LIKE '{$searchTerm}%'";
+    $res .= " OR team.coachFirstName LIKE '{$searchTerm}%'";
+    $res .= " OR team.coachLastName LIKE '{$searchTerm}%'";
+    $res .= " OR team.coachEmail LIKE '{$searchTerm}%'";
+    $res .= " OR team.ageGroup LIKE '{$searchTerm}%'";
+    $res .= " OR team.teamLocation LIKE '{$searchTerm}%'";
+    $res .= " OR CONCAT(team.coachFirstName, '', team.coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(team.coachFirstName, ' ', team.coachLastName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(team.coachLastName, '', team.coachFirstName) = '{$searchTerm}'";
+    $res .= " OR CONCAT(team.coachLastName, ' ', team.coachFirstName) = '{$searchTerm}'";
 } else {
     $searchTerm = '';
 }

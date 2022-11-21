@@ -28,7 +28,8 @@ include 'user-nav.php';
 $res= "Select t.*, p.*, f.*, pa.* FROM team t 
        JOIN practice p ON t.teamId = p.teamId 
        JOIN field f ON f.fieldId = p.fieldId 
-       JOIN park pa ON pa.parkId = f.parkId ";
+       JOIN park pa ON pa.parkId = f.parkId
+       JOIN season s ON t.seasonId = s.seasonId and s.seasonStatus = 1 ";
 
 if (isset($_POST['search'])){
     $searchTerm = $_POST['search_box'];
