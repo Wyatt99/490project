@@ -194,7 +194,7 @@ if (isset($_POST['addTeamButton'])){
             </div>
 
             <div class='col-12 col-md-auto mt-3 mb-2'>
-            <button class="btn-primary btn-lg btn-block" type="submit" id='activateButton' name='addTeamButton' value='addTeamButton'>Add</button>
+            <button class="btn-primary btn-sm btn-block mt-0 mt-lg-4" type="submit" id='activateButton' name='addTeamButton' value='addTeamButton'>Add</button>
             </div>
         </div> <!--row ends-->
             </form>
