@@ -37,14 +37,14 @@ include 'user-nav.php';
 		$date = date_create($row['announcementDate']);
 		$adminQ = $db->query("SELECT username FROM admins WHERE adminId = '$row[adminID]'");
 		$adminId = mysqli_fetch_array($adminQ);
-		echo "<div class='centerContent'>".date_format($date,"m-d-Y")."</div>";
 		$announcement = $row['announcement'];
 		echo "
 		<div class='centerContent' style='background-color:#f8d7da; width:350px; padding:15px; margin-top:10px; margin-bottom:10px; margin-left:auto; 
 		margin-right:auto; border-radius:4px;'> 
-		<p class='mb-2' style='width:350px'><strong>Posted by $adminId[0]</strong> <br>$announcement</p>
+		<p class='mb-2' style='width:350px'><strong>Posted by ".strtoupper(substr($adminId[0],0,1)).substr($adminId[0],1,)." on ".date_format($date,'m-d-Y')."</strong> <br>$announcement</p>
 		</div>";
 	}
+	echo"<br>";
 	?>
 
 <!-- Body ends -->
