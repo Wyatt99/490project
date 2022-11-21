@@ -64,7 +64,7 @@ ensure_logged_in();
 	<!--schedule-->
 	<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
 	<div class="card" style="width: 7.5rem;">
-			<a href="team-select.php"><img class="card-img-top" src='images/schedule-teams.svg' alt="schedule teams"></a>
+			<a href="team-select.php"><img class="card-img-top" src='images/edit-schedule.svg' alt="schedule teams"></a>
 		<div class="card-body">
 			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Schedule Practices</strong></h5>
 		</div>
