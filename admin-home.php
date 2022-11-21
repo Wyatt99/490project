@@ -27,7 +27,7 @@ ensure_logged_in();
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-<h1 class='text-center my-4'>Hello <?= $_SESSION["name"] ?>, welcome back!</h1> <!--to confirm session created, will remove/edit later-->
+<h1 class='text-center my-4'>Hello <?= strtoupper(substr($_SESSION["name"],0,1)).substr($_SESSION["name"],1,) ?>, welcome back!</h1> <!--to confirm session created, will remove/edit later-->
 
 <div class="container mt-3 mt-lg-5 centerContent">
     <div class="row">
