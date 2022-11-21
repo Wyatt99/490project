@@ -60,12 +60,13 @@ if (isset($_GET['submit'])
 		$res=mysqli_query($db, $sql);
 		while($row=mysqli_fetch_array($res)){
 			$teamId=$row["teamId"];
+			$teamIdentifier=$row["teamIdentifier"];
 		}
 
 		$updateSqlConflict=mysqli_query($db, "select * from practice where teamId=$teamId");
+
 		$res2=mysqli_query($db, "delete from practice where teamId=$teamId");
 	}
-
 	# the sql select statement for practice
 	$result = $db->query("SELECT * FROM practice");
 
@@ -138,7 +139,11 @@ if (isset($_GET['submit'])
 		$practicePrep = $db -> prepare("INSERT INTO practice(fieldId, fieldSection, teamId, startTime, endTime, day, adminId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$practicePrep -> bind_param("isisssi", $field, $section, $teamId, $startTime, $endTime, $day, $_SESSION['adminId']);
 		$practicePrep -> execute();
-		header("location: team-select.php?practiceSuccess");
+		?>
+		<script type="text/javascript">
+		window.location="team-select.php?practiceSuccess";
+		</script>
+		<?php
 		unset($_SESSION['parkId']);
 		unset($_SESSION['parkName']);
 		unset($_SESSION['team']);
@@ -151,14 +156,56 @@ if (isset($_GET['submit'])
 <body>
 	<h1 class="mt-4 mb-2 px-2 text-center"><?=$_SESSION['parkName']?></h1>
 	<h3 class="subText  text-center ">Practice Scheduler</h3> 
-	<?php echo $message; ?>
+	<?php 
+
+	if ($update == 1){
+		$teamIdentifier = $_GET["team"];
+		
+		# get the teamId number from the getter
+		$teamIdsql = "select * from team where teamIdentifier='$teamIdentifier'";
+		$res=mysqli_query($db, $teamIdsql);
+		while($row=mysqli_fetch_array($res)){
+			$teamId=$row["teamId"];
+			$teamIdentifier=$row["teamIdentifier"];
+		}
+
+		$practiceInfo=mysqli_query($db, "select * from practice where teamId=$teamId");
+		while($row=mysqli_fetch_array($practiceInfo)){
+			$field=$row["fieldId"];
+			$section=$row['fieldSection'];
+			$startTime=$row['startTime'];
+			$endTime=$row['endTime'];
+			$day=$row['day'];
+
+			$startTime = date("g:i a", strtotime($startTime));
+			$endTime = date("g:i a", strtotime($endTime));
+		}
+
+		$fieldNameGet=mysqli_query($db, "select * from field where fieldId=$field");
+		while($row=mysqli_fetch_array($fieldNameGet)){
+			$fieldName=$row["fieldName"];
+		}
+		$practiceInfoData = $_SESSION['parkName'].' '.$fieldName.' '.$section.' '.$startTime.'-'.$endTime.' '.$day;
+	} else {
+		$practiceInfoData = "";
+	}
+
+
+	echo $message; 
+	?>
 	
 <container class="centerContent w-40">
 	<form method="GET" action="scheduler.php" style="overflow-x:hidden">
 	
 	<div class="row align-items-center g-3 mt-1 px-4 centerContent">
 	<p class='text-center mt-0'><strong>Team: <?=$_SESSION['team']?></strong></p>
-
+	<?php
+	if ($update == 1) {
+		?>
+		<p class='text-center mt-0'><strong>Current Schedule: <?=$practiceInfoData?></strong></p>
+		<?php
+	} 
+	?>
 		<!--day-->
 		<div class="col-lg-auto col-12 mt-2  mt-lg-3 mb-0">
 			<label for="day" class="form-label"><strong>Day</strong></label>
