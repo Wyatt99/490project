@@ -60,7 +60,7 @@ include 'user-nav.php';
 		<div class="card mt-0 mt-lg-2" style="width: 7rem;">
 			<a href="view-schedules.php"><img class="card-img-top" src='images/view-schedule.svg' alt="view schedules"></a>
 		<div class="card-body">
-			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>View Schedules</strong></h5>
+			<h5 class="centerContent" style="color: #1f6bd6; white-space:nowrap;"><strong>View Schedules</strong></h5>
 		</div>
 		</div>
 	</div> <!--col end-->
@@ -70,7 +70,7 @@ include 'user-nav.php';
 		<div class="card mt-0 mt-lg-2" style="width: 10rem;">
 			<a href="resources.php"><img class="card-img-top" src='images/whistle.svg' alt="coach resources"></a>
 			<div class="card-body">
-			<h5 class="centerContent" style="color: #1D3461; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
+			<h5 class="centerContent" style="color: #1f6bd6; white-space:nowrap;"><strong>Coaching Resources</strong></h5>
 		</div>
 		</div>
 	</div> <!--col end-->
@@ -80,7 +80,7 @@ include 'user-nav.php';
 	<div class="card" style="width: 8rem;">
 		<a href="view-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="view announcements"></a>
 		<div class="card-body">
-		<h5 class="centerContent" style="color: #1D3461;"><strong>Announcements</strong></h5>
+		<h5 class="centerContent" style="color: #1f6bd6;"><strong>Announcements</strong></h5>
 	</div>
 	</div>
 	</div> <!--col end-->
