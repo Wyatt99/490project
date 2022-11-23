@@ -26,7 +26,7 @@
                 } else {
                     
                     ?>
-                    <a href="admin-home.php" class="nav-item nav-link">Admin Page</a>
+                    <a href="admin-home.php" class="nav-item nav-link">Admin</a>
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
                     <?php
                 }
