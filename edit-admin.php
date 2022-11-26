@@ -89,7 +89,7 @@ if (isset($_POST["changePassword"])){
       <input type="text" class="form-control" id="username" placeholder="Admin Username" name="username" value="<?=$username?>">
     </div>
     <div class="mt-1" style="display:flex; justify-content:flex-end; width:100%; padding:0;" >
-    <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0 right-align">Update</button>
+    <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0">Update</button>
     </div>
 
     <div class="centerContent mt-5">
