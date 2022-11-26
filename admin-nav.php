@@ -49,10 +49,12 @@
                 </li>
                 </ul>
                 </div>
-                <div class="navbar-nav ms-auto">         
+                <div class="navbar-nav ms-auto">   
                     <a href="index.php" class="nav-item nav-link">User</a> 
-                                        <a href="register.php" class="nav-item nav-link">Register</a>     	
+                                        <a href="register.php" class="nav-item nav-link">Register</a>
+                                        <a href="edit-admin.php" class="nav-item nav-link">Account</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
+
                 </div>
             </div>
         </div>
