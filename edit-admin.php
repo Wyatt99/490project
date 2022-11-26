@@ -92,8 +92,8 @@ if (isset($_POST["changePassword"])){
     <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0">Update</button>
     </div>
 
-    <div class="centerContent mt-5">
-    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-3 mb-lg-0">Change Password</button>
+    <div class="centerContent mt-4">
+    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-3 mt-5 mb-lg-0">Change Password</button>
     </div>
 
 
