@@ -37,6 +37,10 @@ font-weight: 550;
 color: #1D3461;
 }
 
+h3 {
+  color: #1D3461;
+  }
+
 /* Modify the nav bar*/ 
 @media all and (min-width: 992px) {
 .navbar .nav-item .dropdown-menu{ display: none; }
