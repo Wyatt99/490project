@@ -46,7 +46,7 @@ ensure_logged_in();
 		<div class="card" style="width: 10rem;">
 				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
 				<div class="card-body">
-				<h5 class="centerContent" style="color: #1f6bd6;"><strong>Edit Teams</strong></h5>
+				<h5 class="centerContent" style="color: #1f6bd6; white-space:nowrap;"><strong>Manage Teams</strong></h5>
 			</div>
 		</div>
 	</div> <!--col end-->
