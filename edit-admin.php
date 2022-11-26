@@ -93,11 +93,11 @@ if (isset($_POST["changePassword"])){
     </div>
 
     <div class="centerContent mt-4">
-    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-3 mt-5 mb-lg-0">Change Password</button>
+    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-1 mt-5 mb-lg-0">Change Password</button>
     </div>
 
 
-    <div class="centerContent mt-3">
+    <div class="centerContent mb-2 mt-3">
     <a href="delete-admin.php?id=<?php echo $id ?> "onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.') ">
     <button type="button" class= "btn btn-lg btn-danger">Delete Your Account</button></a>
     </div>
