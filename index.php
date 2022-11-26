@@ -28,7 +28,7 @@ include 'user-nav.php';
 </head>
 <body>
 <h1 class='text-center mt-4 '>Cajun Rush <br class="d-md-none">Schedule Viewer</h1>
-
+<?=$promptMessage();?>
 <div class="container mt-3 centerContent">
     <div class="row centerContent">
 	<div class="col-12 order-1 order-md-1 order-lg-1 mb-1">

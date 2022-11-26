@@ -91,12 +91,18 @@ if (isset($_POST['addTeamButton'])){
 #ERROR MESSAGE
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
-            header("location:create-teams.php?teamAdded");
-            exit();
+            ?>
+            <script type="text/javascript">
+            window.location="create-teams.php?teamAdded";
+            </script>
+            <?php
         } else {
-            if(mysqli_errno($db) == 1062)
-            header("location:create-teams.php?duplicateTeam");
-            exit();
+            
+            ?>
+            <script type="text/javascript">
+            window.location="create-teams.php?duplicateTeam";
+            </script>
+            <?php
         }
 
     } 
