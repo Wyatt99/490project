@@ -29,7 +29,7 @@ include 'user-nav.php';
 <body>
     <h1 class='centerContent mt-4'>Coaching Resources</h1>
         <!-- Practice Sessions -->
-        <h3 class='centerContent subtext mt-2 mb-2'><strong>Practice Sessions</strong></h3>
+        <h3 class='centerContent mt-2 mb-2'><strong>Practice Sessions</strong></h3>
         <p class="centerContent text-left longParagraph px-3">Many first time coaches volunteer or are volunteered to the job. The first thing is to relax.  
             Relax and think about how much fun you are going to have with all these young soccer players 
             and the experience that they are going to gain from you.
@@ -39,7 +39,7 @@ include 'user-nav.php';
         </p>
 
         <div class="text-center px-4">
-        <h3 class='centerContent mt-4 subtext'><strong>Practices and Activities</strong></h3>
+        <h3 class='centerContent mt-4 '><strong>Practices and Activities</strong></h3>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -102,7 +102,7 @@ include 'user-nav.php';
             <div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
                 <div class="d-flex">
                     <ul class="list-inline mx-auto justify-content-center">
-                        <li class="list-group-item-heading centerContent"><h3 class='subtext'><strong>Rules</strong></h3></li>
+                        <li class="list-group-item-heading centerContent"><h3><strong>Rules</strong></h3></li>
                         <li class="list-group-item-heading centerContent"><h5>Cajun Rush - Recreational Playing Rules</h5></li>
                         <li class="list-group-item"><a href="https://dt5602vnjxv0c.cloudfront.net/portals/6291/docs/rec/rec%20rules/cajun%20rush%20turf%20tykes.docx">4U Rules Document</a> - Updated 09/10/2020</li>
                         <li class="list-group-item"><a href="https://dt5602vnjxv0c.cloudfront.net/portals/6291/docs/rec/rec%20rules/cajun%20rush%205u-7u.docx">5U-7U Rules Document</a> - Updated 09/10/2020</li>
@@ -120,7 +120,7 @@ include 'user-nav.php';
             <div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
                 <div class="d-flex">
                     <ul class="list-inline mx-auto justify-content-center">
-                        <li class="list-group-item-heading centerContent"><h3 class='subtext'><strong>Forms</strong></h3></li>
+                        <li class="list-group-item-heading centerContent"><h3><strong>Forms</strong></h3></li>
                         <li class="list-group-item"><a href="https://docs.google.com/spreadsheets/d/1j7yCEGWQSPD5IOYHhpVyLQLSDaIDIkyepdejV6WFkyc/edit?usp=sharing">Practice Schedule</a></li>
                         <li class="list-group-item"><a href="https://dt5602vnjxv0c.cloudfront.net/portals/6291/docs/coach packet/concussion law.pdf">CONCUSSION LAW</a></li>
                         <li class="list-group-item"><a href="https://dt5602vnjxv0c.cloudfront.net/portals/6291/docs/rec/coaches forms/usys medical consent form.pdf">USYS MEDICAL CONSENT</a></li>
@@ -136,7 +136,7 @@ include 'user-nav.php';
             <div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
                 <div class="d-flex">
                     <ul class="list-inline mx-auto justify-content-center">
-                        <li class="list-group-item-heading centerContent"><h3 class='subtext'><strong>Soccer Activity Guides</strong></h3></li>
+                        <li class="list-group-item-heading centerContent"><h3><strong>Soccer Activity Guides</strong></h3></li>
                         <li class="list-group-item"><a href="https://lysasoccer.demosphere-secure.com/_files/programs/recreational/LYSA%203-7%20Year%20Old%20Soccer%20Development%20Activities.pdf">LYSA/Cajun Rush Activity Book 6-7 Year Old's</a></li>
                         <li class="list-group-item"><a href="https://lysasoccer.demosphere-secure.com/_files/programs/recreational/USYouthSoccer_U6-U8_Practice_Activities.pdf">US Youth Soccer 6U-8U Practice Activities</a></li>
                         <li class="list-group-item"><a href="https://lysasoccer.demosphere-secure.com/_files/programs/recreational/USYouthSoccer_U10_Practice_Activities.pdf">US Youth Soccer 10U Practice Activities</a></li>
