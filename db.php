@@ -31,8 +31,11 @@ function checkForTeams ($db) {
 	$result = $db->query("SELECT * FROM team");
     $rows = mysqli_fetch_all($result);
 	if (!$rows) {
-      header("location: create-teams.php?noTeam");
-      exit();
+    ?>
+    <script type="text/javascript">
+    window.location="create-teams.php?noTeam";
+    </script>
+    <?php
 		}
 	}
 
@@ -92,77 +95,118 @@ function is_password_correct ($name, $password, $db) {
 #if $_SESSION['name'] is not set, redirect to login page
 function ensure_logged_in() {
     if (!isset($_SESSION["name"])) {
-      header("Location: login.php");
-      exit();
+      ?>
+      <script type="text/javascript">
+      window.location="login.php";
+      </script>
+      <?php
     }
   }
 
+
 #message to display if login credentials do not match database, password does not match, or registration is successful
 $promptMessage = function() {
+  #tested
   if (isset($_GET['err'])) {
       $message = "Invalid credentials, please try again.";
       echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['errp'])) {
       $message = "Passwords do not match.";
       echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['duplicateAdmin'])) {
     $message = "Admin already exists";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
 }
+  #tested
   if (isset($_GET['newAdminSuccess'])) {
       $message = "Registered new admin successfully!";
       echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['updateteamsuccess'])) {
     $message = "Team updated successfully";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['deleteteamsuccess'])) {
     $message = "Team deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['deletePracticeSuccess'])) {
     $message = "Practice canceled successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['teamAdded'])) {
     $message = "Team added successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['duplicateTeam'])) {
     $message = "Team with the same name, location, and age already exists!";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['practiceSuccess'])) {
     $message = "Team scheduled successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['noTeam'])) {
     $message = "No teams exist, you may add one here!";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['postSuccess'])) {
     $message = "Announcement posted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['updateAnnouncementSuccess'])) {
     $message = "Announcement updated successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['deleteAnnouncementSuccess'])) {
     $message = "Announcement deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
+  if (isset($_GET['deleteAdminSuccess'])) {
+    $message = "Admin deleted successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  #tested
+  if (isset($_GET['updateAdminSuccess'])) {
+    $message = "Admin username updated successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  #tested
+  if (isset($_GET['accountDeleted'])) {
+    $message = "Your account has been deleted successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  #tested
+  if (isset($_GET['masterCantBeDeleted'])) {
+    $message = "Master account cannot be deleted.";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+  #tested
   if (isset($_GET['errPassCheck'])) {
     $message = "Current Password Incorrect!";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['errNewPassMatch'])) {
     $message = "New Passwords Don't Match!";
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+  #tested
   if (isset($_GET['newPassSet'])) {
     $message = "Your Password Has Been Changed!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
