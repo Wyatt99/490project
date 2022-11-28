@@ -46,11 +46,7 @@ ensure_logged_in();
 		<div class="card" style="width: 10rem;">
 				<a href="update-team.php"><img class="card-img-top" src='images/edit-teams.svg' alt="edit team"></a>
 				<div class="card-body">
-<<<<<<< Updated upstream
 				<h5 class="centerContent" style="color: #1f6bd6; white-space:nowrap;"><strong>Manage Teams</strong></h5>
-=======
-				<h5 class="centerContent" style="color: #1f6bd6;"><strong>Manage Teams</strong></h5>
->>>>>>> Stashed changes
 			</div>
 		</div>
 	</div> <!--col end-->
