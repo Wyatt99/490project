@@ -149,6 +149,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
+<?=$promptMessage()?>
 <h1 class="centerContent my-3">Scheduled Teams</h1>
     <!-- search bar filter -->
     <div class="text-center  mb-1" >
@@ -160,7 +161,6 @@ if (isset($_POST['showAll'])){
     </div>
 
     <div class="col-lg-12 p-2 ">
-    <?=$promptMessage()?>
     
     <!--drop down form-->
     <div class="centerContent mb-2">
