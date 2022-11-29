@@ -103,7 +103,6 @@ function ensure_logged_in() {
     }
   }
 
-
 #message to display if login credentials do not match database, password does not match, or registration is successful
 $promptMessage = function() {
   #tested
