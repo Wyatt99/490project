@@ -85,7 +85,7 @@ Search: <input type="text" class='mb-2' name="search_box" placeholder= "Search..
 
 <br class="d-md-none">
 <input type="submit" name="search" value="Filter">
-<input type="submit" name="showAll" value="Show All">
+<input type="submit" name="showAll" value="Reset">
 </form>
 </div>
 

@@ -109,7 +109,7 @@ function printTable($query){
         <div class="d-md-none mt-2 mt-md-0"></div>
         <span>
         <input type="submit" name="filter" value="Filter">
-        <input type="submit" name="showAll" value="Show All">
+        <input type="submit" name="showAll" value="Reset">
     </span>
     </form>
 

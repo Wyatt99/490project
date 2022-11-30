@@ -212,7 +212,7 @@ if (isset($_POST['showAll'])){
     </div>    
 
     <div class="centerContent mb-3">
-        <input type="submit" name="showAll" value="Show All" style="width:200px;">
+        <input type="submit" name="showAll" value="Reset" style="width:200px;">
      </div>
     </form>
     <!--drop down form end -->

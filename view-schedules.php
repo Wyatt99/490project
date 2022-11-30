@@ -129,7 +129,7 @@ if (isset($_POST['showAll'])){
         Search: <input type="text" name="search_box" placeholder="Search..." value="<?=$searchTerm?>" class = "mb-lg-0 mb-2"/>
     <br class="d-md-none">
         <input type="submit" name="search" value="Filter">
-        <input type="submit" name="showAll" value="Show All">
+        <input type="submit" name="showAll" value="Reset">
     </form>
     </div>
 
