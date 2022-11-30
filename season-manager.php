@@ -128,12 +128,18 @@ if (isset($_POST['addSeasonButton'])){
 
         # attempts the sql insert, if it fails the uniqueError is set
         if(mysqli_query($db, $sql)){
-            $message="Season has been added!";
-            echo "<div class='alert alert-success mt-2' role='alert'>".$message."</div>";
+            ?>
+            <script type="text/javascript">
+            window.location="season-manager.php?seasonAdd";
+            </script>
+            <?php
         } else {
             if(mysqli_errno($db) == 1062) {
-            $message = "This season already exists.";
-            echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
+                ?>
+                <script type="text/javascript">
+                window.location="season-manager.php?seasonConflict";
+                </script>
+                <?php
             }
         }
             echo "</container>";
@@ -153,8 +159,11 @@ if (isset($_POST['addSeasonButton'])){
 
     #if there is an error, print an error message. Otherwise update database
     if($error){
-        $message = "Please select a season to set as active.";
-        echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
+        ?>
+        <script type="text/javascript">
+        window.location="season-manager.php?noSeasonSelected";
+        </script>
+        <?php
     }else{
         #check for escape strings, shouldn't be possible as both option is drop down
         $yearToActive= mysqli_real_escape_string(
@@ -168,17 +177,27 @@ if (isset($_POST['addSeasonButton'])){
     
         # attempts the sql insert, if it fails the uniqueError is set
         if($setActive && $setInactive){
-            $message="Season has been set to active.<br>All other seasons are set to inactive.";
-            echo "<div class='alert alert-success mt-2 text-center' role='alert' style='width:340px;'>".$message."</div>";
+
+            ?>
+            <script type="text/javascript">
+            window.location="season-manager.php?seasonChanged";
+            </script>
+            <?php
+            
         } else {
-            $message="Error. Season was not set to active.";
-            echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
+            ?>
+            <script type="text/javascript">
+            window.location="season-manager.php?seasonError";
+            </script>
+            <?php
+
         }
     }
     echo "</container>";
 }
 
 ?>
+<div class="centerContent"><?=$promptMessage()?> </div>
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>
 </body>
 <footer class='centerContent'>Copyright &copy 2022 Cajun Rush Soccer Club</footer>

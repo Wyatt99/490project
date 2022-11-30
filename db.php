@@ -210,5 +210,32 @@ $promptMessage = function() {
     $message = "Your Password Has Been Changed!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
 }
+
+  #season added
+  if (isset($_GET['seasonAdd'])) {
+    $message="Season has been added!";
+    echo "<div class='alert alert-success mt-2 text-center' role='alert'>".$message."</div>";
+}
+
+  #season not added
+  if (isset($_GET['seasonConflict'])) {
+    $message = "This season already exists.";
+    echo "<div class='alert alert-danger mt-2 text-center' role='alert'>".$message."</div>";
+}
+
+if (isset($_GET['noSeasonSelected'])) {
+  $message = "Please select a season to set as active.";
+  echo "<div class='alert alert-danger mt-2' role='alert'>".$message."</div>";
+}
+
+if (isset($_GET['seasonChanged'])) {
+  $message="Season has been set to active.<br>All other seasons are set to inactive.";
+  echo "<div class='alert alert-success mt-2 text-center' role='alert' style='width:340px;'>".$message."</div>";
+}
+if (isset($_GET['seasonError'])) {
+  $message="Error. Season was not set to active.";  
+  echo "<div class='alert alert-success mt-2 text-center' role='alert' style='width:340px;'>".$message."</div>";
+}
+
 }
 ?> 
