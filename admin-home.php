@@ -54,7 +54,7 @@ ensure_logged_in();
 		<!--announcements-->
 		<div class="col-12 col-md-6 col-lg-4 mb-2 px-4 centerContent">
             <div class="card" style="width: 8rem;">
-				<a href="add-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="add announcements"></a>
+				<a href="update-announcements.php"><img class="card-img-top" src='images/announcement.svg' alt="add announcements"></a>
 				<div class="card-body">
 				<h5 class="centerContent" style="color: #1f6bd6;"><strong>Announcements</strong></h5>
 			</div>
