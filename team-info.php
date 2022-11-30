@@ -56,7 +56,7 @@ while($row=mysqli_fetch_array($res)){
     <span>Coach Name: <?php echo $coachFirstName." ".$coachLastName ?></span></br>
     <span>Email: <a href = "mailto: <?php echo $coachEmail?>"><?php echo $coachEmail ?></a></span></br>
     <span>Age Group:  <?php echo $ageGroup ?></span></br>
-    <span>Location:  <?php echo $teamLocation ?></span></br>
+    <span>Location:  <?php echo $teamLocation ?></span></br><br>
     <span>
         <a href="edit-team.php?id=<?php echo $id;?>"> <button type="button" class= "btn btn-success">Edit Team</button></a>
         <a href="view-teams.php"> <button type="button" class= "btn btn-primary">Return</button></a>
