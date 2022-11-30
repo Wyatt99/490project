@@ -62,7 +62,7 @@ ensure_logged_in();
 		echo"</div>";
 	}
 	    ?>
-	<br>
+	<br><div class="mt-3"></div>
 
 <!-- Body ends -->
 <!-- Bootstrap JS Bundle with Popper **needed for collapsable nav** -->
