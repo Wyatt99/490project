@@ -50,7 +50,8 @@ while($row=mysqli_fetch_array($res)){
 
 <body>
     <h1 class='centerContent mt-4'>Team  Information</h1>
-    <div class="text-center p-2 mt-2" >
+    <div class='centerContent'>
+    <div class="text-left p-2 mt-2" >
     <span><?php echo $teamIdentifier?></span></br>
     <span>Team Name: <?php echo $teamName ?></span></br>
     <span>Coach Name: <?php echo $coachFirstName." ".$coachLastName ?></span></br>
@@ -60,6 +61,7 @@ while($row=mysqli_fetch_array($res)){
     <span>
         <a href="edit-team.php?id=<?php echo $id;?>"> <button type="button" class= "btn btn-success">Edit Team</button></a>
         <a href="view-teams.php"> <button type="button" class= "btn btn-primary">Return</button></a>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
