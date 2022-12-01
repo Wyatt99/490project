@@ -181,11 +181,19 @@ if (isset($_GET['submit'])
 			$endTime = date("g:i a", strtotime($endTime));
 		}
 
+
 		$fieldNameGet=mysqli_query($db, "select * from field where fieldId=$field");
 		while($row=mysqli_fetch_array($fieldNameGet)){
 			$fieldName=$row["fieldName"];
+			$parkId = $row["parkId"];
 		}
-		$practiceInfoData = $_SESSION['parkName'].' '.$fieldName.' '.$section.' '.$startTime.'-'.$endTime.' '.$day;
+		if ($parkId == 1){
+			$parkName = "Moore Park";
+		} else {
+			$parkName = "Youngsville Sports Complex";
+		}
+
+		$practiceInfoData = $parkName.' '.$fieldName.' '.$section.' '.$startTime.'-'.$endTime.' '.$day;
 	} else {
 		$practiceInfoData = "";
 	}
