@@ -115,6 +115,12 @@ $promptMessage = function() {
       $message = "Passwords do not match.";
       echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+
+  if (isset($_GET['special'])) {
+    $message = "Must contain at least one special character.";
+    echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+}
+
   #tested
   if (isset($_GET['duplicateAdmin'])) {
     $message = "Admin already exists";
