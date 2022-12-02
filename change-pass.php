@@ -60,7 +60,7 @@ if (isset( $_POST['submit'] )) {
 
     <form method="post" class="registerForm">
         <h1 class="mt-2 mb-3 centerContent ">Change Password</h1>
-        <?=$promptMessage()?> <!--call prompt message function-->
+        <?=$promptMessage($db)?> <!--call prompt message function-->
 
         <div class="password-container form-outline mb-2">
             <input type="password" name="currPass" id="currPass" class="form-control form-control-lg" minlength='8' required/>

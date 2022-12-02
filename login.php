@@ -58,7 +58,7 @@ if (is_password_correct($name, $password, $db)) {
 
     <form method="post">
     <h1 class="mt-4 mb-3 centerContent ">Admin Login</h1>
-    <?=$promptMessage()?> <!--call prompt message function-->
+    <?=$promptMessage($db)?> <!--call prompt message function-->
         <div class="form-outline mb-2">
             <input type="text" name="name" id="name" class="form-control form-control-lg"/>
             <label class="form-label" for="name">Username</label>

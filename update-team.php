@@ -90,7 +90,7 @@ Search: <input type="text" class='mb-2' name="search_box" placeholder= "Search..
 </div>
 
 <div class="mt-2">
-<?=$promptMessage()?>
+<?=$promptMessage($db)?>
 <table class="table table-bordered table-hover centerContent smallFont mt-2">
 
     <thead>

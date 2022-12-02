@@ -133,7 +133,7 @@ if (isset($_POST['showAll'])){
     </form>
     </div>
 
-    <?=$promptMessage()?>
+    <?=$promptMessage($db)?>
 
     <table class="table table-bordered px-1 mt-1 centerContent smallFont">
     <theadth>

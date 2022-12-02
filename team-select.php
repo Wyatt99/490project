@@ -91,7 +91,7 @@ if (isset($_POST['showAll'])){
 </div>
 
 
-<?=$promptMessage()
+<?=$promptMessage($db)
 ?>
 <table class="table table-bordered table-hover mt-1 centerContent smallFont">
 

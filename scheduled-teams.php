@@ -149,7 +149,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<?=$promptMessage()?>
+<?=$promptMessage($db)?>
 <h1 class="centerContent mt-4 mb-3">Scheduled Teams</h1>
     <!-- search bar filter -->
     <div class="text-center  mb-1" >

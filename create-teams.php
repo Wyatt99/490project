@@ -111,7 +111,7 @@ if (isset($_POST['addTeamButton'])){
 <body>
 
         <h1 class='text-center mt-4 mb-2'>Add New Team</h1>
-        <?=$promptMessage();?>
+        <?=$promptMessage($db);?>
 
         <container class="centerContent mx-auto mb-3">
             <form style='width:60%;' id='createteams' action='create-teams.php' method='POST'>

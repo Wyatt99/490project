@@ -30,7 +30,7 @@ ensure_logged_in();
 
 <body>
     <h1 class="centerContent mt-4 mb0">Manage Announcements</h1>
-    <?=$promptMessage()?>
+    <?=$promptMessage($db)?>
     <a href="add-announcements.php" style="display:block; text-decoration:none" class="mt-1 mb-2 mx-auto">
 		<button class='btn-primary btn-sm'>Post a new announcement</button>
 	</a>
