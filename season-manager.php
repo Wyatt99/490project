@@ -130,14 +130,14 @@ if (isset($_POST['addSeasonButton'])){
         if(mysqli_query($db, $sql)){
             ?>
             <script type="text/javascript">
-            window.location="season-manager.php?seasonAdd";
+            window.location="season-manager.php?seasonAdd=<?=$seasonId?>";
             </script>
             <?php
         } else {
             if(mysqli_errno($db) == 1062) {
                 ?>
                 <script type="text/javascript">
-                window.location="season-manager.php?seasonConflict";
+                window.location="season-manager.php?seasonConflict=<?=$seasonId?>";
                 </script>
                 <?php
             }
