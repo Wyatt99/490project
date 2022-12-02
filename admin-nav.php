@@ -1,10 +1,3 @@
-<?php
-$seasonResult = $db->query("SELECT * from season where seasonStatus = 1");
-while ($row = $seasonResult->fetch_assoc()) {
-	$activeSeason = $row['seasonId'];
-}
-?>
-
 <header>    
 	<!--navigation bar start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg dark">
@@ -66,5 +59,5 @@ while ($row = $seasonResult->fetch_assoc()) {
         </div>
     </nav>
     <!--navigation bar end-->
-    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px; font-size: 18px;">Active Season: <?=$activeSeason?></h1>
+    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px; font-size: 18px;">Active Season: <?=getActiveSeason($db)?></h1>
 </header>
