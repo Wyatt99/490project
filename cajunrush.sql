@@ -127,7 +127,7 @@ VALUES  ('field 11', 1, 0),
         ('field 6', 2, 1);
 
 insert into Admins (username, password)
-values ('lane', '$2y$10$FXMGOs9k2HLSRgCqH4FFGuxYMS1qXYGURLW5n4x.T01c9DlmRSfa6');
+values ('lane', '$2y$10$IDGQG/c7Gzhl2TwihanAfeEldejZj1GFYMgzb0jICfTABTuU3upja'); 
 
 INSERT INTO Season (seasonId, seasonStatus)
 values ('FALL 2022', '1');
