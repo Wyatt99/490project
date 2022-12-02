@@ -89,11 +89,11 @@ if (isset($_POST["changePassword"])){
       <input type="text" class="form-control" id="username" placeholder="Admin Username" name="username" value="<?=$username?>">
     </div>
     <div class="mt-1" style="display:flex; justify-content:flex-end; width:100%; padding:0;" >
-    <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0 mt-2">Update</button>
+    <button type="submit" name="Update" class="btn btn-primary mb-1 mb-lg-0 mt-2">Update</button>
     </div>
 
     <div class="centerContent mt-1">
-    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-1 mt-5 mb-lg-0">Change Password</button>
+    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-1 mt-3 mb-lg-0">Change Password</button>
     </div>
 
     <?php
@@ -102,9 +102,10 @@ if (isset($_POST["changePassword"])){
 
         if ($idCheck['adminId'] == 1) {
           $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
-          $row = mysqli_fetch_array($adminsQ);
-          if ($row) {
-          echo " <table class='table table-bordered px-1 mt-3 centerContent smallFont'>
+          $adminExists = mysqli_fetch_all($adminsQ);
+          if ($adminExists) {
+          $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
+          echo " <table class='table table-bordered px-1 mt-4 centerContent smallFont'>
                  <thead>
                  <tbody>
                  <tr class='table-head'>
@@ -120,7 +121,7 @@ if (isset($_POST["changePassword"])){
             echo "<tr>";
             echo  "<td>"; echo $id."</td>";
             echo  "<td>"; echo $username."</td>";
-            echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>?') ">
+            echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
             <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; 
             echo"</tr>";
         }
