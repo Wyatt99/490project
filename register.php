@@ -13,6 +13,8 @@ if (isset( $_POST['submit'] )) {
     $password_confirm = $_POST['password_confirm'];
 
     if ($password == $password_confirm) {
+        $match = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
+        if ($match) {
         $password_hash = password_hash($password_confirm, PASSWORD_DEFAULT);
 
         $registerPrep = $db -> prepare("INSERT INTO admins(username, password) VALUES (?, ?)");
@@ -20,6 +22,11 @@ if (isset( $_POST['submit'] )) {
         $registerPrep -> execute();
         header("location: register.php?newAdminSuccess");
         exit();
+        }
+        else {
+            header("location: register.php?special");
+            exit();
+        }
     }
 
     else {
@@ -70,13 +77,13 @@ if (isset( $_POST['submit'] )) {
         </div>
 
         <div class="password-container form-outline mb-2">
-            <input type="password" name="password" id="password" class="form-control form-control-lg" required/>
+            <input type="password" name="password" id="password" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye"></i>
             <label class="form-label" for="password">Password</label>
         </div>
 
         <div class="password-container form-outline mb-2">
-            <input type="password" name="password_confirm" id="password_confirm" class="form-control form-control-lg" required/>
+            <input type="password" name="password_confirm" id="password_confirm" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye2"></i>
             <label class="form-label" for="password_confirm">Confirm Password</label>
         </div>
