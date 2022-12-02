@@ -16,12 +16,18 @@ if (isset( $_POST['submit'] )) {
         exit();
     }
 
+    $match = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
+    if ($match) {
     $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
     $registerPrep -> execute();
     header("location: change-pass.php?newPassSet");
     exit();
+    }
+    else {
+        header("location: change-pass.php?special");
+    }
 }
 ?> <!--php ends-->
 
@@ -57,19 +63,19 @@ if (isset( $_POST['submit'] )) {
         <?=$promptMessage()?> <!--call prompt message function-->
 
         <div class="password-container form-outline mb-2">
-            <input type="password" name="currPass" id="currPass" class="form-control form-control-lg" required/>
+            <input type="password" name="currPass" id="currPass" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye3"></i>
             <label class="form-label" for="currPass">Current Password</label>
         </div>
 
         <div class="password-container form-outline mb-2">
-            <input type="password" name="password" id="password" class="form-control form-control-lg" required/>
+            <input type="password" name="password" id="password" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye"></i>
             <label class="form-label" for="password">New Password</label>
         </div>
 
         <div class="password-container form-outline mb-2">
-            <input type="password" name="password_confirm" id="password_confirm" class="form-control form-control-lg" required/>
+            <input type="password" name="password_confirm" id="password_confirm" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye2"></i>
             <label class="form-label" for="password_confirm">Confirm New Password</label>
         </div>
