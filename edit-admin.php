@@ -100,6 +100,7 @@ if (isset($_POST["changePassword"])){
         $idCheckQ=mysqli_query($db, "select adminId from Admins where username = '$name'");
         $idCheck=mysqli_fetch_assoc($idCheckQ);
 
+        #if admin is main account
         if ($idCheck['adminId'] == 1) {
           $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
           $adminExists = mysqli_fetch_all($adminsQ);
@@ -114,20 +115,21 @@ if (isset($_POST["changePassword"])){
                  <th class='text-center' scope='col'>Delete</th>
                </tr>
                </thead>";
-
-          while($row=mysqli_fetch_array($adminsQ)){
-            $username=$row["username"];
-            $id=$row['adminId'];
-            echo "<tr>";
-            echo  "<td>"; echo $username."</td>";
-            echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
-            <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; 
-            echo"</tr>";
+            
+            while($row=mysqli_fetch_array($adminsQ)){
+              $username=$row["username"];
+              $id=$row['adminId'];
+              echo "<tr>";
+              echo  "<td>"; echo $username."</td>";
+              echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
+              <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; 
+              echo"</tr>";
+          }
+          echo "</table>";
+          }
         }
-        echo "</table>";
-        }
-      }
 
+        #if admin is NOT main account
         else { 
         echo 
         "<div class='centerContent mb-2 mt-3'>";
