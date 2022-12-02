@@ -39,6 +39,14 @@ function checkForTeams ($db) {
 		}
 	}
 
+  # get the current active season
+function getActiveSeason ($db) {
+  $seasonResult = $db->query("SELECT * from season where seasonStatus = 1");
+  while ($row = $seasonResult->fetch_assoc()) {
+    $activeSeason = $row['seasonId'];
+  }
+  return $activeSeason;   
+	}
 
 
 #fetch all age groups in database and echo each as an option in select input
@@ -104,7 +112,7 @@ function ensure_logged_in() {
   }
 
 #message to display if login credentials do not match database, password does not match, or registration is successful
-$promptMessage = function() {
+$promptMessage = function($db) {
   #tested
   if (isset($_GET['err'])) {
       $message = "Invalid credentials, please try again.";
@@ -226,13 +234,15 @@ $promptMessage = function() {
 
   #season added
   if (isset($_GET['seasonAdd'])) {
-    $message="Season has been added!";
+    $seasonAdded = $_GET['seasonAdd'];
+    $message= $seasonAdded." has been added!";
     echo "<div class='alert alert-success mt-2 text-center' role='alert'>".$message."</div>";
 }
 
   #season not added
   if (isset($_GET['seasonConflict'])) {
-    $message = "This season already exists.";
+    $seasonConflict = $_GET['seasonConflict'];
+    $message = "The ".$seasonConflict." season already exists.";
     echo "<div class='alert alert-danger mt-2 text-center' role='alert'>".$message."</div>";
 }
 
@@ -242,7 +252,9 @@ if (isset($_GET['noSeasonSelected'])) {
 }
 
 if (isset($_GET['seasonChanged'])) {
-  $message="Season has been set to active.<br>All other seasons are set to inactive.";
+  $activeSeason = getActiveSeason($db);
+
+  $message= $activeSeason." has been set to active.<br>All other seasons are set to inactive.";
   echo "<div class='alert alert-success mt-2 text-center' role='alert' style='width:340px;'>".$message."</div>";
 }
 if (isset($_GET['seasonError'])) {
