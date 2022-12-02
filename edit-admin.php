@@ -105,7 +105,7 @@ if (isset($_POST["changePassword"])){
           $adminExists = mysqli_fetch_all($adminsQ);
           if ($adminExists) {
           $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
-          echo " <h2 class='centerContent mt-4'>Delete Admins</h2>
+          echo " <h2 class='centerContent mt-4 deleteAdmin'>Delete Admins</h2>
                 <table class='table table-bordered table-hover px-1 mt-3 centerContent'>
                  <thead>
                  <tbody>
