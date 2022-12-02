@@ -89,18 +89,54 @@ if (isset($_POST["changePassword"])){
       <input type="text" class="form-control" id="username" placeholder="Admin Username" name="username" value="<?=$username?>">
     </div>
     <div class="mt-1" style="display:flex; justify-content:flex-end; width:100%; padding:0;" >
-    <button type="submit" name="Update" class="btn btn-primary mb-3 mb-lg-0 mt-2">Update</button>
+    <button type="submit" name="Update" class="btn btn-primary mb-1 mb-lg-0 mt-2">Update</button>
     </div>
 
-    <div class="centerContent mt-3">
-    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-1 mt-5 mb-lg-0">Change Password</button>
+    <div class="centerContent mt-1">
+    <button type="submit" name="changePassword" class="btn btn-secondary btn-lg mb-1 mt-3 mb-lg-0">Change Password</button>
     </div>
 
+    <?php
+        $idCheckQ=mysqli_query($db, "select adminId from Admins where username = '$name'");
+        $idCheck=mysqli_fetch_assoc($idCheckQ);
 
-    <div class="centerContent mb-2 mt-3">
-    <a href="delete-admin.php?id=<?php echo $id ?> "onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.') ">
-    <button type="button" class= "btn btn-lg btn-danger">Delete Your Account</button></a>
-    </div>
+        if ($idCheck['adminId'] == 1) {
+          $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
+          $adminExists = mysqli_fetch_all($adminsQ);
+          if ($adminExists) {
+          $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
+          echo " <h2 class='centerContent mt-4'>Delete Admins</h2>
+                <table class='table table-bordered table-hover px-1 mt-3 centerContent'>
+                 <thead>
+                 <tbody>
+                 <tr class='table-head'>
+                 <th scope='col' style='width:200px';>Admin</th>
+                 <th class='text-center' scope='col'>Delete</th>
+               </tr>
+               </thead>";
+
+          while($row=mysqli_fetch_array($adminsQ)){
+            $username=$row["username"];
+            $id=$row['adminId'];
+            echo "<tr>";
+            echo  "<td>"; echo $username."</td>";
+            echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
+            <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; 
+            echo"</tr>";
+        }
+        echo "</table>";
+        }
+      }
+
+        else { 
+        echo 
+        "<div class='centerContent mb-2 mt-3'>";
+        echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=0" 
+                          onclick="return confirm('Are you sure you want to delete your account? This cannot be undone') ">
+        <button type="button" class= "btn btn-lg btn-danger">Delete Your Account</button></a> <?php echo "</td>"; 
+        echo"</div>";
+      }
+  ?>
 
   </form>
 </div>
