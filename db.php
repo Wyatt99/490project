@@ -196,6 +196,13 @@ $promptMessage = function() {
     $message = "Your account has been deleted successfully!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
+
+#tested
+  if (isset($_GET['accountDeletedOther'])) {
+    $message = "Account has been deleted successfully!";
+    echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+  }
+
   #tested
   if (isset($_GET['masterCantBeDeleted'])) {
     $message = "Master account cannot be deleted.";
