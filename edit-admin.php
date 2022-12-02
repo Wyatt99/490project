@@ -82,7 +82,7 @@ if (isset($_POST["changePassword"])){
 <div class="col-lg-4">
 
   <form action="" name = "form1" method = "post">
-  <h1 class="centerContent">Account Info</h1>
+  <h1 class="centerContent mt-2">Account Info</h1>
   <?=$promptMessage()?>
     <div class="form-group">
       <label for="username">Username</label>

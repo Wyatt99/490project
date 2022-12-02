@@ -66,5 +66,5 @@ while ($row = $seasonResult->fetch_assoc()) {
         </div>
     </nav>
     <!--navigation bar end-->
-    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -20px; margin-top: 10px; font-size: 18px;">Active Season: <?=$activeSeason?></h1>
+    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px; font-size: 18px;">Active Season: <?=$activeSeason?></h1>
 </header>

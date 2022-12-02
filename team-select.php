@@ -80,7 +80,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
-<h1 class="centerContent my-3">Unscheduled Teams</h1>
+<h1 class="centerContent mt-4 mb-3">Unscheduled Teams</h1>
 <div class="text-center p-2 mb-2" >
 <form name="search_form" method="POST" action="team-select.php">
     Search: <input type="text" class='mb-2 mb-md-0' name="search_box" placeholder="Search..." value="<?=$searchTerm?>" />
