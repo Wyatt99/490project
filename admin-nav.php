@@ -1,9 +1,15 @@
+<?php
+$seasonResult = $db->query("SELECT * from season where seasonStatus = 1");
+while ($row = $seasonResult->fetch_assoc()) {
+	$activeSeason = $row['seasonId'];
+}
+?>
+
 <header>    
 	<!--navigation bar start-->
     <nav class="navbar navbar-expand-lg navbar-dark bg dark">
         <div class="container-fluid">
             <a href="admin-home.php" class="navbar-brand"><img src="images\Cajun Rush Logo-white.png" width="auto" height="30px"></a>
-
             <!--navbar toggle icon-->
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -60,4 +66,5 @@
         </div>
     </nav>
     <!--navigation bar end-->
+    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -20px; margin-top: 10px; font-size: 18px;">Active Season: <?=$activeSeason?></h1>
 </header>
