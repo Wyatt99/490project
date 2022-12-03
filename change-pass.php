@@ -3,32 +3,76 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
-if (isset( $_POST['submit'] )) {
-    $name = $_SESSION['name'];
 
-    if(!is_password_correct($name, $_POST['currPass'], $db)){
-        header("location: change-pass.php?errPassCheck");
-        exit();
-    }
+#not main admin
+if (isset($_GET['id'])) {
 
-    if($_POST['password'] != $_POST['password_confirm']){
-        header("location: change-pass.php?errNewPassMatch");
-        exit();
-    }
+    #get username based on selected admin
+    $nameQ = mysqli_query($db, "SELECT username FROM admins WHERE adminId = '$_GET[id]'");
+    $nameRes = mysqli_fetch_row($nameQ);
+    $name = $nameRes[0];
+    $id=$_GET['id'];
 
-    $match = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
-    if ($match) {
-    $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if (isset( $_POST['submit'])) {
+        if(!is_password_correct($name, $_POST['currPass'], $db)){
+            header("location: change-pass.php?errPassCheck&id=$id");
+            exit();
+        }
 
-    $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
-    $registerPrep -> execute();
-    header("location: change-pass.php?newPassSet");
-    exit();
-    }
-    else {
-        header("location: change-pass.php?special");
+        if($_POST['password'] != $_POST['password_confirm']){
+            header("location: change-pass.php?errNewPassMatch&id=$id");
+            exit();
+        }
+        else {
+            $password = $_POST['password_confirm'];
+            $match = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
+            if ($match) {
+                $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+                $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
+                $registerPrep -> execute();
+                header("location: edit-admin.php?newPassSet&name=$name");
+                exit();
+        }
+            else {
+                header("location: change-pass.php?special&id=$id");
+            }
+        }
     }
 }
+
+else {
+    if (isset( $_POST['submit'] )) {
+        $name = $_SESSION['name'];
+
+        if(!is_password_correct($name, $_POST['currPass'], $db)){
+            header("location: change-pass.php?errPassCheck");
+            exit();
+        }
+
+        if($_POST['password'] != $_POST['password_confirm']){
+            header("location: change-pass.php?errNewPassMatch");
+            exit();
+        }
+
+        else {
+            $password = $_POST['password_confirm'];    
+            $match = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
+            if ($match) {
+                $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+                $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
+                $registerPrep -> execute();
+                header("location: change-pass.php?newPassSet");
+                exit();
+                }
+            else {
+                header("location: change-pass.php?special");
+            }
+        }
+    }
+}
+
 ?> <!--php ends-->
 
 <!DOCTYPE html>
@@ -59,7 +103,13 @@ if (isset( $_POST['submit'] )) {
     <div class="d-flex justify-content-center mx-auto">
 
     <form method="post" class="registerForm">
-        <h1 class="mt-2 mb-3 centerContent ">Change Password</h1>
+        <h1 class="mt-2 mb-2 centerContent ">Change Password</h1>
+
+        <?php if (isset($_GET['id'])) {
+        echo "<h5 class='text-center mt-2 mb-3'>Selected admin: $name</h5>";
+        }
+        ?>
+
         <?=$promptMessage($db)?> <!--call prompt message function-->
 
         <div class="password-container form-outline mb-2">
