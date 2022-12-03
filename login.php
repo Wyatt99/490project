@@ -69,12 +69,17 @@ if (is_password_correct($name, $password, $db)) {
             <i class="fa-solid fa-eye" id="eye"></i>
             <label class="form-label" for="password">Password</label>
         </div>
-       
-            <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Login</button>
+        <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Login</button><br>
+
+        <a href="javascript:void(0);" id="forgot" class="mt-2">Forgotten username or password?</a>
            
-            <br><a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
-        </form>
-       
+        <a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
+
+        <div style="display: none;" class="alert alert-danger mt-2 mx-auto text-center" id="forgotText">
+            please contact the director to confirm identity
+        </div>
+
+    </form>
     </div>
 
     <script> 
@@ -90,8 +95,19 @@ if (is_password_correct($name, $password, $db)) {
         const type = passwordField.getAttribute("type") === "password" ? "text" : "password";            
         passwordField.setAttribute("type", type);
     })
-    
+        var forgotDiv = document.getElementById("forgot");
+        forgotDiv.addEventListener("click", forgotPassword);
+
+        function forgotPassword() {
+            var x = document.getElementById("forgotText");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
     </script>
+   
 	<!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
