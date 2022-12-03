@@ -41,10 +41,9 @@ function checkForTeams ($db) {
 
   # get the current active season
 function getActiveSeason ($db) {
-  $seasonResult = $db->query("SELECT * from season where seasonStatus = 1");
-  while ($row = $seasonResult->fetch_assoc()) {
-    $activeSeason = $row['seasonId'];
-  }
+  $seasonResult = $db->query("SELECT seasonId from season where seasonStatus = 1");
+  $activeSeasonRes = mysqli_fetch_row($seasonResult);
+  $activeSeason = $activeSeasonRes[0];
   return $activeSeason;   
 	}
 
@@ -227,9 +226,15 @@ $promptMessage = function($db) {
     echo "<div class='alert alert-danger mt-3 mx-auto text-center' role='alert'>".$message."</div>";
   }
   #tested
-  if (isset($_GET['newPassSet'])) {
+  if (isset($_GET['newPassSet']) && !isset($_GET['name'])) {
     $message = "Your Password Has Been Changed!";
     echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
+}
+
+if (isset($_GET['newPassSet']) && isset($_GET['name'])) {
+  $name=$_GET['name'];
+  $message = "The password for $name has been changed.";
+  echo "<div class='alert alert-success mt-3 mx-auto text-center' role='alert'>".$message."</div>";
 }
 
   #season added
