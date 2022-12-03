@@ -36,8 +36,7 @@ $inactiveError="";
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
-
-
+    <h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
     <h1 class='mt-4 text-center'>Season Manager</h1>
         <!--  Form for adding a new season mt-3 ml-2 -->
         <h3 class="subText  text-center mt-2 mb-3">Add New Season</h3>

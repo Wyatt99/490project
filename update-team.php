@@ -77,36 +77,36 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
+    <h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
+    <h1 class='centerContent mt-4'>Manage Teams</h1>
+    <div class="text-center mt-2" >
+    <form name="search_form" method="POST" action="update-team.php">
+    Search: <input type="text" class='mb-2' name="search_box" placeholder= "Search..." value="<?=$searchTerm?>" />
 
-<h1 class='centerContent mt-4'>Manage Teams</h1>
-<div class="text-center mt-2" >
-<form name="search_form" method="POST" action="update-team.php">
-Search: <input type="text" class='mb-2' name="search_box" placeholder= "Search..." value="<?=$searchTerm?>" />
+    <br class="d-md-none">
+    <input type="submit" name="search" value="Filter">
+    <input type="submit" name="showAll" value="Reset">
+    </form>
+    </div>
 
-<br class="d-md-none">
-<input type="submit" name="search" value="Filter">
-<input type="submit" name="showAll" value="Reset">
-</form>
-</div>
+    <div class="mt-2">
+    <?=$promptMessage($db)?>
+    <table class="table table-bordered table-hover centerContent smallFont mt-2">
 
-<div class="mt-2">
-<?=$promptMessage($db)?>
-<table class="table table-bordered table-hover centerContent smallFont mt-2">
+        <thead>
+        <tbody>
+        <tr class='table-head'>
+            <th scope="col">Team</th>
+            <th class="text-center" scope="col">Edit</th>
+            <th class="text-center" scope="col">Delete</th>
+        </tr>
+        </thead>
+    
+        <?=outputTable($query)?>
+        </tbody>
 
-    <thead>
-    <tbody>
-      <tr class='table-head'>
-        <th scope="col">Team</th>
-        <th class="text-center" scope="col">Edit</th>
-        <th class="text-center" scope="col">Delete</th>
-      </tr>
-      </thead>
-  
-      <?=outputTable($query)?>
-    </tbody>
-
-</table>
-</div>
+    </table>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <!-- END OF BODY -->

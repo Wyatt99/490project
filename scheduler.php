@@ -154,6 +154,7 @@ if (isset($_GET['submit'])
 <!--php ends-->
 
 <body>
+	<h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
 	<h1 class="mt-4 mb-2 px-2 text-center"><?=$_SESSION['parkName']?></h1>
 	<h3 class="subText  text-center ">Practice Scheduler</h3> 
 	<?php 

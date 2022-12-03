@@ -109,105 +109,105 @@ if (isset($_POST['addTeamButton'])){
 }
 ?>
 <body>
+    <h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
+    <h1 class='text-center mt-4 mb-2'>Add New Team</h1>
+    <?=$promptMessage($db);?>
 
-        <h1 class='text-center mt-4 mb-2'>Add New Team</h1>
-        <?=$promptMessage($db);?>
+    <container class="centerContent mx-auto mb-3">
+        <form style='width:60%;' id='createteams' action='create-teams.php' method='POST'>
 
-        <container class="centerContent mx-auto mb-3">
-            <form style='width:60%;' id='createteams' action='create-teams.php' method='POST'>
+        <div class="row align-items-center mt-1 centerContent">
 
-            <div class="row align-items-center mt-1 centerContent">
-
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-                <span><strong>Team Name</strong></span><br>
-                <input class='mt-2' type='text' id='teamName' name='teamName'
-                placeholder='Enter a team name' required>
-            </div>
-            
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-                <span><strong>Coach First Name</strong></span><br>
-                <input class='mt-2' type='text' id='coachFirstName' name='coachFirstName'
-                placeholder='Enter coach first name  '>
-            </div>
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+            <span><strong>Team Name</strong></span><br>
+            <input class='mt-2' type='text' id='teamName' name='teamName'
+            placeholder='Enter a team name' required>
+        </div>
         
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-                <span><strong>Coach Last Name</strong></span><br>
-                <input class='mt-2' type='text' id='coachLastName' name='coachLastName'
-                placeholder='Enter coach last name' >
-            </div>
-        
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-                <span><strong>Coach Email</strong> (optional)</span><br>
-                <input class='mt-2' type='text' id='coachEmail' name='coachEmail'
-                placeholder='Enter coach email' >
-            </div>
-        </div> <!--row end-->
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+            <span><strong>Coach First Name</strong></span><br>
+            <input class='mt-2' type='text' id='coachFirstName' name='coachFirstName'
+            placeholder='Enter coach first name  '>
+        </div>
+    
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+            <span><strong>Coach Last Name</strong></span><br>
+            <input class='mt-2' type='text' id='coachLastName' name='coachLastName'
+            placeholder='Enter coach last name' >
+        </div>
+    
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+            <span><strong>Coach Email</strong> (optional)</span><br>
+            <input class='mt-2' type='text' id='coachEmail' name='coachEmail'
+            placeholder='Enter coach email' >
+        </div>
+    </div> <!--row end-->
 
-            <?php $result = $db->query("select ageGroup from ageGroup");?>
+        <?php $result = $db->query("select ageGroup from ageGroup");?>
 
-        <div class="row align-items-center g-3 mt-1 centerContent">
+    <div class="row align-items-center g-3 mt-1 centerContent">
 
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-            <span><strong>Age Group</strong></span><br>
-            <select class='mt-2' name='ageGroup' required>
-            <option value='' disabled selected hidden>Age Group</option>
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+        <span><strong>Age Group</strong></span><br>
+        <select class='mt-2' name='ageGroup' required>
+        <option value='' disabled selected hidden>Age Group</option>
 
-            <?php
-            while ($row = $result->fetch_assoc()) {
-                unset($id, $name);
-                # the id is the value that gets inserted when selected and submitted
-                $id = $row['ageGroup'];
-                # change the value inside of the row to populate what you want the 
-                # option to be called
-                $name = $row['ageGroup']; 
-                echo '<option value="'.$id.'">'.$name.'u</option>';
-            }?>
-            </select>
-            </div>
-            <?php $result = $db->query("select teamLocation from teamLocation");?>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            unset($id, $name);
+            # the id is the value that gets inserted when selected and submitted
+            $id = $row['ageGroup'];
+            # change the value inside of the row to populate what you want the 
+            # option to be called
+            $name = $row['ageGroup']; 
+            echo '<option value="'.$id.'">'.$name.'u</option>';
+        }?>
+        </select>
+        </div>
+        <?php $result = $db->query("select teamLocation from teamLocation");?>
 
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-            <span><strong>Location</strong></span><br>
-            <select class='mt-2' name='teamLocation' required>
-            <option value='' disabled selected hidden>Location</option>
-            <?php
-            while ($row = $result->fetch_assoc()) {
-                unset($id, $name);
-                # see previous comments about these loop vars
-                $id = $row['teamLocation'];
-                $name = $row['teamLocation']; 
-                echo '<option value="'.$id.'">'.$name.'</option>';
-            }?>
-            </select>
-            </div>
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+        <span><strong>Location</strong></span><br>
+        <select class='mt-2' name='teamLocation' required>
+        <option value='' disabled selected hidden>Location</option>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            unset($id, $name);
+            # see previous comments about these loop vars
+            $id = $row['teamLocation'];
+            $name = $row['teamLocation']; 
+            echo '<option value="'.$id.'">'.$name.'</option>';
+        }?>
+        </select>
+        </div>
 
-            <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
-            <span><strong>Season</strong></span><br>
-            <select class='mt-2' name='seasonId' required>
-            <option value='' disabled selected hidden>Season</option>
-            <?php
-            $result = $db->query("select seasonId from season");
-            # loops through all the seasons 
-            while ($row = $result->fetch_assoc()) {
-                unset($seasonId);
-                # the id is the value that gets inserted when selected and submitted
-                $seasonId = $row['seasonId'];
-                # change the value inside of the row to populate what you want the 
-                # option to be called
-                echo '<option value="'.$seasonId.'">'.$seasonId.'</option>';
-            }?>
-            </select>
-            </div>
+        <div class="col-12 col-md-auto mt-2 mt-lg-3 mb-2">
+        <span><strong>Season</strong></span><br>
+        <select class='mt-2' name='seasonId' required>
+        <option value='' disabled selected hidden>Season</option>
+        <?php
+        $result = $db->query("select seasonId from season");
+        # loops through all the seasons 
+        while ($row = $result->fetch_assoc()) {
+            unset($seasonId);
+            # the id is the value that gets inserted when selected and submitted
+            $seasonId = $row['seasonId'];
+            # change the value inside of the row to populate what you want the 
+            # option to be called
+            echo '<option value="'.$seasonId.'">'.$seasonId.'</option>';
+        }?>
+        </select>
+        </div>
 
-            <div class='col-12 col-md-auto mt-3 mb-2'>
-            <button class="btn-primary btn-sm btn-block mt-0 mt-lg-4" type="submit" id='activateButton' name='addTeamButton' value='addTeamButton'>Add</button>
-            </div>
-        </div> <!--row ends-->
-            </form>
-        </container>
-        
-    <!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </body>
-    <footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
+        <div class='col-12 col-md-auto mt-3 mb-2'>
+        <button class="btn-primary btn-sm btn-block mt-0 mt-lg-4" type="submit" id='activateButton' name='addTeamButton' value='addTeamButton'>Add</button>
+        </div>
+    </div> <!--row ends-->
+        </form>
+    </container>
+    
+<!-- Bootstrap JS Bundle with Popper ***needed for navbar collapse*** -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+<footer class="centerContent">Copyright &copy 2022 Cajun Rush Soccer Club</footer>
 </html>

@@ -27,6 +27,7 @@ ensure_logged_in();
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
 <body>
+<h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
 <h1 class='text-center my-3'>Hello <?= strtoupper(substr($_SESSION["name"],0,1)).substr($_SESSION["name"],1,) ?>, welcome back!</h1> <!--to confirm session created, will remove/edit later-->
 
 <div class="container mt-3 mt-lg-5 centerContent">

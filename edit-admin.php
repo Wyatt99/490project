@@ -106,12 +106,13 @@ if (isset($_POST["changePassword"])){
           $adminExists = mysqli_fetch_all($adminsQ);
           if ($adminExists) {
           $adminsQ = mysqli_query($db, "SELECT * FROM admins WHERE adminId != 1");
-          echo " <h2 class='centerContent mt-4 deleteAdmin'>Delete Admins</h2>
+          echo " <h2 class='centerContent mt-4 deleteAdmin'>Manage Admins</h2>
                 <table class='table table-bordered table-hover px-1 mt-3 centerContent'>
                  <thead>
                  <tbody>
                  <tr class='table-head'>
                  <th scope='col' style='width:200px';>Admin</th>
+                 <th class='text-center' scope='col'>Password</th>
                  <th class='text-center' scope='col'>Delete</th>
                </tr>
                </thead>";
@@ -121,7 +122,11 @@ if (isset($_POST["changePassword"])){
               $id=$row['adminId'];
               echo "<tr>";
               echo  "<td>"; echo $username."</td>";
-              echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick="return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
+              echo  "<td>"; ?> <a href="change-pass.php?id=<?php echo $id ?>">
+              <button type="button" class= "btn btn-sm btn-secondary">Change</button></a> <?php echo "</td>"; 
+
+              echo  "<td>"; ?> <a href="delete-admin.php?id=<?php echo $id ?>&user=1"onclick=
+                                  "return confirm('Are you sure you want to delete <?php echo $username ?>? This cannot be undone.') ">
               <button type="button" class= "btn btn-sm btn-danger">Delete</button></a> <?php echo "</td>"; 
               echo"</tr>";
           }

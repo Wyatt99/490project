@@ -150,6 +150,7 @@ if (isset($_POST['showAll'])){
 <!-- START OF BODY -->
 <body>
 <?=$promptMessage($db)?>
+<h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
 <h1 class="centerContent mt-4 mb-3">Scheduled Teams</h1>
     <!-- search bar filter -->
     <div class="text-center  mb-1" >

@@ -80,6 +80,7 @@ if (isset($_POST['showAll'])){
 
 <!-- START OF BODY -->
 <body>
+<h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
 <h1 class="centerContent mt-4 mb-3">Unscheduled Teams</h1>
 <div class="text-center p-2 mb-2" >
 <form name="search_form" method="POST" action="team-select.php">
