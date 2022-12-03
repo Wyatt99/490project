@@ -1,9 +1,3 @@
-<?php 
-include 'db.php';
-include 'user-nav.php';
-?>
-<!--php ends-->
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -26,6 +20,13 @@ include 'user-nav.php';
 	<!-- custom CSS Stylesheet -->	  
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
+
+<?php 
+include 'db.php';
+include 'user-nav.php';
+?>
+<!--php ends-->
+
 <body>
     <h1 class='centerContent mt-4'>Coaching Resources</h1>
         <!-- Practice Sessions -->

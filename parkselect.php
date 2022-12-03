@@ -1,21 +1,3 @@
-<?php 
-include 'db.php';
-include 'admin-nav.php';
-ensure_logged_in();
-
-$update = $_GET['update'];
-
-#if (!isset($_SESSION['team'])) {
-$_SESSION['team'] = $_GET['team'];
-#}
-
-if (isset($_SESSION['parkId'])) {
-    unset($_SESSION['parkId']);
-	unset($_SESSION['parkName']);
-}
-
-?>
-
 <!--php ends-->
 <!DOCTYPE html>
 <html lang="en-us">
@@ -39,6 +21,24 @@ if (isset($_SESSION['parkId'])) {
 	<!-- custom CSS Stylesheet -->	  
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
+
+<?php 
+include 'db.php';
+include 'admin-nav.php';
+ensure_logged_in();
+
+$update = $_GET['update'];
+
+#if (!isset($_SESSION['team'])) {
+$_SESSION['team'] = $_GET['team'];
+#}
+
+if (isset($_SESSION['parkId'])) {
+    unset($_SESSION['parkId']);
+	unset($_SESSION['parkName']);
+}
+
+?>
 
 <body>
     <div class='centerContent mt-5 mb-3'><h1>Select Park</h1></div>

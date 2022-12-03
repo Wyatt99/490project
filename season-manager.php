@@ -1,18 +1,3 @@
-<?php 
-include 'db.php';
-include 'admin-nav.php';
-ensure_logged_in();
-mysqli_report(MYSQLI_REPORT_STRICT);
-
-# variable default values
-$error = false;
-$notUniqueError="";
-$requiredError="";
-$insertSuccess="";
-$activeSuccess="";
-$inactiveError="";
-?>
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -35,6 +20,22 @@ $inactiveError="";
 	<!-- custom CSS Stylesheet -->	  
     <link rel="stylesheet" type="text/css" href="styles.css";>
 </head>
+
+<?php 
+include 'db.php';
+include 'admin-nav.php';
+ensure_logged_in();
+mysqli_report(MYSQLI_REPORT_STRICT);
+
+# variable default values
+$error = false;
+$notUniqueError="";
+$requiredError="";
+$insertSuccess="";
+$activeSuccess="";
+$inactiveError="";
+?>
+
 <body>
     <h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
     <h1 class='mt-4 text-center'>Season Manager</h1>

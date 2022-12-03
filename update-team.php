@@ -21,9 +21,6 @@
 </head>
 <!-- END OF HEADER -->
 
-
-
-
 <!-- PHP PORTION -->
 <?php
 #Database
