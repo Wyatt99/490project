@@ -35,9 +35,6 @@
                         </ul>
                     </li>
 
-                    
-
-
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" 
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Schedule</a>
@@ -53,11 +50,9 @@
                                         <a href="register.php" class="nav-item nav-link">Register</a>
                                         <a href="edit-admin.php" class="nav-item nav-link">Account</a>     	
                     <a href="logout.php" class="nav-item nav-link">Log Out</a>
-
                 </div>
             </div>
         </div>
     </nav>
     <!--navigation bar end-->
-    <h1 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px; font-size: 18px;">Active Season: <?=getActiveSeason($db)?></h1>
 </header>
