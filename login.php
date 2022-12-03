@@ -71,12 +71,13 @@ if (is_password_correct($name, $password, $db)) {
         </div>
         <button class="btn-primary btn-lg btn-block mb-2" type="submit" name='submit' value='Login'>Login</button><br>
 
-        <a href="javascript:void(0);" id="forgot">Forgotten username or password?</a>
+       
            
         <a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
 
+        <a href="javascript:void(0);" id="forgot">Forgot username or password?</a>
         <div style="display: none;" class="alert alert-danger mt-2 mx-auto text-center" id="forgotText">
-            please contact the director to confirm identity
+            Contact Cajun Rush director to recover credentials.
         </div>
 
     </form>
