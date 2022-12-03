@@ -37,13 +37,19 @@ if (isset($_GET['id'])) {
     if (isset( $_POST['submit'])) {
 
         if(!is_password_correct($_SESSION['name'], $_POST['currPass'], $db)){
-            header("location: change-pass.php?errPassCheck&id=$id");
-            exit();
+            ?>
+            <script type="text/javascript">
+            window.location="change-pass.php?errPassCheck&id=<?=$id?>";
+            </script>
+            <?php
         }
 
         if($_POST['password'] != $_POST['password_confirm']){
-            header("location: change-pass.php?errNewPassMatch&id=$id");
-            exit();
+            ?>
+            <script type="text/javascript">
+            window.location="change-pass.php?errNewPassMatch&id=<?=$id?>";
+            </script>
+            <?php
         }
         else {
             $password = $_POST['password_confirm'];
@@ -53,11 +59,19 @@ if (isset($_GET['id'])) {
 
                 $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
                 $registerPrep -> execute();
-                header("location: edit-admin.php?newPassSet&name=$name");
-                exit();
+
+                ?>
+                <script type="text/javascript">
+                window.location="edit-admin.php?newPassSet&name=<?=$name?>";
+                </script>
+                <?php
         }
             else {
-                header("location: change-pass.php?special&id=$id");
+                ?>
+                <script type="text/javascript">
+                window.location="change-pass.php?special&id=<?=$id?>";
+                </script>
+                <?php
             }
         }
     }
@@ -68,13 +82,19 @@ else {
         $name = $_SESSION['name'];
 
         if(!is_password_correct($name, $_POST['currPass'], $db)){
-            header("location: change-pass.php?errPassCheck");
-            exit();
+            ?>
+            <script type="text/javascript">
+            window.location="change-pass.php?errPassCheck";
+            </script>
+            <?php
         }
 
         if($_POST['password'] != $_POST['password_confirm']){
-            header("location: change-pass.php?errNewPassMatch");
-            exit();
+            ?>
+            <script type="text/javascript">
+            window.location="change-pass.php?errNewPassMatch";
+            </script>
+            <?php
         }
 
         else {
@@ -85,12 +105,19 @@ else {
 
                 $registerPrep = $db -> prepare("UPDATE admins SET password = '$password_hash' where username = '$name'");
                 $registerPrep -> execute();
-                header("location: change-pass.php?newPassSet");
-                exit();
+                ?>
+                <script type="text/javascript">
+                window.location="change-pass.php?newPassSet";
+                </script>
+                <?php
                 }
             else {
-                header("location: change-pass.php?special");
-            }
+                ?>
+                <script type="text/javascript">
+                window.location="location: change-pass.php?special";
+                </script>
+                <?php
+            } 
         }
     }
 }
