@@ -26,10 +26,8 @@ include 'db.php';
 include 'admin-nav.php';
 ensure_logged_in();
 
-
 #not main admin
 if (isset($_GET['id'])) {
-
     #get username based on selected admin
     $nameQ = mysqli_query($db, "SELECT username FROM admins WHERE adminId = '$_GET[id]'");
     $nameRes = mysqli_fetch_row($nameQ);
@@ -37,7 +35,8 @@ if (isset($_GET['id'])) {
     $id=$_GET['id'];
 
     if (isset( $_POST['submit'])) {
-        if(!is_password_correct($name, $_POST['currPass'], $db)){
+
+        if(!is_password_correct($_SESSION['name'], $_POST['currPass'], $db)){
             header("location: change-pass.php?errPassCheck&id=$id");
             exit();
         }
@@ -103,10 +102,11 @@ else {
     <div class="d-flex justify-content-center mx-auto">
 
     <form method="post" class="registerForm">
+        
         <h1 class="mt-2 mb-2 centerContent ">Change Password</h1>
 
         <?php if (isset($_GET['id'])) {
-        echo "<h5 class='text-center mt-2 mb-3'>Selected admin: $name</h5>";
+        echo "<h5 class='text-center mt-2 mb-3'>Selected Admin: $name</h5>";
         }
         ?>
 
@@ -115,7 +115,14 @@ else {
         <div class="password-container form-outline mb-2">
             <input type="password" name="currPass" id="currPass" class="form-control form-control-lg" minlength='8' required/>
             <i class="fa-solid fa-eye" id="eye3"></i>
-            <label class="form-label" for="currPass">Current Password</label>
+            <?php 
+            if (isset($_GET['id'])) {
+                echo "<label class='form-label' for='currPass'>Main Admin Password</label>";
+            }
+            else {
+                echo "<label class='form-label' for='currPass'>Current Password</label>";
+            }
+            ?>
         </div>
 
         <div class="password-container form-outline mb-2">
