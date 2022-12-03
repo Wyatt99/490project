@@ -69,9 +69,9 @@ if (is_password_correct($name, $password, $db)) {
             <i class="fa-solid fa-eye" id="eye"></i>
             <label class="form-label" for="password">Password</label>
         </div>
-        <button class="btn-primary btn-lg btn-block" type="submit" name='submit' value='Login'>Login</button><br>
+        <button class="btn-primary btn-lg btn-block mb-2" type="submit" name='submit' value='Login'>Login</button><br>
 
-        <a href="javascript:void(0);" id="forgot" class="mt-2">Forgotten username or password?</a>
+        <a href="javascript:void(0);" id="forgot">Forgotten username or password?</a>
            
         <a href="index.php" style="display:block; text-decoration:none" class="mt-3">Return to user page</a>
 
