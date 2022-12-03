@@ -89,11 +89,13 @@ if (isset($_POST["Return"])){
 
 <!-- START OF BODY -->
 <body>
+<h5 class="text-center" style="color: rgb(31, 107, 214); margin-bottom: -15px; margin-top: 15px;">Active Season: <?=getActiveSeason($db)?></h5>
 <div class="container mt-3 centerContent">
 <div class="col-lg-4">
-
   <form action="" name = "form1" method = "post">
-  <h1 class="centerContent">Edit Team</h1>
+
+
+  <h1 class="centerContent mt-2">Edit Team</h1>
 
     <div class="form-group">
       <label for="teamName">Team Name</label>
