@@ -43,22 +43,38 @@ if (isset( $_POST['submit'] )) {
         $registerPrep = $db -> prepare("INSERT INTO admins(username, password) VALUES (?, ?)");
         $registerPrep -> bind_param("ss", $name, $password_hash);
         $registerPrep -> execute();
-        header("location: register.php?newAdminSuccess");
+        ?>
+        <script type="text/javascript">
+        window.location="register.php?newAdminSuccess";
+        </script>
+        <?php
         exit();
         }
         else {
-            header("location: register.php?special");
+            ?>
+            <script type="text/javascript">
+            window.location="register.php?special";
+            </script>
+            <?php
             exit();
         }
     }
 
     else {
-        header("location: register.php?errp");
+        ?>
+        <script type="text/javascript">
+        window.location="register.php?errp";
+        </script>
+        <?php
         exit();
       }
     }
     else {
-        header("location: register.php?duplicateAdmin");
+        ?>
+        <script type="text/javascript">
+        window.location="register.php?duplicateAdmin";
+        </script>
+        <?php
         exit();
       }
 }
