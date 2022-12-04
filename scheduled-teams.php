@@ -63,6 +63,10 @@ if (isset($_POST['search'])){
 
     $searchTerm = $_POST['search_box'];
 
+    if ($searchTerm == 'YSC' || $searchTerm == 'ysc') {
+        $searchTerm = 'Youngsville Sports Complex';
+    }
+    
     #create time from searchTerm (MUST be followed by AM or PM)
     $time = date("G:i a", strtotime($searchTerm));
     
